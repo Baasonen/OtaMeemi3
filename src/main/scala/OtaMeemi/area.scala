@@ -13,7 +13,7 @@ abstract class Area(name: String):
       currentDepth += 1
       subDesc(currentDepth)
     else
-      "Olet tutkinut jo niin pitkälle kun pystyt"
+      "Ei pääse enää syvemmälle bro *pääkalloemoji*"
 
   def move(destination: Area): Boolean =
     if neighbors.contains(destination) then
