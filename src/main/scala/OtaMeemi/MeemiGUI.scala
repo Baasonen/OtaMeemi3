@@ -3,7 +3,6 @@ package OtaMeemi
 import scala.swing.*
 import scala.swing.event.*
 import javax.swing.UIManager
-import o1.adventure.Adventure
 import java.awt.{Point, Insets, Dimension}
 import scala.language.adhocExtensions // enable extension of Swing classes
 

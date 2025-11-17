@@ -6,3 +6,5 @@ lazy val root = (project in file("."))
   .settings(
     name := "OtaMeemi3"
   )
+
+libraryDependencies += "org.scala-lang.modules" %% "scala-swing" % "3.0.0"

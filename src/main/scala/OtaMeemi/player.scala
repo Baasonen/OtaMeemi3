@@ -6,9 +6,14 @@ class Player(gw: GameWorld):
   private var currentLocation = gw.getAreas.head
   private var quitCommandGiven = false
   private val items = Map[String,Item]()
+  private var debuffs = Vector[Debuff]()
+
+  def activeDebuffs = debuffs
+
+  def addDebuff(debuff: Debuff) =
+    debuffs = debuffs.appended(debuff)
 
   def hasQuit = this.quitCommandGiven
-
 
   def location = this.currentLocation
 
@@ -21,6 +26,13 @@ class Player(gw: GameWorld):
       s"You dropped ${itemName}"
     else
       s"You don't have ${itemName}"
+
+  def removeItem(itemName: String): Boolean =
+    if hasItem(itemName) then
+      items.remove(itemName)
+      true
+    else
+      false
 
   def get(itemName: String): Option[String] =
     if (this.location.availableItems.map(_.toString).contains(itemName)) then
@@ -36,8 +48,8 @@ class Player(gw: GameWorld):
     else
       s"You don't have ${itemName}"
 
-  def inventory: String =
-    "You have stuff"
+  def inventory: Vector[String] =
+    items.keys.toVector
 
   def movementOptions: Vector[String] =
     currentLocation.neighbors.map(_.toString)
@@ -45,7 +57,7 @@ class Player(gw: GameWorld):
   def go(destination: String) =
     if currentLocation.neighbors.map(_._1.toString).contains(destination) then
       currentLocation = currentLocation.neighbors(currentLocation.neighbors.map(_._1.toString).indexOf(destination))._1
-      s"You travel to ${currentLocation.toString}"
+      s"You travel to ${currentLocation.toString}\n \n ${currentLocation.description}"
     else
       s"Uh Oh, you don't know how to travel to ${destination} from here"
 

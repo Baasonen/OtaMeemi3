@@ -5,11 +5,14 @@ abstract class Area(name: String):
   val subDesc: Vector[String] = Vector()
   var currentDepth = 0
 
-  def items: Vector[Item] = Vector()
-  def neighbors: Vector[(Area, Int)]
+  var items: Vector[Item] = Vector()
+  val neighbors: Vector[(Area, Int)]
+  val event: Option[Event]
+
+  def description: String = this.initialDesc
 
   def examineArea(): String =
-    if (subDesc(currentDepth +1).exists) then
+    if (subDesc(currentDepth + 1).nonEmpty) then
       currentDepth += 1
       subDesc(currentDepth)
     else
