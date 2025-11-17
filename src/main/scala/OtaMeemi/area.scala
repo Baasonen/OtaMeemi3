@@ -8,7 +8,7 @@ abstract class Area(name: String):
   def items: Vector[Item] = Vector()
   def neighbors: Vector[(Area, Int)]
 
-  def examine(): String =
+  def examineArea(): String =
     if (subDesc(currentDepth +1).exists) then
       currentDepth += 1
       subDesc(currentDepth)
@@ -22,7 +22,7 @@ abstract class Area(name: String):
       false
 
   def getNeighbors: Vector[Area] =
-    neighbors
+    neighbors.map(_._1)
 
   def availableItems = this.items
 

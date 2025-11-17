@@ -69,7 +69,7 @@ class GameWorld:
   
   def getAreas : Vector[Area] = areas
 
-  def currentTime = currentTime
+  def getTime = currentTime
 
   def passTime(timeToPass: Int) =
     currentTime += timeToPass

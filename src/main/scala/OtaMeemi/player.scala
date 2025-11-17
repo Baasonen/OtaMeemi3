@@ -30,7 +30,6 @@ class Player(gw: GameWorld):
     else
       None
 
-
   def examine(itemName:String): String =
     if hasItem(itemName) then
       items(itemName).examine()
@@ -41,7 +40,7 @@ class Player(gw: GameWorld):
     "You have stuff"
 
   def movementOptions: Vector[String] =
-    currentLocation.neighbors.map(_._1.toString)
+    currentLocation.neighbors.map(_.toString)
 
   def go(destination: String) =
     if currentLocation.neighbors.map(_._1.toString).contains(destination) then
