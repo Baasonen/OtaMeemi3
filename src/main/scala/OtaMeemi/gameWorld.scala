@@ -2,14 +2,14 @@ package OtaMeemi
 
 
 class GameWorld:
-
+  private var currentTime = (8*60)+15
 
   object taafa extends Area("Taafa"):
-    def neighbors = Vector(kandi,dipoli)
+    def neighbors = Vector((kandi, 5),(dipoli, 2))
     def subDesc = Vector()
 
   object smokki extends Area("Smökki"):
-    def neighbors = Vector(otaranta,ok20)
+    def neighbors = Vector((otaranta, 5), (ok20, 2))
     def subDesc = Vector()
 
   object ok20 extends Area("Ok20"):
@@ -33,11 +33,11 @@ class GameWorld:
     def subDesc = Vector()
 
   object klahtimetro extends Area("Kivenlahden metroasema"):
-    def neighbors = Vector(knmcdonalds,sornainen)
+    def neighbors = Vector((knmcdonalds 30),(sornainen, 60))
     def subDesc = Vector()
 
   object narnia extends Area("Narnia"):
-    def neighbors = Vector(rantasauna)
+    def neighbors = Vector(rantasauna, 120)
     def subDesc = Vector()
 
   object abloc extends Area("A Bloc"):
@@ -56,11 +56,11 @@ class GameWorld:
     def neighbors = Vector(abloc,designfactory)
     def subDesc = Vector()
 
-  object designfactory extends Area("Aalto Design Factory")
+  object designfactory extends Area("Aalto Design Factory"):
     def neighbors = Vector(kandi,ttalo)
     def subDesc = Vector()
 
-  object otaranta extends Area("Otaranta")
+  object otaranta extends Area("Otaranta"):
     def neighbors = Vector(smokki,rantasauna)
     def subDesc = Vector()
 
@@ -68,3 +68,8 @@ class GameWorld:
     Vector[Area](taafa,smokki,ok20,dipoli,knmcdonalds,sornainen,rantasauna,klahtimetro,narnia,abloc,kandi,tuas,ttalo,designfactory,otaranta)
   
   def getAreas : Vector[Area] = areas
+
+  def currentTime = currentTime
+
+  def passTime(timeToPass: Int) =
+    currentTime += timeToPass

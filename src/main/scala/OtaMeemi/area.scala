@@ -6,7 +6,7 @@ abstract class Area(name: String):
   var currentDepth = 0
 
   def items: Vector[Item] = Vector()
-  def neighbors: Vector[Area]
+  def neighbors: Vector[(Area, Int)]
 
   def examine(): String =
     if (subDesc(currentDepth +1).exists) then
@@ -23,5 +23,8 @@ abstract class Area(name: String):
 
   def getNeighbors: Vector[Area] =
     neighbors
+
+  def availableItems = this.items
+
 
   override def toString: String = this.name
