@@ -40,7 +40,7 @@ class GameWorld:
 
   object ok20 extends Area("Ok20"):
     val neighbors = Vector((kandi,10),(rantasauna,10))
-    val subDesc = Vector()
+    val subDesc = Vector("Saavut Ok20 pihaan, yläovi on raollaan ja sieltä kuuluu musiikkia ja puheensorinaa. Pihalla on paljullinen ihmisiä pinkeissä haalareissa.","Menet sisälle, käynnissä on konelaisten fuksisitsien jatkot")
 
   object dipoli extends Area("Dipoli"):
     val neighbors = Vector((taafa,5),(kandi,10),(knmcdonalds,15))
