@@ -34,7 +34,7 @@ object OtameemiGUI extends SimpleSwingApplication:
 
     // Components:
     val susamogus = new Label:
-      icon = new ImageIcon(getClass.getResource("/sus.png"))
+      icon = new ImageIcon(getClass.getResource("/pot.png"))
     val locationInfo = new TextArea(7, 80):
       editable = false
       wordWrap = true
