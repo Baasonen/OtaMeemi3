@@ -5,8 +5,7 @@ class GameWorld:
   private var currentTime = (8*60)+15
 
   val taafa     = new Area("Taafa", Vector(
-                      "Saavut täffälle, betonibrutalismin kukkanen pistää silmään",
-                      "Yrität mennä sisälle. Huomaat että olet spagujonossa ilman lounaslippua. Joudut odottamaan jonossa muiden rahvaiden kanssa.",
+                      "Saavut täffälle, betonibrutalismin kukkanen pistää silmään","Yrität mennä sisälle. Huomaat että olet spagujonossa ilman lounaslippua. Joudut odottamaan jonossa muiden rahvaiden kanssa.",
                       "Menet sisälle. Ohitat koko jonon fastlanea käyttäen koska sinulla on lounaslippu. Oppiipahan.",
                       "Du försöker att komma in genom övre dörren men det är stängt. Tyvärr har du ingen nyckel för du är inte medlem av Teknologföreningen..."
                     ), Vector())
@@ -78,7 +77,7 @@ class GameWorld:
 
   def getAreas : Vector[Area] = areas
 
-  def getTime = currentTime
+  def getTime = s"${currentTime/60}.${currentTime%60}"
 
   def passTime(timeToPass: Int) =
     currentTime += timeToPass
