@@ -16,7 +16,7 @@ abstract class Area(name: String):
       currentDepth += 1
       subDesc(currentDepth)
     else
-      "Ei pääse enää syvemmälle bro *pääkalloemoji*"
+      "Ei pääse enää syvemmälle bro \uD83D\uDC80"
 
   def move(destination: Area): Boolean =
     if neighbors.contains(destination) then

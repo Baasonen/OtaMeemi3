@@ -52,11 +52,11 @@ class GameWorld:
 
   object sornainen extends Area("Sörnäisten metroasema"):
     val neighbors = Vector(knmcdonalds,klahtimetro)
-    val subDesc = Vector()
+    val subDesc = Vector("Ilmeisesti )
 
   object rantasauna extends Area("Rantasauna"):
     val neighbors = Vector(narnia,rantasauna,ok20)
-    val subDesc = Vector()
+    val subDesc = Vector("Saavut rantasaunalle, palju ja sauna ovat lämpimiä")
 
   object klahtimetro extends Area("Kivenlahden metroasema"):
     val neighbors = Vector((knmcdonalds 30),(sornainen, 60))
@@ -64,7 +64,7 @@ class GameWorld:
 
   object narnia extends Area("Narnia"):
     val neighbors = Vector(rantasauna, 120)
-    val subDesc = Vector()
+    val subDesc = Vector("Miten tässä näin kävi?")
 
   object abloc extends Area("A Bloc"):
     val neighbors = Vector(kandi,ttalo,klahtimetro,knmcdonalds,sornainen)
@@ -80,15 +80,15 @@ class GameWorld:
 
   object ttalo extends Area("Tietotalo"):
     val neighbors = Vector(abloc,designfactory)
-    val subDesc = Vector()
+    val subDesc = Vector("Saavut tietotalolle, täällä asuville suihku on vieras käsite","Käyt syömässä subwayssa")
 
   object designfactory extends Area("Aalto Design Factory"):
     val neighbors = Vector(kandi,ttalo)
-    val subDesc = Vector()
+    val subDesc = Vector("Saavut Design factoryn pihaan, sisältä kuuluu pöhinää","Menet sisälle pöhisemään")
 
   object otaranta extends Area("Otaranta"):
     val neighbors = Vector(smokki,rantasauna)
-    val subDesc = Vector()
+    val subDesc = Vector("Saavut otarantaan. Kylmä tuuli puhaltaa mereltä","Menet uimaan, vesi on kylmää (yllättyneet parijonoon)")
 
   private val areas =
     Vector[Area](taafa,smokki,ok20,dipoli,knmcdonalds,sornainen,rantasauna,klahtimetro,narnia,abloc,kandi,tuas,ttalo,designfactory,otaranta)
