@@ -5,6 +5,7 @@ import scala.swing.event.*
 import javax.swing.UIManager
 import java.awt.{Point, Insets, Dimension}
 import scala.language.adhocExtensions // enable extension of Swing classes
+import javax.swing.ImageIcon
 
 ////////////////// NOTE TO STUDENTS //////////////////////////
 // For the purposes of our course, it’s not necessary
@@ -16,7 +17,7 @@ import scala.language.adhocExtensions // enable extension of Swing classes
   * be run to start up a user interface that operates in a separate window. The GUI reads
   * its input from a text field and displays information about the game world in uneditable
   * text areas.
-  
+
   * **NOTE TO STUDENTS: In this course, you don’t need to understand how this object works
   * on the inside. It’s enough to know that you can use this file to start the program.**
   *
@@ -32,7 +33,8 @@ object OtameemiGUI extends SimpleSwingApplication:
     lazy val player = game.player
 
     // Components:
-
+    val susamogus = new Label:
+      icon = new ImageIcon(getClass.getResource("/sus.png"))
     val locationInfo = new TextArea(7, 80):
       editable = false
       wordWrap = true
@@ -45,7 +47,7 @@ object OtameemiGUI extends SimpleSwingApplication:
       minimumSize = preferredSize
     this.listenTo(input.keys)
     val turnCounter = Label()
-
+      
     // Events:
 
     this.reactions += {
@@ -62,6 +64,7 @@ object OtameemiGUI extends SimpleSwingApplication:
     this.contents = new GridBagPanel:
       import scala.swing.GridBagPanel.Anchor.*
       import scala.swing.GridBagPanel.Fill
+      layout += susamogus          -> Constraints(0, 0, 1, 1, 0, 0, NorthWest.id, Fill.None.id, Insets(5, 5, 5, 5), 0, 0)
       layout += Label("Location:") -> Constraints(0, 0, 1, 1, 0, 1, NorthWest.id, Fill.None.id, Insets(8, 5, 5, 5), 0, 0)
       layout += Label("Command:")  -> Constraints(0, 1, 1, 1, 0, 0, NorthWest.id, Fill.None.id, Insets(8, 5, 5, 5), 0, 0)
       layout += Label("Events:")   -> Constraints(0, 2, 1, 1, 0, 0, NorthWest.id, Fill.None.id, Insets(8, 5, 5, 5), 0, 0)
