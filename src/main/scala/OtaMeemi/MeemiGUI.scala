@@ -16,12 +16,12 @@ import scala.language.adhocExtensions // enable extension of Swing classes
   * be run to start up a user interface that operates in a separate window. The GUI reads
   * its input from a text field and displays information about the game world in uneditable
   * text areas.
-  *
+  
   * **NOTE TO STUDENTS: In this course, you don’t need to understand how this object works
   * on the inside. It’s enough to know that you can use this file to start the program.**
   *
   * @see [[AdventureTextUI]] */
-object AdventureGUI extends SimpleSwingApplication:
+object OtameemiGUI extends SimpleSwingApplication:
   UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName)
 
   def top = new MainFrame:
@@ -108,4 +108,4 @@ object AdventureGUI extends SimpleSwingApplication:
   private given CanEqual[Component, Component] = CanEqual.derived
   private given CanEqual[Key.Value, Key.Value] = CanEqual.derived
 
-end AdventureGUI
+end OtameemiGUI
