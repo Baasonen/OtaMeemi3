@@ -40,7 +40,7 @@ class GameWorld:
 
   object ok20 extends Area("Ok20"):
     val neighbors = Vector((kandi,10),(rantasauna,10))
-    val subDesc = Vector("Saavut Ok20 pihaan, yläovi on raollaan ja sieltä kuuluu musiikkia ja puheensorinaa. Pihalla on paljullinen ihmisiä pinkeissä haalareissa.","Menet sisälle, käynnissä on konelaisten fuksisitsien jatkot")
+    val subDesc = Vector()
 
   object dipoli extends Area("Dipoli"):
     val neighbors = Vector((taafa,5),(kandi,10),(knmcdonalds,15))
@@ -52,7 +52,7 @@ class GameWorld:
 
   object sornainen extends Area("Sörnäisten metroasema"):
     val neighbors = Vector((knmcdonalds, 30), (klahtimetro, 60))
-    val subDesc = Vector("Ilmeisesti sammuit metroon Stigulaation jälkeen ja päädyit Sörnäisiin","Nouset ylös asemalta piritorille, paikallinen diileri yrittää myydä sinulle peukkua")
+    val subDesc = Vector("Ilmeisesti sammuit metroon Stigulaation jälkeen ja päädyit Sörnäisiin")
 
   object rantasauna extends Area("Rantasauna"):
     val neighbors = Vector((narnia,1200),(ok20,10))
@@ -60,7 +60,7 @@ class GameWorld:
 
   object klahtimetro extends Area("Kivenlahden metroasema"):
     val neighbors = Vector((knmcdonalds,30),(sornainen, 60))
-    val subDesc = Vector("Joku nukahti metroon, aamuja")
+    val subDesc = Vector("Placeholder")
 
   object narnia extends Area("Narnia"):
     val neighbors = Vector((rantasauna,1200))
@@ -72,7 +72,7 @@ class GameWorld:
 
   object kandi extends Area("Kandikeskus"):
     val neighbors = Vector((abloc,20),(designfactory,20),(ok20,30),(taafa,30),(dipoli,20))
-    val subDesc = Vector("Alkaa olla melko kiire luennolle. Toisaalta kyllä sen voisi skipatakin. Mikä on pahin mitä voisi tapahtua...")
+    val subDesc = Vector("Placeholder")
 
   object tuas extends Area("TUAS"):
     val neighbors = Vector((ttalo,5))
