@@ -2,8 +2,8 @@ package OtaMeemi
 
 abstract class Area(name: String):
   val initialDesc: String
-  val subDesc: Vector[String] = Vector()
-  var currentDepth = 0
+  private val subDesc: Vector[String] = Vector()
+  private var currentDepth = 0
 
   var items: Vector[Item] = Vector()
   val neighbors: Vector[(Area, Int)]
@@ -19,15 +19,14 @@ abstract class Area(name: String):
       "Ei pääse enää syvemmälle bro \uD83D\uDC80"
 
   def move(destination: Area): Boolean =
-    if neighbors.contains(destination) then
-      true
-    else
-      false
+    neighbors.contains(destination)
 
   def getNeighbors: Vector[Area] =
     neighbors.map(_._1)
 
   def availableItems = this.items
+
+  def getDepth = currentDepth
 
 
   override def toString: String = this.name
