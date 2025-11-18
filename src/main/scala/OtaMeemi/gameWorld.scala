@@ -39,15 +39,15 @@ class GameWorld:
     val subDesc = Vector("Saavuit smökin pihaan, sisältä kuuluu musiikkia.","Käynnissä on ilmeisesti sikajuhlat, et pääse sisälle koska sinulla ei ole lippua","Yrität lahjoa portsarin, hän ei päästä sinua sisälle koska et ole tutalla","Lahjot portsarin, hän päästää sinut sisälle. Saat outoja katseita koska olet haalarit päällä frakkitapahtumassa")
 
   object ok20 extends Area("Ok20"):
-    val neighbors = Vector(kandi,smokki,rantasauna)
+    val neighbors = Vector((kandi,10),(rantasauna,10))
     val subDesc = Vector()
 
   object dipoli extends Area("Dipoli"):
-    val neighbors = Vector(taafa,kandi,knmcdonalds)
+    val neighbors = Vector((taafa,5),(kandi,10),(knmcdonalds,15))
     val subDesc = Vector[String](("Saavut dipolille, frakkien määrän perusteella sisällä on meneillään jotain tärkeää"), ("Syöt ruokaa tavalliselta linjastolta"), ("Kävelet sisään. Kävelet suoraan ulos hämmästyneenä pöhinän määrästä"))
 
   object knmcdonalds extends Area("Keilaniemi Mcdonalds"):
-    val neighbors = Vector(dipoli,sornainen,klahtimetro)
+    val neighbors = Vector((dipoli,15),(sornainen,10),(klahtimetro,10))
     val subDesc = Vector("Saavut miljardin dollarin konserniin Keilaniemessä. Vakiotyöpaikka tutalaisille","Mitä saisi olla? Hei ootko sä tutalla?")
 
   object sornainen extends Area("Sörnäisten metroasema"):
@@ -55,7 +55,7 @@ class GameWorld:
     val subDesc = Vector("Ilmeisesti sammuit metroon Stigulaation jälkeen ja päädyit Sörnäisiin")
 
   object rantasauna extends Area("Rantasauna"):
-    val neighbors = Vector(narnia,rantasauna,ok20)
+    val neighbors = Vector((narnia,1200),(ok20,10))
     val subDesc = Vector("Saavut rantasaunalle, palju ja sauna ovat lämpimiä","Ice age 3 pyörii valkokankaalla, Mario Kart löytyy sivuhuoneesta","Palju on melko täynnä, onneksi paljuun mahtuu aina n+1 ihmistä","“Top kolmosessa ei ole yhtään oikeaa pelaajaa. Kaiken lisäksi switchin laturi on hukassa ja ohjaimista alkaa loppua virta")
 
   object klahtimetro extends Area("Kivenlahden metroasema"):
@@ -63,31 +63,31 @@ class GameWorld:
     val subDesc = Vector()
 
   object narnia extends Area("Narnia"):
-    val neighbors = Vector(rantasauna, 120)
+    val neighbors = Vector(rantasauna,1200)
     val subDesc = Vector("Miten tässä näin kävi?")
 
   object abloc extends Area("A Bloc"):
-    val neighbors = Vector(kandi,ttalo,klahtimetro,knmcdonalds,sornainen)
-    val subDesc = Vector()
+    val neighbors = Vector((kandi,2),(ttalo,10),(klahtimetro,30),(knmcdonalds,10),(sornainen,20))
+    val subDesc = Vector("O Block mutta aallossa")
 
   object kandi extends Area("Kandikeskus"):
-    val neighbors = Vector(abloc,designfactory,ok20,taafa,dipoli)
+    val neighbors = Vector((abloc,20),(designfactory,20),(ok20,30),(taafa,30),(dipoli,20))
     val subDesc = Vector()
 
   object tuas extends Area("TUAS"):
-    val neighbors = Vector(ttalo)
+    val neighbors = Vector(ttalo,5)
     val subDesc = Vector()
 
   object ttalo extends Area("Tietotalo"):
-    val neighbors = Vector(abloc,designfactory)
-    val subDesc = Vector("Saavut tietotalolle, täällä asuville suihku on vieras käsite","Käyt syömässä subwayssa")
+    val neighbors = Vector((abloc,10),(designfactory,10))
+    val subDesc = Vector("Saavut tietotalolle, täällä asuville suihku on vieras käsite","Käyt syömässä subwayssa hunajaoreganosubin #pleaseburgercheese")
 
   object designfactory extends Area("Aalto Design Factory"):
-    val neighbors = Vector(kandi,ttalo)
+    val neighbors = Vector((kandi,15),(ttalo,10))
     val subDesc = Vector("Saavut Design factoryn pihaan, sisältä kuuluu pöhinää","Menet sisälle pöhisemään")
 
   object otaranta extends Area("Otaranta"):
-    val neighbors = Vector(smokki,rantasauna)
+    val neighbors = Vector((smokki,15),(rantasauna,10))
     val subDesc = Vector("Saavut otarantaan. Kylmä tuuli puhaltaa mereltä","Menet uimaan, vesi on kylmää (yllättyneet parijonoon)")
 
   private val areas =
@@ -98,4 +98,4 @@ class GameWorld:
   def getTime = currentTime
 
   def passTime(timeToPass: Int) =
-    currentTime += timeToPass
+    currentTime += timeToPassr
