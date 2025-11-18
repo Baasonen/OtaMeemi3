@@ -28,8 +28,8 @@ object OtameemiGUI extends SimpleSwingApplication:
 
     // Access to the application’s internal logic:
 
-    val game = OtaMeemi()
-    val player = game.player
+    val game = OtaMeemiGame()
+    lazy val player = game.player
 
     // Components:
 

@@ -3,7 +3,10 @@ import scala.collection.mutable.Map
 
 class Player(gw: GameWorld):
 
+
   private var currentLocation = gw.getAreas.head
+
+
   private var quitCommandGiven = false
   private val items = Map[String,Item]()
   private var debuffs = Vector[Debuff]()

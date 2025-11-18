@@ -1,8 +1,10 @@
 package OtaMeemi
 
-class OtaMeemi:
-  val otaniemi = GameWorld()
-  val player = Player(otaniemi)
+class OtaMeemiGame:
+  println("GameInit")
+  val otaniemi = new GameWorld()
+  println("GameWorldInit")
+  lazy val player = new Player(otaniemi)
 
   val title = "OtaMeemi3 (1, 2 ja 2.1 kuluivat toimivan projektin luontiin intelliJ:ssa"
 
@@ -15,7 +17,7 @@ class OtaMeemi:
 
   def isComplete = player.inventory.contains("67")
 
-  def isOver = isComplete || player.hasQuit || turnLimit == turnCount
+  def isOver = false
 
   def playTurn(command: String) =
     val action = Action(command)
