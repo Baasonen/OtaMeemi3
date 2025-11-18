@@ -11,7 +11,7 @@ object AdventureTextUI extends App:
   println("Start")
   private val game = OtaMeemiGame()
   println("Game Init")
-  lazy val player = game.player
+  private val player = game.player
   println("GameINitSuccess")
   this.run()
 

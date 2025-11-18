@@ -9,5 +9,19 @@ class Area(name: String, desc: Vector[String],var connections: Vector[(Area, Int
   def initialDescription = desc.head
   def getConnections = connections
 
+  def examine =
+    if (currentDepth < desc.length - 1) then
+      currentDepth += 1
+      desc(currentDepth)
+    else
+      "There doesn't seem to bee much more to see here"
+
+  def escape =
+    if currentDepth != 0 then
+      currentDepth = 0
+      "You escaped"
+    else
+      "Escape?, to where"
+
   def addEvent(eventToAdd: Event) = events = events.appended(eventToAdd)
 

@@ -17,7 +17,7 @@ class GameWorld:
                       "Lahjot portsarin, hän päästää sinut sisälle. Saat outoja katseita koska olet haalarit päällä frakkitapahtumassa"
                     ), Vector())
 
-  val ok20      = new Area("Ok20", Vector(), Vector())
+  val ok20      = new Area("Ok20", Vector("Placeholder"), Vector())
   val dipoli    = new Area("Dipoli", Vector(
                       "Saavut dipolille, frakkien määrän perusteella sisällä on meneillään jotain tärkeää",
                       "Syöt ruokaa tavalliselta linjastolta",
@@ -79,5 +79,12 @@ class GameWorld:
 
   def getTime = s"${currentTime/60}.${currentTime%60}"
 
-  def passTime(timeToPass: Int) =
+  def passTime(timeToPass: Int): Boolean =
     currentTime += timeToPass
+
+    if currentTime > (24*60) then
+      currentTime = ((8*60)+15)
+      false
+    else
+      true
+
