@@ -61,7 +61,7 @@ class Player(gw: GameWorld):
     print(currentLocation.getConnections.map(_._1.toString))
     if currentLocation.getConnections.map(_._1.toString.toLowerCase).contains(destination) then
       currentLocation = currentLocation.getConnections(currentLocation.getConnections.map(_._1.toString.toLowerCase).indexOf(destination))._1
-      s"You travel to ${currentLocation.toString}, the time is${gw.getTime}\n \n ${currentLocation.initialDescription}"
+      s"You travel to ${currentLocation.toString}, the time is ${gw.getTime}\n \n ${currentLocation.initialDescription}"
     else
       s"Uh Oh, you don't know how to travel to ${destination} from here"
 
