@@ -31,12 +31,12 @@ class GameWorld:
 
   object taafa extends Area("Taafa"):
     val neighbors = Vector((kandi, 5),(dipoli, 2))
-    val subDesc = Vector()
+    val subDesc = Vector("Saavut täffälle, betonibrutalismin kukkanen pistää silmään","Yrität mennä sisälle. Huomaat että olet spagujonossa ilman lounaslippua. Joudut odottamaan jonossa muiden rahvaiden kanssa.","Menet sisälle. Ohitat koko jonon fastlanea käyttäen koska sinulla on lounaslippu. Oppiipahan.","Du försöker att komma in genom övre dörren men det är stängt. Tyvärr har du ingen nyckel för du är inte medlem av Teknologföreningen. Medlemsansökan tas emot på vardagar mellan 9.15 och 9.20 och processeras vanligtvis inom 3-5 dagar. Anmäl dig genom länken här: https://registration.teknologforeningen.fi/. Samma på finska!")
     val event = Some(spagu)
 
   object smokki extends Area("Smökki"):
     val neighbors = Vector((otaranta, 5), (ok20, 2))
-    val subDesc = Vector()
+    val subDesc = Vector("Saavuit smökin pihaan, sisältä kuuluu musiikkia.","Käynnissä on ilmeisesti sikajuhlat, et pääse sisälle koska sinulla ei ole lippua","Yrität lahjoa portsarin, hän ei päästä sinua sisälle koska et ole tutalla","Lahjot portsarin, hän päästää sinut sisälle. Saat outoja katseita koska olet haalarit päällä frakkitapahtumassa")
 
   object ok20 extends Area("Ok20"):
     val neighbors = Vector(kandi,smokki,rantasauna)
@@ -44,22 +44,22 @@ class GameWorld:
 
   object dipoli extends Area("Dipoli"):
     val neighbors = Vector(taafa,kandi,knmcdonalds)
-    val subDesc = Vector()
+    val subDesc = Vector[String](("Saavut dipolille, frakkien määrän perusteella sisällä on meneillään jotain tärkeää"), ("Syöt ruokaa tavalliselta linjastolta"), ("Kävelet sisään. Kävelet suoraan ulos hämmästyneenä pöhinän määrästä"))
 
   object knmcdonalds extends Area("Keilaniemi Mcdonalds"):
     val neighbors = Vector(dipoli,sornainen,klahtimetro)
-    val subDesc = Vector()
+    val subDesc = Vector("Saavut miljardin dollarin konserniin Keilaniemessä. Vakiotyöpaikka tutalaisille","Mitä saisi olla? Hei ootko sä tutalla?")
 
   object sornainen extends Area("Sörnäisten metroasema"):
     val neighbors = Vector(knmcdonalds,klahtimetro)
-    val subDesc = Vector("Ilmeisesti )
+    val subDesc = Vector("Ilmeisesti sammuit metroon Stigulaation jälkeen ja päädyit Sörnäisiin")
 
   object rantasauna extends Area("Rantasauna"):
     val neighbors = Vector(narnia,rantasauna,ok20)
-    val subDesc = Vector("Saavut rantasaunalle, palju ja sauna ovat lämpimiä")
+    val subDesc = Vector("Saavut rantasaunalle, palju ja sauna ovat lämpimiä","Ice age 3 pyörii valkokankaalla, Mario Kart löytyy sivuhuoneesta","Palju on melko täynnä, onneksi paljuun mahtuu aina n+1 ihmistä","“Top kolmosessa ei ole yhtään oikeaa pelaajaa. Kaiken lisäksi switchin laturi on hukassa ja ohjaimista alkaa loppua virta")
 
   object klahtimetro extends Area("Kivenlahden metroasema"):
-    val neighbors = Vector((knmcdonalds 30),(sornainen, 60))
+    val neighbors = Vector((knmcdonalds,30),(sornainen, 60))
     val subDesc = Vector()
 
   object narnia extends Area("Narnia"):
