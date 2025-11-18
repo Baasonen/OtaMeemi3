@@ -10,4 +10,5 @@ class Action(input: String):
       case "go"        => Some(actor.go(this.modifiers))
       case "rest"      => Some(actor.rest())
       case "quit"      => Some(actor.quit())
+      case "kirk"      => Some(actor.kirkify())
       case other       => None
