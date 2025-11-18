@@ -51,7 +51,7 @@ class GameWorld:
     val subDesc = Vector("Saavut miljardin dollarin konserniin Keilaniemessä. Vakiotyöpaikka tutalaisille","Mitä saisi olla? Hei ootko sä tutalla?")
 
   object sornainen extends Area("Sörnäisten metroasema"):
-    val neighbors = Vector(knmcdonalds,klahtimetro)
+    val neighbors = Vector((knmcdonalds,15),(klahtimetro,10))
     val subDesc = Vector("Ilmeisesti sammuit metroon Stigulaation jälkeen ja päädyit Sörnäisiin")
 
   object rantasauna extends Area("Rantasauna"):
@@ -63,7 +63,7 @@ class GameWorld:
     val subDesc = Vector()
 
   object narnia extends Area("Narnia"):
-    val neighbors = Vector(rantasauna,1200)
+    val neighbors = Vector((rantasauna,1200))
     val subDesc = Vector("Miten tässä näin kävi?")
 
   object abloc extends Area("A Bloc"):
