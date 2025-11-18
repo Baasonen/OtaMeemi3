@@ -5,5 +5,5 @@ abstract class Event(name: String, area: Area):
 
   def checkActive(player: Player): Boolean
 
-  def activateEvent(player: Player): String
+  def activateEvent(player: Player): Any
 

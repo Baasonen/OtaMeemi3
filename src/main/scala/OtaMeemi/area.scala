@@ -1,15 +1,14 @@
 package OtaMeemi
 
 abstract class Area(name: String):
-  val initialDesc: String
-  private val subDesc: Vector[String] = Vector()
+  val subDesc: Vector[String]
   private var currentDepth = 0
 
   var items: Vector[Item] = Vector()
   val neighbors: Vector[(Area, Int)]
-  val event: Option[Event]
+  val event: Vector[Event] = Vector()
 
-  def description: String = this.initialDesc
+  def description: String = this.subDesc(0)
 
   def examineArea(): String =
     if (subDesc(currentDepth + 1).nonEmpty) then

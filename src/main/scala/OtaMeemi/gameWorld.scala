@@ -32,7 +32,7 @@ class GameWorld:
   object taafa extends Area("Taafa"):
     val neighbors = Vector((kandi, 5),(dipoli, 2))
     val subDesc = Vector("Saavut täffälle, betonibrutalismin kukkanen pistää silmään","Yrität mennä sisälle. Huomaat että olet spagujonossa ilman lounaslippua. Joudut odottamaan jonossa muiden rahvaiden kanssa.","Menet sisälle. Ohitat koko jonon fastlanea käyttäen koska sinulla on lounaslippu. Oppiipahan.","Du försöker att komma in genom övre dörren men det är stängt. Tyvärr har du ingen nyckel för du är inte medlem av Teknologföreningen. Medlemsansökan tas emot på vardagar mellan 9.15 och 9.20 och processeras vanligtvis inom 3-5 dagar. Anmäl dig genom länken här: https://registration.teknologforeningen.fi/. Samma på finska!")
-    val event = Some(spagu)
+    override val event = Vector(spagu)
 
   object smokki extends Area("Smökki"):
     val neighbors = Vector((otaranta, 5), (ok20, 2))
@@ -51,7 +51,7 @@ class GameWorld:
     val subDesc = Vector("Saavut miljardin dollarin konserniin Keilaniemessä. Vakiotyöpaikka tutalaisille","Mitä saisi olla? Hei ootko sä tutalla?")
 
   object sornainen extends Area("Sörnäisten metroasema"):
-    val neighbors = Vector(knmcdonalds,klahtimetro)
+    val neighbors = Vector((knmcdonalds, 30), (klahtimetro, 60))
     val subDesc = Vector("Ilmeisesti sammuit metroon Stigulaation jälkeen ja päädyit Sörnäisiin")
 
   object rantasauna extends Area("Rantasauna"):
@@ -60,10 +60,10 @@ class GameWorld:
 
   object klahtimetro extends Area("Kivenlahden metroasema"):
     val neighbors = Vector((knmcdonalds,30),(sornainen, 60))
-    val subDesc = Vector()
+    val subDesc = Vector("Placeholder")
 
   object narnia extends Area("Narnia"):
-    val neighbors = Vector(rantasauna,1200)
+    val neighbors = Vector((rantasauna,1200))
     val subDesc = Vector("Miten tässä näin kävi?")
 
   object abloc extends Area("A Bloc"):
@@ -72,11 +72,11 @@ class GameWorld:
 
   object kandi extends Area("Kandikeskus"):
     val neighbors = Vector((abloc,20),(designfactory,20),(ok20,30),(taafa,30),(dipoli,20))
-    val subDesc = Vector()
+    val subDesc = Vector("Placeholder")
 
   object tuas extends Area("TUAS"):
-    val neighbors = Vector(ttalo,5)
-    val subDesc = Vector()
+    val neighbors = Vector((ttalo,5))
+    val subDesc = Vector("Placeholder")
 
   object ttalo extends Area("Tietotalo"):
     val neighbors = Vector((abloc,10),(designfactory,10))
@@ -98,4 +98,4 @@ class GameWorld:
   def getTime = currentTime
 
   def passTime(timeToPass: Int) =
-    currentTime += timeToPassr
+    currentTime += timeToPass
