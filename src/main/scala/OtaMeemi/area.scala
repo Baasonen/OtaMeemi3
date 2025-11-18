@@ -1,6 +1,6 @@
 package OtaMeemi
 
-class Area(name: String, desc: Vector[String], connections: Vector[(Area, Int)]):
+class Area(name: String, desc: Vector[String],var connections: Vector[(Area, Int)]):
   private var events = Vector[Event]()
   private var currentDepth = 0
 
