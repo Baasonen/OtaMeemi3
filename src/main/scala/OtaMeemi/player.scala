@@ -57,7 +57,7 @@ class Player(gw: GameWorld):
   def go(destination: String) =
     if currentLocation.neighbors.map(_._1.toString).contains(destination) then
       currentLocation = currentLocation.neighbors(currentLocation.neighbors.map(_._1.toString).indexOf(destination))._1
-      s"You travel to ${currentLocation.toString}\n \n ${currentLocation.description}"
+      s"You travel to ${currentLocation.toString}, the time is${gw.getTime}\n \n ${currentLocation.description}"
     else
       s"Uh Oh, you don't know how to travel to ${destination} from here"
 

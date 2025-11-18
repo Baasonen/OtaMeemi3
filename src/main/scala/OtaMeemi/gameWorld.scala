@@ -5,7 +5,7 @@ class GameWorld:
   private var currentTime = (8*60)+15
 
   object spagu extends Event("spagumayhem", taafa):
-    override def checkActive: Boolean =
+    override def checkActive(player: Player) =
       currentTime > (11*60)
 
     override def activateEvent(player: Player): Any =
@@ -14,19 +14,19 @@ class GameWorld:
       s"Oivoi, jonon ihmismassojen seassa joku pääsi nappaamaan taskustasi ${itemToDrop}:n"
 
   object liukuhihna extends Event("Liukuhihna", smokki):
-    override def checkActive: Boolean =
+    override def checkActive(player: Player) =
       currentTime > (19*60)
 
     override def activateEvent(player: Player): String =
       "Teema on leffaa bro"
 
   object stigulaatio extends Event("stigulaatio", ok20):
-    override def checkActive: Boolean =
-      currentTime > (17*60)
+    override def checkActive(player: Player) =
+      (currentTime > (17*60)) && (player.location.getDepth > 1)
 
     override def activateEvent(player: Player): String =
       player.removeItem("phone")
-      player.addDebuff()
+      player.addDebuff(DokattuDebuff(120, currentTime))
       "Mitö vi..,,., olemn näköjm vhäm dokatui(mut ei sale sle pljaojn....)"
 
   object taafa extends Area("Taafa"):
