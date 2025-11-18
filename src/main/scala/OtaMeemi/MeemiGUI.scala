@@ -99,7 +99,7 @@ object OtameemiGUI extends SimpleSwingApplication:
         this.turnOutput.text = info
       else
         this.turnOutput.text = info + "\n\n" + this.game.goodbyeMessage
-      this.locationInfo.text = this.player.location.description
+      this.locationInfo.text = this.player.location.initialDescription
       this.turnCounter.text = "Turns played: " + this.game.turnCount
 
   end top

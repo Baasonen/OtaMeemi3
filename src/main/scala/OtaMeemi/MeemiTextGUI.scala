@@ -35,7 +35,7 @@ object AdventureTextUI extends App:
     println("GotArea")
     println("\n\n" + area.toString)
     println("-" * area.toString.length)
-    println(area.description + "\n")
+    println(area.initialDescription + "\n")
 
 
   /** Requests a command from the player, plays a game turn accordingly, and prints out a
