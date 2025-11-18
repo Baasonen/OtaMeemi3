@@ -4,9 +4,22 @@ class OtaMeemi:
   val otaniemi = GameWorld()
   val player = Player(otaniemi)
 
-  val title = "OtaMeemi3 (1, 2 ja 2.1 kuluivat toimivatn projektin luontiin intelliJ:ssa"
+  val title = "OtaMeemi3 (1, 2 ja 2.1 kuluivat toimivan projektin luontiin intelliJ:ssa"
 
   val welcomeMessage = s"Aamusi alkaa Metroasemalta, kello on ${otaniemi.getTime}, nyt on kiire luennolle"
+  val goodbyeMessage = "Goodbye"
+
+  var turnCount = 0
+
+  val turnLimit = 10
+
+  def isComplete = player.inventory.contains("67")
+
+  def isOver = isComplete || player.hasQuit || turnLimit == turnCount
 
   def playTurn(command: String) =
     val action = Action(command)
+    val outcomeReport = action.execute(player)
+    if outcomeReport.isDefined then
+      this.turnCount += 1
+    outcomeReport.getOrElse(s"""Unknown command: "$command".""")
