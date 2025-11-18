@@ -28,7 +28,7 @@ object AdventureGUI extends SimpleSwingApplication:
 
     // Access to the application’s internal logic:
 
-    val game = Adventure()
+    val game = OtaMeemi()
     val player = game.player
 
     // Components:
