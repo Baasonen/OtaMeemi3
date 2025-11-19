@@ -39,8 +39,8 @@ object OtameemiGUI extends SimpleSwingApplication:
     private val dipoliIcon = new ImageIcon(getClass.getResource("/dipoli.png"))
     private val amogus = new ImageIcon(getClass.getResource("/sus.png"))
     private val taafaIcon         = new ImageIcon(getClass.getResource("/taafa.png"))
-    /*private val smokkiIcon        = new ImageIcon(getClass.getResource("/smokki.png"))
-    private val ok20Icon          = new ImageIcon(getClass.getResource("/ok20.png"))
+    private val smokkiIcon        = new ImageIcon(getClass.getResource("/smokki.png"))
+    private val ok20Icon          = new ImageIcon(getClass.getResource("/ok20.png"))/*
     private val dipoliIcon        = new ImageIcon(getClass.getResource("/dipoli.png"))
     private val knmcdonaldsIcon   = new ImageIcon(getClass.getResource("/knmcdonalds.png"))
     private val sornainenIcon     = new ImageIcon(getClass.getResource("/sornainen.png"))
@@ -114,8 +114,8 @@ object OtameemiGUI extends SimpleSwingApplication:
     def updateStatusLabel(): Unit =
       val newIcon = player.location match
         case `taafa`         => taafaIcon
-       /* case `smokki`        => smokkiIcon
-        case `ok20`          => ok20Icon*/
+        case `smokki`        => smokkiIcon
+        case `ok20`          => ok20Icon
         case `dipoli`        => dipoliIcon/*
         case `knmcdonalds`   => knmcdonaldsIcon
         case `sornainen`     => sornainenIcon
