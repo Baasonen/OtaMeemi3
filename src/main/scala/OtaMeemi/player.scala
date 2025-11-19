@@ -30,6 +30,9 @@ class Player(gw: GameWorld):
     else
       s"You don't have ${itemName}"
 
+  def addItem(item: Item) =
+    items.addOne(item.toString.toLowerCase, item)
+
   def removeItem(itemName: String): Boolean =
     if hasItem(itemName) then
       items.remove(itemName)
@@ -45,7 +48,13 @@ class Player(gw: GameWorld):
     //else
    //   None
 
-  def examine(itemName:String): String =
+  def useItem(itemName: String): String =
+    if hasItem(itemName) then
+      items(itemName).use(this)
+    else
+      "Ei sul oo tollast bro"
+
+  def examineItem(itemName:String): String =
     if hasItem(itemName) then
       items(itemName).examine()
     else
@@ -81,5 +90,14 @@ class Player(gw: GameWorld):
     this.quitCommandGiven = true
     ""
   override def toString = "Now at: " + this.location.toString
+
+  object puhelin extends Item("Puhelin", "Kyl sä tiiät (ip 17 pro max btw)", 2000, 1):
+    override def use(player: Player): String = "Kelasta päivää..."
+
+  object kuulokkeet extends Item("Sony whqxmqxms69420", "Hemo päheet", 50, 1):
+    override def use(player: Player): String = "Ei pysty ny"
+
+  addItem(puhelin)
+  addItem(kuulokkeet)
 
 end Player

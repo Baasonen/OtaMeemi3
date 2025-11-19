@@ -88,3 +88,14 @@ class GameWorld:
     else
       true
 
+  object spagumayhem extends Event("Spagumayhem"):
+    override def checkActive(player: Player): Boolean =
+      player.location == taafa && currentTime > (60 * 8)
+
+    override def activateEvent(player: Player): Any =
+      val itemToLose = player.inventory(Random.between(0, player.inventory.length -1))
+      player.removeItem(itemToLose)
+
+
+  taafa.addEvent(spagumayhem)
+
