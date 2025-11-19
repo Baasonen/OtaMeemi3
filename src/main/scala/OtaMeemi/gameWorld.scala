@@ -55,7 +55,7 @@ class GameWorld:
                     ), Vector())
 
 
-  taafa.connections = Vector((kandi,5),(dipoli,2))
+  taafa.connections = Vector((kandi,5),(dipoli,2),(smokki,5))
   smokki.connections = Vector((otaranta,5),(ok20,2))
   ok20.connections = Vector((kandi,10),(rantasauna,10))
   dipoli.connections = Vector((taafa,5),(kandi,10),(knmcdonalds,15))

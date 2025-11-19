@@ -30,11 +30,33 @@ object OtameemiGUI extends SimpleSwingApplication:
     // Access to the application’s internal logic:
 
     val game = OtaMeemiGame()
-    lazy val player = game.player
+    val player = game.player
 
+    private val world = game.otaniemi
+    import world.*
+
+    private val otaniemiIcon = new ImageIcon(getClass.getResource("/pot.png"))
+    private val dipoliIcon = new ImageIcon(getClass.getResource("/dipoli.png"))
+    private val amogus = new ImageIcon(getClass.getResource("/sus.png"))
+    private val taafaIcon         = new ImageIcon(getClass.getResource("/taafa.png"))
+    /*private val smokkiIcon        = new ImageIcon(getClass.getResource("/smokki.png"))
+    private val ok20Icon          = new ImageIcon(getClass.getResource("/ok20.png"))
+    private val dipoliIcon        = new ImageIcon(getClass.getResource("/dipoli.png"))
+    private val knmcdonaldsIcon   = new ImageIcon(getClass.getResource("/knmcdonalds.png"))
+    private val sornainenIcon     = new ImageIcon(getClass.getResource("/sornainen.png"))
+    private val rantasaunaIcon    = new ImageIcon(getClass.getResource("/rantasauna.png"))
+    private val klahtimetroIcon   = new ImageIcon(getClass.getResource("/klahtimetro.png"))
+    private val narniaIcon        = new ImageIcon(getClass.getResource("/narnia.png"))
+    private val ablocIcon         = new ImageIcon(getClass.getResource("/abloc.png"))
+    private val kandiIcon         = new ImageIcon(getClass.getResource("/kandi.png"))
+    private val tuasIcon          = new ImageIcon(getClass.getResource("/tuas.png"))
+    private val ttaloIcon         = new ImageIcon(getClass.getResource("/ttalo.png"))
+    private val designfactoryIcon = new ImageIcon(getClass.getResource("/designfactory.png"))
+    private val otarantaIcon      = new ImageIcon(getClass.getResource("/otaranta.png"))
+*/
     // Components:
-    val susamogus = new Label:
-      icon = new ImageIcon(getClass.getResource("/pot.png"))
+    val vaihtuvalabel = new Label:
+      icon = otaniemiIcon
     val locationInfo = new TextArea(7, 80):
       editable = false
       wordWrap = true
@@ -64,7 +86,7 @@ object OtameemiGUI extends SimpleSwingApplication:
     this.contents = new GridBagPanel:
       import scala.swing.GridBagPanel.Anchor.*
       import scala.swing.GridBagPanel.Fill
-      layout += susamogus          -> Constraints(0, 0, 1, 1, 0, 0, NorthWest.id, Fill.None.id, Insets(5, 5, 5, 5), 0, 0)
+      layout += vaihtuvalabel          -> Constraints(0, 0, 1, 1, 0, 0, NorthWest.id, Fill.None.id, Insets(5, 5, 5, 5), 0, 0)
       layout += Label("Location:") -> Constraints(0, 0, 1, 1, 0, 1, NorthWest.id, Fill.None.id, Insets(8, 5, 5, 5), 0, 0)
       layout += Label("Command:")  -> Constraints(0, 1, 1, 1, 0, 0, NorthWest.id, Fill.None.id, Insets(8, 5, 5, 5), 0, 0)
       layout += Label("Events:")   -> Constraints(0, 2, 1, 1, 0, 0, NorthWest.id, Fill.None.id, Insets(8, 5, 5, 5), 0, 0)
@@ -82,11 +104,33 @@ object OtameemiGUI extends SimpleSwingApplication:
     // Set up the GUI’s initial state:
     this.title = game.title
     this.updateInfo(this.game.welcomeMessage)
+    this.updateStatusLabel()  
     this.location = Point(50, 50)
     this.minimumSize = Dimension(200, 200)
     this.pack()
     this.input.requestFocusInWindow()
 
+    
+    def updateStatusLabel(): Unit =
+      val newIcon = player.location match
+        case `taafa`         => taafaIcon
+       /* case `smokki`        => smokkiIcon
+        case `ok20`          => ok20Icon*/
+        case `dipoli`        => dipoliIcon/*
+        case `knmcdonalds`   => knmcdonaldsIcon
+        case `sornainen`     => sornainenIcon
+        case `rantasauna`    => rantasaunaIcon
+        case `klahtimetro`   => klahtimetroIcon
+        case `narnia`        => narniaIcon
+        case `abloc`         => ablocIcon
+        case `kandi`         => kandiIcon
+        case `tuas`          => tuasIcon
+        case `ttalo`         => ttaloIcon
+        case `designfactory` => designfactoryIcon
+        case `otaranta`      => otarantaIcon*/
+        case _               => otaniemiIcon
+    
+      vaihtuvalabel.icon = newIcon
 
     def playTurn(command: String) =
       val turnReport = this.game.playTurn(command)
@@ -94,6 +138,7 @@ object OtameemiGUI extends SimpleSwingApplication:
         this.dispose()
       else
         this.updateInfo(turnReport)
+        this.updateStatusLabel()
         this.input.enabled = !this.game.isOver
 
 
