@@ -3,7 +3,7 @@ import scala.util.Random
 
 class GameWorld:
   private var currentTime = (8*60)+15
-  
+
   val taafa     = new Area("Taafa", Vector(
                       "Saavut täffälle, betonibrutalismin kukkanen pistää silmään","Yrität mennä sisälle. Huomaat että olet spagujonossa ilman lounaslippua. Joudut odottamaan jonossa muiden rahvaiden kanssa.",
                       "Menet sisälle. Ohitat koko jonon fastlanea käyttäen koska sinulla on lounaslippu. Oppiipahan.",
@@ -77,10 +77,10 @@ class GameWorld:
 
   def getAreas : Vector[Area] = areas
 
-  def getTime = 
+  def getTime =
     if currentTime%60 >9 then
       s"${currentTime/60}.${currentTime%60}"
-    else 
+    else
       s"${currentTime/60}.0${currentTime%60}"
 
   def passTime(timeToPass: Int): Boolean =
@@ -96,7 +96,7 @@ class GameWorld:
 
   object spagumayhem extends Event("Spagumayhem"):
     override def checkActive(player: Player): Boolean =
-      player.location == taafa && currentTime > (60 * 8) && player.inventory.length > 1 && !spagumayhem.activated
+      player.location == taafa && currentTime > (60 * 11) && player.inventory.length > 1 && !spagumayhem.activated
 
     override def activateEvent(player: Player): String =
       val itemToLose = player.inventory(Random.between(0, player.inventory.length -1))

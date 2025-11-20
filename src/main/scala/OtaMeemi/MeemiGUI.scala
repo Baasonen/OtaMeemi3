@@ -47,11 +47,11 @@ object OtameemiGUI extends SimpleSwingApplication:
     private val klahtimetroIcon   = new ImageIcon(getClass.getResource("/klahtimetro.png"))
     private val narniaIcon        = new ImageIcon(getClass.getResource("/narnia.png"))
     private val ablocIcon         = new ImageIcon(getClass.getResource("/abloc.png"))
-    private val kandiIcon         = new ImageIcon(getClass.getResource("/kandikeskus.png"))/*
+    private val kandiIcon         = new ImageIcon(getClass.getResource("/kandikeskus.png"))
     private val tuasIcon          = new ImageIcon(getClass.getResource("/tuas.png"))
     private val ttaloIcon         = new ImageIcon(getClass.getResource("/ttalo.png"))
     private val designfactoryIcon = new ImageIcon(getClass.getResource("/designfactory.png"))
-    private val otarantaIcon      = new ImageIcon(getClass.getResource("/otaranta.png"))*/
+    private val otarantaIcon      = new ImageIcon(getClass.getResource("/otaranta.png"))
 
     // Components:
     val vaihtuvalabel = new Label:
@@ -103,7 +103,7 @@ object OtameemiGUI extends SimpleSwingApplication:
     // Set up the GUI’s initial state:
     this.title = game.title
     this.updateInfo(this.game.welcomeMessage)
-    this.updateStatusLabel()  
+    this.updateStatusLabel()
     this.location = Point(50, 50)
     this.minimumSize = Dimension(200, 200)
     this.pack()
@@ -114,6 +114,7 @@ object OtameemiGUI extends SimpleSwingApplication:
       val newIcon = player.location match
         case `taafa`         => taafaIcon
         case `smokki`        => smokkiIcon
+
         case `ok20`          => ok20Icon
         case `dipoli`        => dipoliIcon
         case `knmcdonalds`   => knmcdonaldsIcon
@@ -122,13 +123,13 @@ object OtameemiGUI extends SimpleSwingApplication:
         case `klahtimetro`   => klahtimetroIcon
         case `narnia`        => narniaIcon
         case `abloc`         => ablocIcon
-        case `kandi`         => kandiIcon/*
+        case `kandi`         => kandiIcon
         case `tuas`          => tuasIcon
         case `ttalo`         => ttaloIcon
         case `designfactory` => designfactoryIcon
-        case `otaranta`      => otarantaIcon*/
+        case `otaranta`      => otarantaIcon
         case _               => otaniemiIcon
-    
+
       vaihtuvalabel.icon = newIcon
 
     def playTurn(command: String) =
