@@ -77,7 +77,11 @@ class GameWorld:
 
   def getAreas : Vector[Area] = areas
 
-  def getTime = s"${currentTime/60}.${currentTime%60}"
+  def getTime = 
+    if currentTime%60 >9 then
+      s"${currentTime/60}.${currentTime%60}"
+    else 
+      s"${currentTime/60}.0${currentTime%60}"
 
   def passTime(timeToPass: Int): Boolean =
     currentTime += timeToPass
