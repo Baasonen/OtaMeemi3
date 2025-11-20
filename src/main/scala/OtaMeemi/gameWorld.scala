@@ -3,7 +3,7 @@ import scala.util.Random
 
 class GameWorld:
   private var currentTime = (8*60)+15
-
+  
   val taafa     = new Area("Taafa", Vector(
                       "Saavut täffälle, betonibrutalismin kukkanen pistää silmään","Yrität mennä sisälle. Huomaat että olet spagujonossa ilman lounaslippua. Joudut odottamaan jonossa muiden rahvaiden kanssa.",
                       "Menet sisälle. Ohitat koko jonon fastlanea käyttäen koska sinulla on lounaslippu. Oppiipahan.",
@@ -61,9 +61,9 @@ class GameWorld:
   dipoli.connections = Vector((taafa,5),(kandi,10),(knmcdonalds,15))
   knmcdonalds.connections = Vector((dipoli,15),(sornainen,10),(klahtimetro,10))
   sornainen.connections = Vector((knmcdonalds,30),(klahtimetro,60))
-  rantasauna.connections = Vector((narnia,1200),(ok20,10))
+  rantasauna.connections = Vector((narnia,10),(ok20,10))
   klahtimetro.connections = Vector((knmcdonalds,30),(sornainen,60))
-  narnia.connections = Vector((rantasauna,1200))
+  narnia.connections = Vector((rantasauna,10))
   abloc.connections = Vector((kandi,2),(ttalo,10),(klahtimetro,30),(knmcdonalds,10),(sornainen,20))
   kandi.connections = Vector((abloc,20),(designfactory,20),(ok20,30),(taafa,30),(dipoli,20))
   tuas.connections = Vector((ttalo,5))
@@ -87,6 +87,8 @@ class GameWorld:
       false
     else
       true
+  def setTime(timeToSet: Int): Unit =
+    currentTime = timeToSet
 
   object spagumayhem extends Event("Spagumayhem"):
     override def checkActive(player: Player): Boolean =
