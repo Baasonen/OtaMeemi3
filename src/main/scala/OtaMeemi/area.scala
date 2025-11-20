@@ -9,9 +9,11 @@ class Area(name: String, desc: Vector[String],var connections: Vector[(Area, Int
   def initialDescription = desc.head
   def getConnections = connections
 
-  def examine(player: Player) =
-    events.map((event) => (if event.checkActive(player) then event.activateEvent(player)))
-    if (currentDepth < desc.length - 1) then
+  def examine(player: Player): String =
+    if events.forall(_.checkActive(player)) then
+      val activeEvents = events.sortBy(_.checkActive(player))
+      activeEvents.head.activateEvent(player)
+    else if (currentDepth < desc.length - 1) then
       currentDepth += 1
       desc(currentDepth)
     else

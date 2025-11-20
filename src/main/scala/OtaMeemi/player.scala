@@ -102,6 +102,10 @@ class Player(gw: GameWorld):
   object kuulokkeet extends Item("Sony whqxmqxms69420", "Hemo päheet", 50, 1):
     override def use(player: Player): String = "Ei pysty ny"
 
+  object kolikoita extends Item("Muutama kolikko", " ", 1, 1):
+    override def use(player: Player): String = "Ei näil saa ees redbull"
+
+  addItem(kolikoita)
   addItem(puhelin)
   addItem(kuulokkeet)
 
