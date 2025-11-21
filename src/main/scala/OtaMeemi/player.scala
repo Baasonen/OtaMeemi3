@@ -92,7 +92,7 @@ class Player(gw: GameWorld):
 
   def sus() =
     currentLocation = gw.getAreas(0)
-    ""
+    "dun dun dun dun dun dun dun dududun"
   
   def quit() =
     this.quitCommandGiven = true

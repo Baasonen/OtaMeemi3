@@ -17,43 +17,32 @@ class GameWorld:
                       "Lahjot portsarin, hän päästää sinut sisälle. Saat outoja katseita koska olet haalarit päällä frakkitapahtumassa"
                     ), Vector())
 
-  val ok20      = new Area("Ok20", Vector("Placeholder"), Vector())
+  val ok20      = new Area("Ok20", Vector("Saavut Otakaari 20:n pihaan, se on tyhjä","Saavut Otakaari 20:n pihaan, yläovesta kuuluu musiikkia","Menet sisälle, käynnissä on stigulaatio. Tunnet itsesi ulkopuoliseksi koska et ole dokattu","Olet dokattu, valmistaudu hauskaan iltaan"), Vector())
   val dipoli    = new Area("Dipoli", Vector(
                       "Saavut dipolille, frakkien määrän perusteella sisällä on meneillään jotain tärkeää",
                       "Syöt ruokaa tavalliselta linjastolta",
                       "Kävelet sisään. Kävelet suoraan ulos hämmästyneenä pöhinän määrästä"
                     ), Vector())
   val knmcdonalds = new Area("Keilaniemi Mcdonalds", Vector(
-                      "Saavut miljardin dollarin konserniin Keilaniemessä. Vakiotyöpaikka tutalaisille",
-                      "Mitä saisi olla? Hei ootko sä tutalla?"
-                    ), Vector())
+                      "Saavut miljardin dollarin konserniin Keilaniemessä. Vakiotyöpaikka tutalaisille","Hei ootko säkin muuten tutalla?"), Vector())
   val sornainen   = new Area("Sörnäisten metroasema", Vector(
-                      "Ilmeisesti sammuit metroon Stigulaation jälkeen ja päädyit Sörnäisiin"
+                      "Ilmeisesti sammuit metroon Stigulaation jälkeen ja päädyit Sörnäisiin. Bad ending."
                     ), Vector())
-  val rantasauna  = new Area("Rantasauna", Vector(
-                      "Saavut rantasaunalle, palju ja sauna ovat lämpimiä",
-                      "Ice age 3 pyörii valkokankaalla, Mario Kart löytyy sivuhuoneesta",
-                      "Palju on melko täynnä, onneksi paljuun mahtuu aina n+1 ihmistä",
-                      "“Top kolmosessa ei ole yhtään oikeaa pelaajaa. Kaiken lisäksi switchin laturi on hukassa ja ohjaimista alkaa loppua virta"
-                    ), Vector())
-  val klahtimetro = new Area("Kivenlahden metroasema", Vector("Placeholder"), Vector())
+  val rantasauna  = new Area("Rantasauna", Vector("Menet rantasaunalle. Sauna on kylmä ja ovet ovat lukossa. Et kai vaan muistanut päivää väärin?",
+    "Menet rantasaunalle, sisältä kuuluu puhetta.",
+    "Menet sisälle, toivottavasti muistit saunakamat, sauna on nimittäin lämmin.",
+    "Menet paljuun. Paljun nykyinen maksimikapasiteetti on *aikaisempi maksimi + 1* henkilöä.",
+    "Menet uimaan. Vesi ei ole kovinkaan syvää mutta kylmä siinä tulee ja nopeasti."), Vector())
+  
+  val klahtimetro = new Area("Kivenlahden metroasema", Vector("Sammuit stigulaatiossa, kiitä onneasi että päädyit tänne etkä katuojaan.","Päätepysäkki, täällä on hyvin vähän näkemisen arvoista"), Vector())
   val narnia      = new Area("Narnia", Vector("Miten tässä näin kävi?"), Vector())
   val sus      = new Area("Amogus", Vector("Aika sus ngl bro idk man"), Vector())
-  val abloc       = new Area("A Bloc", Vector("O Block mutta aallossa"), Vector())
+  val abloc       = new Area("A Bloc", Vector("O Block mutta aallossa","Menet syömään. Valitse ruokapaikka: konnichiwa, kotkot, poke bowl","Söit **lisää tähän vektorillinen ravintoloita**:ssa, viikon budjetista on nyt käytetty 50%","Menet metrolle. Minne matka?"), Vector())
   val kandi       = new Area("Kandikeskus", Vector("Placeholder"), Vector())
-  val tuas        = new Area("TUAS", Vector("Placeholder"), Vector())
-  val ttalo       = new Area("Tietotalo", Vector(
-                      "Saavut tietotalolle, täällä asuville suihku on vieras käsite",
-                      "Käyt syömässä subwayssa hunajaoreganosubin #pleaseburgercheese"
-                    ), Vector())
-  val designfactory = new Area("Aalto Design Factory", Vector(
-                      "Saavut Design factoryn pihaan, sisältä kuuluu pöhinää",
-                      "Menet sisälle pöhisemään"
-                    ), Vector())
-  val otaranta    = new Area("Otaranta", Vector(
-                      "Saavut otarantaan. Kylmä tuuli puhaltaa mereltä",
-                      "Menet uimaan, vesi on kylmää (yllättyneet parijonoon)"
-                    ), Vector())
+  val tuas        = new Area("TUAS", Vector("Menet sähköpajalle, bambu on varattu seuraavat 5h55min. Projektisi runko on edelleen tulostamatta.","Väsäät projektia tunnin","ja toisen","ja kolmannen","Menet syömään, on keskiviikko eli tarjolla on lohta tartarkastikkeessa a 5.50€"), Vector())
+  val ttalo       = new Area("Tietotalo", Vector("Täällä asuvat eivät tunne suihkun käsitettä","Menet subwayn jonoon, mieti tilauksesi huolella tai käy hassusti","Tilaat hunajaoreganosubin #canihaveapleaseburgercheese","Sait tummaan leipään tehdyn spicy italianin"), Vector())
+  val designfactory = new Area("Aalto Design Factory", Vector("Saavut Design factoryn pihaan, sisältä kuuluu pöhinää","Menet sisälle pöhisemään","Hemo pöhinä bro kryptoi bro"), Vector())
+  val otaranta    = new Area("Otaranta", Vector("Saavut otarantaan. Kylmä tuuli puhaltaa mereltä","Menet uimaan, vesi on kylmää (yllättyneet parijonoon)"), Vector())
 
 
   taafa.connections = Vector((kandi,5),(dipoli,2),(smokki,5))
