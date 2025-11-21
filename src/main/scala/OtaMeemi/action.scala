@@ -17,4 +17,5 @@ class Action(input: String):
       case "inventory" => Some(actor.inventory.mkString(", "))
       case "use"       => Some(actor.useItem(this.modifiers))
       case "amogus"    => Some(actor.sus())
+      case "combine"   => Some(actor.combineItems(this.modifiers))
       case other       => None

@@ -6,3 +6,5 @@ abstract class Item(name: String, desc: String, value: Double, weight: Int):
   def examine() = this.desc
 
   def use(player: Player): String
+
+  def combine(player: Player, combineWith: Item): String

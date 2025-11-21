@@ -86,7 +86,7 @@ class GameWorld:
 
   object spagumayhem extends Event("Spagumayhem"):
     override def checkActive(player: Player): Boolean =
-      player.location == taafa && currentTime > (60 * 11) && player.inventory.length > 1 && !spagumayhem.activated
+      player.location == taafa && currentTime > (60 * 8) && player.inventory.length > 1 && !spagumayhem.activated && player.location.getCurrentDepth >= 1
 
     override def activateEvent(player: Player): String =
       val itemToLose = player.inventory(Random.between(0, player.inventory.length -1))

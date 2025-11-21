@@ -26,5 +26,7 @@ class Area(name: String, desc: Vector[String],var connections: Vector[(Area, Int
     else
       "Escape?, to where"
 
+  def getCurrentDepth: Int = currentDepth
+
   def addEvent(eventToAdd: Event) = events = events.appended(eventToAdd)
 

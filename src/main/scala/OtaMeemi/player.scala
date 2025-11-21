@@ -93,7 +93,19 @@ class Player(gw: GameWorld):
   def sus() =
     currentLocation = gw.getAreas(0)
     "STOP POSTING ABOUT AMONG US! I'M TIRED OF SEEING IT! My friends on TikTok send me memes, on Discord its fucking memes. I was in a server, right, and ALL the channels are just Among Us stuff. I showed my Champion underwear to my girlfriend, and the logo I flipped it and I said Hey babe, when the underwear sus! HAHA! Ding Ding Ding Ding Ding Ding Ding DiDiDing! I fucking looked at a trash can and I said Thats a bit sussy! I looked at my penis, I thought of the astronauts helmet and I go PENIS? MORE LIKE PEN-SUS! AAAAAAAAAAAAAA"
-  
+
+  def combineItems(args: String) =
+    val itemsToCombine = args.split(" ")
+    println(itemsToCombine.mkString(", "))
+    if itemsToCombine.length == 2 then
+      if hasItem(itemsToCombine(0)) && hasItem(itemsToCombine(1)) then
+        items(itemsToCombine(0)).combine(this, items(itemsToCombine(1)))
+      else
+        "Sinulla ei ole noita itemejä"
+    else
+      "Voit yhdistää vain kahta itemiä kerrallaan"
+
+
   def quit() =
     this.quitCommandGiven = true
     ""
@@ -102,11 +114,21 @@ class Player(gw: GameWorld):
   object puhelin extends Item("Puhelin", "Kyl sä tiiät (ip 17 pro max btw)", 2000, 1):
     override def use(player: Player): String = "Kelasta päivää..."
 
-  object kuulokkeet extends Item("Sony whqxmqxms69420", "Hemo päheet", 50, 1):
+    override def combine(player: Player, combineWith: Item): String = "Et osaa yhdistää tätä muuhun kuin wifiin"
+
+  object kuulokkeet extends Item("Kuulokkeet", "Hemo päheet", 50, 1):
     override def use(player: Player): String = "Ei pysty ny"
+
+    override def combine(player: Player, combineWith: Item): String =
+      if combineWith == puhelin then
+        "Ze blutuuth devais is konnektedt"
+      else
+        "Ei oo wifii..."
 
   object kolikoita extends Item("Muutama kolikko", " ", 1, 1):
     override def use(player: Player): String = "Ei näil saa ees redbull"
+
+    override def combine(player: Player, combineWith: Item): String = "Nuh uh"
 
   addItem(kolikoita)
   addItem(puhelin)
