@@ -19,6 +19,8 @@ class Player(gw: GameWorld):
   def hasQuit = this.quitCommandGiven
 
   def location = this.currentLocation
+  
+  def isatAbloc = this.currentLocation == gw.abloc
 
   def hasItem(itemName: String): Boolean =
     items.keys.toVector.contains(itemName)
