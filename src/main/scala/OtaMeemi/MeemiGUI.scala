@@ -114,7 +114,7 @@ object OtameemiGUI extends SimpleSwingApplication:
       val newIcon = player.location match
         case `taafa`         => taafaIcon
         case `smokki`        => smokkiIcon
-
+        case `sus`            => amogus
         case `ok20`          => ok20Icon
         case `dipoli`        => dipoliIcon
         case `knmcdonalds`   => knmcdonaldsIcon

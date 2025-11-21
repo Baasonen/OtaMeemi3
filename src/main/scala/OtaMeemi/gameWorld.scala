@@ -38,6 +38,7 @@ class GameWorld:
                     ), Vector())
   val klahtimetro = new Area("Kivenlahden metroasema", Vector("Placeholder"), Vector())
   val narnia      = new Area("Narnia", Vector("Miten tässä näin kävi?"), Vector())
+  val sus      = new Area("Amogus", Vector("Aika sus ngl bro idk man"), Vector())
   val abloc       = new Area("A Bloc", Vector("O Block mutta aallossa"), Vector())
   val kandi       = new Area("Kandikeskus", Vector("Placeholder"), Vector())
   val tuas        = new Area("TUAS", Vector("Placeholder"), Vector())
@@ -72,7 +73,7 @@ class GameWorld:
   otaranta.connections = Vector((smokki,15),(rantasauna,10))
 
   private val areas =
-    Vector[Area](taafa,smokki,ok20,dipoli,knmcdonalds,sornainen,rantasauna,klahtimetro,narnia,abloc,kandi,tuas,ttalo,designfactory,otaranta)
+    Vector[Area](sus,taafa,smokki,ok20,dipoli,knmcdonalds,sornainen,rantasauna,klahtimetro,narnia,abloc,kandi,tuas,ttalo,designfactory,otaranta)
 
 
   def getAreas : Vector[Area] = areas

@@ -16,4 +16,5 @@ class Action(input: String):
       case "escape"    => Some(actor.location.escape)
       case "inventory" => Some(actor.inventory.mkString(", "))
       case "use"       => Some(actor.useItem(this.modifiers))
+      case "amogus"    => Some(actor.sus())
       case other       => None

@@ -4,7 +4,7 @@ import scala.collection.mutable.Map
 class Player(gw: GameWorld):
 
 
-  private var currentLocation = gw.getAreas(9)
+  private var currentLocation = gw.getAreas(10)
 
 
   private var quitCommandGiven = false
@@ -81,7 +81,7 @@ class Player(gw: GameWorld):
           currentLocation = destinationArea
           s"You travel to ${currentLocation.toString}, the time is ${gw.getTime}\n \n ${currentLocation.initialDescription}"
         else
-          currentLocation = gw.getAreas(9)
+          currentLocation = gw.getAreas(10)
           "It is getting late, you fall a sleep and wake up am METROASEMAAAA"
       else
         s"Uh Oh, you don't know how to travel to ${destination} from here"
@@ -90,7 +90,10 @@ class Player(gw: GameWorld):
     gw.passTime(120)
     "You rest for a while. Better get a move on, though."
 
-
+  def sus() =
+    currentLocation = gw.getAreas(0)
+    ""
+  
   def quit() =
     this.quitCommandGiven = true
     ""
