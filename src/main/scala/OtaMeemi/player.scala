@@ -96,6 +96,15 @@ class Player(gw: GameWorld):
     currentLocation = gw.getAreas(0)
     "STOP POSTING ABOUT AMONG US! I'M TIRED OF SEEING IT! My friends on TikTok send me memes, on Discord its fucking memes. I was in a server, right, and ALL the channels are just Among Us stuff. I showed my Champion underwear to my girlfriend, and the logo I flipped it and I said Hey babe, when the underwear sus! HAHA! Ding Ding Ding Ding Ding Ding Ding DiDiDing! I fucking looked at a trash can and I said Thats a bit sussy! I looked at my penis, I thought of the astronauts helmet and I go PENIS? MORE LIKE PEN-SUS! AAAAAAAAAAAAAA"
 
+  def eatItem(itemName: String): String =
+    if hasItem(itemName) then
+      if itemName == "subi" || itemName == "spagu" then
+        items(itemName).eat(this)
+      else
+        "Tätä ei pysty syömään"
+    else
+      "Et voi syödä sitä, mitä sinulla ei vielä ole. Go make that bread"
+
   def combineItems(args: String) =
     val itemsToCombine = args.split(" ")
     println(itemsToCombine.mkString(", "))
@@ -118,22 +127,54 @@ class Player(gw: GameWorld):
 
     override def combine(player: Player, combineWith: Item): String = "Et osaa yhdistää tätä muuhun kuin wifiin"
 
-  object kuulokkeet extends Item("Kuulokkeet", "Hemo päheet", 50, 1):
+    override def eat(player: Player): String = "bro what💀"
+
+  object kuulokkeet extends Item("Kuulokkeet", "Ze blutuuth divais is redi to pair", 50, 1):
     override def use(player: Player): String = "Ei pysty ny"
 
     override def combine(player: Player, combineWith: Item): String =
       if combineWith == puhelin then
-        "Ze blutuuth devais is konnektedt"
+        "Ze blutuuth devais is konnektedt uhh sukcesfuli"
       else
         "Ei oo wifii..."
+
+    override def eat(player: Player): String = "huh💀"
 
   object kolikoita extends Item("Muutama kolikko", " ", 1, 1):
     override def use(player: Player): String = "Ei näil saa ees redbull"
 
     override def combine(player: Player, combineWith: Item): String = "Nuh uh"
 
+    override def eat(player: Player): String = "hava nagila intensifies"
+
+  object spicyitalian extends Item("subi","Spicy italian 30cm tummassa leivässä",5.50,1):
+    override def eat(player: Player): String = "Söit subin"
+
+    override def combine(player: Player, combineWith: Item): String =
+      if combineWith == spagu then
+        "what is bro doing💀(olet nyt puolivälissä pelin voittamista)"
+      else
+        "Tässä ei ole mitään nähtävää, ÄLÄ yritä yhdistää tätä spagun kanssa"
+
+    override def use(player: Player): String = "Laitoit subin taskuun"
+    
+  object spagu extends Item("spagu","Tuttu klassikko taafalta",2.95,1):
+    override def eat(player: Player): String = "Söit spagun, se oli yhtä hyvää kuin ensimmäisellä kerralla"
+    
+    override def use(player: Player): String = "Laitoit spagun taskuun, en tiedä mitä ajattelit saavuttavasi tällä. Taskusi ovat nyt täynnä jauhelihakastiketta."
+
+    override def combine(player: Player, combineWith: Item): String =
+      if combineWith == spagu then
+        "what is bro doing💀 (olet nyt puolivälissä pelin voittamista)"
+      else
+        "Tässä ei ole mitään nähtävää, ÄLÄ yritä yhdistää tätä spicy italianin kanssa"
+
+        
+      
   addItem(kolikoita)
   addItem(puhelin)
   addItem(kuulokkeet)
-
+  addItem(spagu)
+  addItem(spicyitalian)
+  
 end Player

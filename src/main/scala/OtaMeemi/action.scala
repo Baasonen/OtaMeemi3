@@ -18,4 +18,6 @@ class Action(input: String):
       case "use"       => Some(actor.useItem(this.modifiers))
       case "amogus"    => Some(actor.sus())
       case "combine"   => Some(actor.combineItems(this.modifiers))
+      case "help"   => Some("Valid commands include but are not limited to: go, rest, quit, examine (item or location), escape, inventory, use (item), combine")
+      case "eat"    => Some(actor.eatItem(this.modifiers))
       case other       => None

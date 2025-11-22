@@ -17,7 +17,7 @@ class Area(name: String, desc: Vector[String],var connections: Vector[(Area, Int
       currentDepth += 1
       desc(currentDepth)
     else
-      "There doesn't seem to bee much more to see here"
+      "There doesn't seem to be much more to see here"
 
   def escape =
     if currentDepth != 0 then
@@ -29,4 +29,3 @@ class Area(name: String, desc: Vector[String],var connections: Vector[(Area, Int
   def getCurrentDepth: Int = currentDepth
 
   def addEvent(eventToAdd: Event) = events = events.appended(eventToAdd)
-
