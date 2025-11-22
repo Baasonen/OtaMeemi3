@@ -152,7 +152,7 @@ object OtameemiGUI extends SimpleSwingApplication:
         this.turnOutput.text = info
       else
         this.turnOutput.text = info + "\n\n" + this.game.goodbyeMessage
-      this.locationInfo.text = s"Tämänhetkinen sijainti: ${player.location.toString}, kello on: ${game.otaniemi.getTime}\nVoit tutkia aluetta tarkemmin tai liikkua: ${player.location.connections.map(_._1).mkString(", ")}\n\nReppusi sisältää ${player.inventory.mkString(", ")}"
+      this.locationInfo.text = s"Tämänhetkinen sijainti: ${player.location.toString}, kello on: ${game.otaniemi.getTime}\nVoit tutkia aluetta tarkemmin tai liikkua: ${player.location.connections.map(_._1).mkString(", ")}\n\nReppusi sisältää ${player.inventory.mkString(", ")}\n\nTilillä rahaa ${player.getMoneyStatus} euroa"
       this.turnCounter.text = "Turns played: " + this.game.turnCount
 
   end top

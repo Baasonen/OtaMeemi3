@@ -6,7 +6,7 @@ class Player(gw: GameWorld):
 
   private var currentLocation = gw.getAreas(10)
 
-
+  private var money = 5
   private var quitCommandGiven = false
   private val items = Map[String,Item]()
   private var debuffs = Vector[Debuff]()
@@ -116,6 +116,20 @@ class Player(gw: GameWorld):
     else
       "Voit yhdistää vain kahta itemiä kerrallaan"
 
+  def trade(itemToTrade: String) =
+    if location.isTradingAllowed then
+      if hasItem(itemToTrade) then
+        money += items(itemToTrade).getValue.toInt
+        removeItem(itemToTrade)
+        s"Sinne meni ${itemToTrade}"
+      else
+        "Ei sul oo tollasta"
+    else
+      "Et sä kyl tääl saa tota kaupattuu bro..."
+
+  def getMoneyStatus = money
+
+  def removeMoney(ammount: Int) = money -= ammount
 
   def quit() =
     this.quitCommandGiven = true
@@ -140,7 +154,7 @@ class Player(gw: GameWorld):
 
     override def eat(player: Player): String = "huh💀"
 
-  object kolikoita extends Item("Muutama kolikko", " ", 1, 1):
+  object kolikoita extends Item("muutama kolikko", " ", 1, 1):
     override def use(player: Player): String = "Ei näil saa ees redbull"
 
     override def combine(player: Player, combineWith: Item): String = "Nuh uh"
@@ -151,30 +165,19 @@ class Player(gw: GameWorld):
     override def eat(player: Player): String = "Söit subin"
 
     override def combine(player: Player, combineWith: Item): String =
-      if combineWith == spagu then
+      if combineWith.toString == "spagu" then
         "what is bro doing💀(olet nyt puolivälissä pelin voittamista)"
       else
         "Tässä ei ole mitään nähtävää, ÄLÄ yritä yhdistää tätä spagun kanssa"
 
     override def use(player: Player): String = "Laitoit subin taskuun"
-    
-  object spagu extends Item("spagu","Tuttu klassikko taafalta",2.95,1):
-    override def eat(player: Player): String = "Söit spagun, se oli yhtä hyvää kuin ensimmäisellä kerralla"
-    
-    override def use(player: Player): String = "Laitoit spagun taskuun, en tiedä mitä ajattelit saavuttavasi tällä. Taskusi ovat nyt täynnä jauhelihakastiketta."
 
-    override def combine(player: Player, combineWith: Item): String =
-      if combineWith == spagu then
-        "what is bro doing💀 (olet nyt puolivälissä pelin voittamista)"
-      else
-        "Tässä ei ole mitään nähtävää, ÄLÄ yritä yhdistää tätä spicy italianin kanssa"
 
         
       
   addItem(kolikoita)
   addItem(puhelin)
   addItem(kuulokkeet)
-  addItem(spagu)
   addItem(spicyitalian)
   
 end Player

@@ -8,5 +8,7 @@ abstract class Item(name: String, desc: String, value: Double, weight: Int):
   def use(player: Player): String
 
   def combine(player: Player, combineWith: Item): String
-  
+
+  def getValue = value
+
   def eat(player: Player): String 

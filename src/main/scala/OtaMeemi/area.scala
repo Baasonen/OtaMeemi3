@@ -1,6 +1,6 @@
 package OtaMeemi
 
-class Area(name: String, desc: Vector[String],var connections: Vector[(Area, Int)]):
+class Area(name: String, desc: Vector[String],var connections: Vector[(Area, Int)], tradingAllowed: Boolean):
   private var events = Vector[Event]()
   private var currentDepth = 0
 
@@ -27,5 +27,7 @@ class Area(name: String, desc: Vector[String],var connections: Vector[(Area, Int
       "Escape?, to where"
 
   def getCurrentDepth: Int = currentDepth
+
+  def isTradingAllowed = tradingAllowed
 
   def addEvent(eventToAdd: Event) = events = events.appended(eventToAdd)
