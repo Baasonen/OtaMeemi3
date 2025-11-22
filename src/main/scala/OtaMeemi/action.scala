@@ -21,5 +21,4 @@ class Action(input: String):
       case "help"   => Some("Valid commands include but are not limited to: go, rest, quit, examine (item or location), escape, inventory, use (item), combine")
       case "eat"    => Some(actor.eatItem(this.modifiers))
       case "sell"      => Some(actor.trade(this.modifiers))
-      case "crazy"  => Some(actor.crazy())
       case other       => None
