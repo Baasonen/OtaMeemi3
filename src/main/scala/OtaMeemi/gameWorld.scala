@@ -15,13 +15,15 @@ class GameWorld:
                       "Yrität lahjoa portsarin, hän ei päästä sinua sisälle koska et ole tutalla",
                       "Lahjot portsarin, hän päästää sinut sisälle. Saat outoja katseita koska olet haalarit päällä frakkitapahtumassa"
                     ), Vector())
+  val smokkibaari = new Area ("Baari",Vector("Menet baariin"),Vector())
 
   val ok20      = new Area("Ok20", Vector("Saavut Otakaari 20:n pihaan, se on tyhjä","Saavut Otakaari 20:n pihaan, yläovesta kuuluu musiikkia","Menet sisälle, käynnissä on stigulaatio. Tunnet itsesi ulkopuoliseksi koska et ole dokattu","Olet dokattu, valmistaudu hauskaan iltaan"), Vector())
+  
   val dipoli    = new Area("Dipoli", Vector(
                       "Saavut dipolille, frakkien määrän perusteella sisällä on meneillään jotain tärkeää",
                       "Kävelet sisään. Kävelet suoraan ulos hämmästyneenä pöhinän määrästä"
                     ), Vector())
-  val dipoliravintola = new Area("Dipoli", Vector("Kiipeät yläkertaan syömään","Syöt ruokaa tavalliselta linjastolta"),Vector())
+  val dipoliravintola = new Area("Dipolin ravintola", Vector("Kiipeät yläkertaan syömään","Syöt ruokaa tavalliselta linjastolta"),Vector())
   val knmcdonalds = new Area("Keilaniemi Mcdonalds", Vector(
                       "Saavut miljardin dollarin konserniin Keilaniemessä. Vakiotyöpaikka tutalaisille","Hei ootko säkin muuten tutalla?"), Vector())
   val knmcdravintola = new Area ("Keilaniemi Mcdonalds / Olet jonossa",Vector("Menet jonoon","Tilaat cledos mealin (5,95 mäkkärist)","Syöt ruokasi, tilaat lisää pöytään juoksuttaaksesi tarjoilijaa"),Vector())
@@ -46,11 +48,11 @@ class GameWorld:
   val otaranta    = new Area("Otaranta", Vector("Saavut otarantaan. Kylmä tuuli puhaltaa mereltä","Menet uimaan, vesi on kylmää (yllättyneet parijonoon)"), Vector())
   val taafalunch = new Area("Taafan lounasravintola",Vector("Menet spagujonoon","Edelleen spagujonossa","Tässä voi kestää hetken","Saat 1kpl spagua"),Vector())
   val ttalolunch = new Area ("Subway",Vector("Menet subwayn jonoon, mieti tilauksesi huolella tai käy hassusti","Tilaat hunajaoreganosubin #canihaveapleaseburgercheese","Sait tummaan leipään tehdyn spicy italianin"),Vector())
-  
   taafa.connections = Vector((kandi,5),(dipoli,2),(smokki,5),(taafalunch,1))
-  smokki.connections = Vector((otaranta,5),(ok20,2))
+  smokki.connections = Vector((otaranta,5),(ok20,2),(smokkibaari,1))
   ok20.connections = Vector((kandi,10),(rantasauna,10))
-  dipoli.connections = Vector((taafa,5),(kandi,10),(knmcdonalds,15))
+  dipoliravintola.connections = Vector((dipoli,1))
+  dipoli.connections = Vector((taafa,5),(kandi,10),(knmcdonalds,15),(dipoliravintola,1))
   knmcdonalds.connections = Vector((dipoli,15),(sornainen,10),(klahtimetro,10),(knmcdravintola,0))
   sornainen.connections = Vector((knmcdonalds,30),(klahtimetro,60),(piritori,2))
   rantasauna.connections = Vector((narnia,10),(ok20,10))
@@ -66,9 +68,11 @@ class GameWorld:
   taafalunch.connections = Vector((taafa,1))
   knmcdravintola.connections = Vector((knmcdonalds,0))
   ttalolunch.connections = Vector((ttalo,1))
+  smokkibaari.connections = Vector((smokkibaari,1))
+  sus.connections = Vector((ok20,1))
 
   private val areas =
-    Vector[Area](sus,taafa,smokki,ok20,dipoli,knmcdonalds,sornainen,rantasauna,klahtimetro,narnia,abloc,kandi,tuas,ttalo,designfactory,otaranta,piritori,knmcdravintola,taafalunch,ttalolunch)
+    Vector[Area](sus,taafa,smokki,ok20,dipoli,knmcdonalds,sornainen,rantasauna,klahtimetro,narnia,abloc,kandi,tuas,ttalo,designfactory,otaranta,piritori,knmcdravintola,taafalunch,ttalolunch,smokkibaari,dipoliravintola)
 
 
   def getAreas : Vector[Area] = areas

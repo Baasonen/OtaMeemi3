@@ -96,6 +96,8 @@ class Player(gw: GameWorld):
     currentLocation = gw.getAreas(0)
     "STOP POSTING ABOUT AMONG US! I'M TIRED OF SEEING IT! My friends on TikTok send me memes, on Discord its fucking memes. I was in a server, right, and ALL the channels are just Among Us stuff. I showed my Champion underwear to my girlfriend, and the logo I flipped it and I said Hey babe, when the underwear sus! HAHA! Ding Ding Ding Ding Ding Ding Ding DiDiDing! I fucking looked at a trash can and I said Thats a bit sussy! I looked at my penis, I thought of the astronauts helmet and I go PENIS? MORE LIKE PEN-SUS! AAAAAAAAAAAAAA"
 
+  def crazy() = "Crazy? I was crazy once. They locked me in a room. A rubber room. A rubber room with rats. And rats make me crazy. Crazy? I was crazy once. They locked me in a room. A rubber room. A rubber room with rats. And rats make me crazy. Crazy? I was crazy once. They locked me in a room. A rubber room. A rubber room with rats. And rats make me crazy. Crazy? I was crazy once. They locked me in a room. A rubber room. A rubber room with rats. And rats make me crazy. Crazy? I was crazy once. They locked me in a room. A rubber room. A rubber room with rats. And rats make me crazy. Crazy? I was crazy once. They locked me in a room. A rubber room. A rubber room with rats. And rats make me crazy. Crazy? I was crazy once. They locked me in a room. A rubber room. A rubber room with rats. And rats make me crazy. Crazy? I was crazy once. They locked me in a room. A rubber room. A rubber room with rats. And rats make me crazy."
+
   def eatItem(itemName: String): String =
     if hasItem(itemName) then
       if itemName == "subi" || itemName == "spagu" then
@@ -103,7 +105,7 @@ class Player(gw: GameWorld):
       else
         "Tätä ei pysty syömään"
     else
-      "Et voi syödä sitä, mitä sinulla ei vielä ole. Go make that bread"
+      "Et voi syödä sitä, mitä sinulla ei vielä ole. Hienommin sanottuna: Life is like a sandwich, no matter which way you flip it, the bread comes first."
 
   def combineItems(args: String) =
     val itemsToCombine = args.split(" ")
@@ -157,10 +159,10 @@ class Player(gw: GameWorld):
         "Tässä ei ole mitään nähtävää, ÄLÄ yritä yhdistää tätä spagun kanssa"
 
     override def use(player: Player): String = "Laitoit subin taskuun"
-    
+
   object spagu extends Item("spagu","Tuttu klassikko taafalta",2.95,1):
     override def eat(player: Player): String = "Söit spagun, se oli yhtä hyvää kuin ensimmäisellä kerralla"
-    
+
     override def use(player: Player): String = "Laitoit spagun taskuun, en tiedä mitä ajattelit saavuttavasi tällä. Taskusi ovat nyt täynnä jauhelihakastiketta."
 
     override def combine(player: Player, combineWith: Item): String =
@@ -169,12 +171,12 @@ class Player(gw: GameWorld):
       else
         "Tässä ei ole mitään nähtävää, ÄLÄ yritä yhdistää tätä spicy italianin kanssa"
 
-        
-      
+
+
   addItem(kolikoita)
   addItem(puhelin)
   addItem(kuulokkeet)
   addItem(spagu)
   addItem(spicyitalian)
-  
+
 end Player
