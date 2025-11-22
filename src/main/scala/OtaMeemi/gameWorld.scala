@@ -38,7 +38,7 @@ class GameWorld:
   val klahtimetro = new Area("Kivenlahden metroasema", Vector("Sammuit stigulaatiossa, kiitä onneasi että päädyit tänne etkä katuojaan.","Päätepysäkki, täällä on hyvin vähän näkemisen arvoista"), Vector(), false)
   val narnia      = new Area("Narnia", Vector("Miten tässä näin kävi?","Löydät itsesi vaatekaapin toiselta puolelta taikamaailmasta","Suureksi harmiksesi huomaat oven sulkeutuneen takanasi. Eihän tämä näin mene siinä kirjassa."), Vector(), false)
   val sus      = new Area("Amogus", Vector("Placeholder"), Vector(), false)
-  val abloc       = new Area("A Bloc", Vector("O Block mutta aallossa","Menet syömään. Valitse ruokapaikka: Konnichiwa, Kotkot, Poke bowl","Menet metrolle. Minne matka?"), Vector(), true)
+  val abloc       = new Area("A Bloc", Vector("O Block mutta aallossa","Menet syömään. Valitse ruokapaikka: Konnichiwa, Kotkot, Poke bowl"), Vector(), true)
   val kandi       = new Area("Kandikeskus", Vector("Saavut kandikeskukselle (tuttavallisemmin kandilafka)","Menet A-saliin fysiikan luennolle ja huomaat, että se on lähes tyhjä. Vastuullista sakkia nämä opiskelijat.","Pyörit ympyrää Y-siivessä koska et tiedä missä Y208b on. (vinkki vitonen, se ei ole toisessa kerroksessa)"), Vector(), false)
   val tuas        = new Area("TUAS", Vector("Menet sähköpajalle, bambu on varattu seuraavat 5h55min. Projektisi runko on edelleen tulostamatta.","Väsäät projektia tunnin","ja toisen","ja kolmannen","Menet syömään, on keskiviikko eli tarjolla on lohta tartarkastikkeessa a 5.50€"), Vector(), false)
   val ttalo       = new Area("Tietotalo", Vector("Täällä asuvat eivät tunne suihkun käsitettä","Menet opiskelemaan kasvihuoneeseen"), Vector(), false)
@@ -46,6 +46,7 @@ class GameWorld:
   val otaranta    = new Area("Otaranta", Vector("Saavut otarantaan. Kylmä tuuli puhaltaa mereltä","Menet uimaan, vesi on kylmää (yllättyneet parijonoon)"), Vector(), false)
   val taafalunch = new Area("Taafan lounasravintola",Vector("Menet spagujonoon","Edelleen spagujonossa","Tässä voi kestää hetken","Saat 1kpl spagua"),Vector(), false)
   val ttalolunch = new Area ("Subway",Vector("Menet subwayn jonoon, mieti tilauksesi huolella tai käy hassusti","Tilaat hunajaoreganosubin #canihaveapleaseburgercheese","Sait tummaan leipään tehdyn spicy italianin"),Vector(), false)
+  val ablocmetro = new Area ("Metro",Vector("Menit metrolle. Minne matka?"),Vector(),false)
   
   taafa.connections = Vector((kandi,5),(dipoli,2),(smokki,5),(taafalunch,1))
   smokki.connections = Vector((otaranta,5),(ok20,2))
@@ -56,7 +57,7 @@ class GameWorld:
   rantasauna.connections = Vector((narnia,10),(ok20,10))
   klahtimetro.connections = Vector((knmcdonalds,30),(sornainen,60))
   narnia.connections = Vector((rantasauna,10))
-  abloc.connections = Vector((kandi,2),(ttalo,10),(klahtimetro,30),(knmcdonalds,10),(sornainen,20))
+  abloc.connections = Vector((kandi,2),(ttalo,10),(ablocmetro,1))
   kandi.connections = Vector((abloc,20),(designfactory,20),(ok20,30),(taafa,30),(dipoli,20))
   tuas.connections = Vector((ttalo,5))
   ttalo.connections = Vector((abloc,10),(designfactory,10),(ttalolunch,1))
@@ -66,9 +67,9 @@ class GameWorld:
   taafalunch.connections = Vector((taafa,1))
   knmcdravintola.connections = Vector((knmcdonalds,0))
   ttalolunch.connections = Vector((ttalo,1))
-
+  ablocmetro.connections = Vector((abloc,1),(klahtimetro,30),(knmcdonalds,10),(sornainen,20))
   private val areas =
-    Vector[Area](sus,taafa,smokki,ok20,dipoli,knmcdonalds,sornainen,rantasauna,klahtimetro,narnia,abloc,kandi,tuas,ttalo,designfactory,otaranta,piritori,knmcdravintola,taafalunch,ttalolunch)
+    Vector[Area](sus,taafa,smokki,ok20,dipoli,knmcdonalds,sornainen,rantasauna,klahtimetro,narnia,abloc,kandi,tuas,ttalo,designfactory,otaranta,piritori,knmcdravintola,taafalunch,ttalolunch,ablocmetro)
 
 
   def getAreas : Vector[Area] = areas

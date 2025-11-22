@@ -56,7 +56,7 @@ object OtameemiGUI extends SimpleSwingApplication:
     private val taafalunchIcon      = new ImageIcon(getClass.getResource("/taafalunch.png"))
     private val subiIcon      = new ImageIcon(getClass.getResource("/subi.png"))
     private val dipolilunchIcon = new ImageIcon(getClass.getResource("/dipoliravintola.png"))
-
+    private val ablocmetroIcon = new ImageIcon(getClass.getResource("/ablocmetro.png"))
     // Components:
     val vaihtuvalabel = new Label:
       icon = otaniemiIcon
@@ -135,9 +135,8 @@ object OtameemiGUI extends SimpleSwingApplication:
         case `piritori`      => piritoriIcon
         case `ttalolunch`          => subiIcon
         case `dipoliravintola`     => dipolilunchIcon
+        case `ablocmetro`         => ablocmetroIcon
         case _               => otaniemiIcon
-        
-
       vaihtuvalabel.icon = newIcon
 
     def playTurn(command: String) =
