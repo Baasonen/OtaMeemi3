@@ -9,3 +9,4 @@ class DokattuDebuff(duration: Int, startTime: Int) extends Debuff("Dokattu", dur
 
 class ParinaDebuff(duration: Int, startTime: Int) extends Debuff("Pärinä", duration, startTime)
 
+class crazyDebuff(duration: Int, startTime: Int) extends Debuff("Crazy?", duration, startTime)
