@@ -69,6 +69,7 @@ class GameWorld:
   knmcdravintola.connections = Vector((knmcdonalds,0))
   ttalolunch.connections = Vector((ttalo,1))
   ablocmetro.connections = Vector((abloc,1),(klahtimetro,30),(knmcdonalds,10),(sornainen,20))
+  sus.connections = Vector((ttalo,1))
   private val areas =
     Vector[Area](sus,taafa,smokki,ok20,dipoli,knmcdonalds,sornainen,rantasauna,klahtimetro,narnia,abloc,kandi,tuas,ttalo,designfactory,otaranta,piritori,knmcdravintola,taafalunch,ttalolunch,ablocmetro)
 

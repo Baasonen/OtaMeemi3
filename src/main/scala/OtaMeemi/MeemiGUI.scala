@@ -57,7 +57,7 @@ object OtameemiGUI extends SimpleSwingApplication:
     private val subiIcon      = new ImageIcon(getClass.getResource("/subi.png"))
     private val dipolilunchIcon = new ImageIcon(getClass.getResource("/dipoliravintola.png"))
     private val ablocmetroIcon = new ImageIcon(getClass.getResource("/ablocmetro.png"))
-    private val tripleTIcon = new ImageIcon(getClass.getResource("/triplet.png")).getImage
+    private val tripleTIcon = new ImageIcon(getClass.getResource("/triplet.jpg")).getImage
     // Components:
     val vaihtuvalabel = new Label:
       icon = otaniemiIcon
@@ -65,10 +65,12 @@ object OtameemiGUI extends SimpleSwingApplication:
       editable = false
       wordWrap = true
       lineWrap = true
+      font = new Font(font.getName, java.awt.Font.ITALIC, 15)
     val turnOutput = new TextArea(7, 40):
       editable = false
       wordWrap = true
       lineWrap = true
+      font = new Font(font.getName, java.awt.Font.ITALIC, 15)
     val input = new TextField(40):
       minimumSize = preferredSize
     this.listenTo(input.keys)
