@@ -58,6 +58,7 @@ object OtameemiGUI extends SimpleSwingApplication:
     private val dipolilunchIcon = new ImageIcon(getClass.getResource("/dipoliravintola.png"))
     private val ablocmetroIcon = new ImageIcon(getClass.getResource("/ablocmetro.png"))
     private val tripleTIcon = new ImageIcon(getClass.getResource("/triplet.jpg")).getImage
+    private val majorminor = new ImageIcon(getClass.getResource("/bromitanyttaas.jpeg")).getImage
     // Components:
     val vaihtuvalabel = new Label:
       icon = otaniemiIcon
@@ -97,7 +98,7 @@ object OtameemiGUI extends SimpleSwingApplication:
 
     val startButton = new Button("Aloita peli")
 
-    val startPanel = new BackgroundBoxPanel(Orientation.Vertical, tripleTIcon):
+    val startPanel = new BackgroundBoxPanel(Orientation.Vertical, majorminor):
       contents += Swing.VStrut(200)
       contents +=  new FlowPanel(FlowPanel.Alignment.Center)(titleLabel)
       contents += Swing.VStrut(200)
