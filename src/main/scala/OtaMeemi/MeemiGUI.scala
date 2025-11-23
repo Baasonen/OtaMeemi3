@@ -3,7 +3,7 @@ package OtaMeemi
 import scala.swing.*
 import scala.swing.event.*
 import javax.swing.UIManager
-import java.awt.{Point, Insets, Dimension}
+import java.awt.{Point, Insets, Dimension, Font as AwtFont, Image, Graphics2D}
 import scala.language.adhocExtensions // enable extension of Swing classes
 import javax.swing.ImageIcon
 
@@ -57,14 +57,15 @@ object OtameemiGUI extends SimpleSwingApplication:
     private val subiIcon      = new ImageIcon(getClass.getResource("/subi.png"))
     private val dipolilunchIcon = new ImageIcon(getClass.getResource("/dipoliravintola.png"))
     private val ablocmetroIcon = new ImageIcon(getClass.getResource("/ablocmetro.png"))
+    private val tripleTIcon = new ImageIcon(getClass.getResource("/triplet.png")).getImage
     // Components:
     val vaihtuvalabel = new Label:
       icon = otaniemiIcon
-    val locationInfo = new TextArea(7, 80):
+    val locationInfo = new TextArea(7, 40):
       editable = false
       wordWrap = true
       lineWrap = true
-    val turnOutput = new TextArea(7, 80):
+    val turnOutput = new TextArea(7, 40):
       editable = false
       wordWrap = true
       lineWrap = true
@@ -72,21 +73,10 @@ object OtameemiGUI extends SimpleSwingApplication:
       minimumSize = preferredSize
     this.listenTo(input.keys)
     val turnCounter = Label()
-      
-    // Events:
-
-    this.reactions += {
-      case keyEvent: KeyPressed =>
-        if keyEvent.source == this.input && keyEvent.key == Key.Enter && !this.game.isOver then
-          val command = this.input.text.trim
-          if command.nonEmpty then
-            this.input.text = ""
-            this.playTurn(command)
-    }
 
     // Layout:
 
-    this.contents = new GridBagPanel:
+    val gamePanel = new GridBagPanel:
       import scala.swing.GridBagPanel.Anchor.*
       import scala.swing.GridBagPanel.Fill
       layout += vaihtuvalabel          -> Constraints(0, 0, 1, 1, 0, 0, NorthWest.id, Fill.None.id, Insets(5, 5, 5, 5), 0, 0)
@@ -98,6 +88,39 @@ object OtameemiGUI extends SimpleSwingApplication:
       layout += input              -> Constraints(1, 1, 1, 1, 1, 0, NorthWest.id, Fill.None.id, Insets(5, 5, 5, 5), 0, 0)
       layout += turnOutput         -> Constraints(1, 2, 1, 1, 1, 1, SouthWest.id, Fill.Both.id, Insets(5, 5, 5, 5), 0, 0)
 
+    // alkunäyttöpaneeli
+    val titleLabel = new Label("OTAMEEMI"):
+      font = new Font(font.getName, java.awt.Font.BOLD, 40)
+      horizontalAlignment =Alignment.Center
+
+    val startButton = new Button("Aloita peli")
+
+    val startPanel = new BackgroundBoxPanel(Orientation.Vertical, tripleTIcon):
+      contents += Swing.VStrut(100)
+      contents +=  new FlowPanel(FlowPanel.Alignment.Center)(titleLabel)
+      contents += Swing.VStrut(100)
+      contents += new FlowPanel(FlowPanel.Alignment.Center)(startButton)
+      border = Swing.EmptyBorder(40, 40, 40, 40)
+
+    this.listenTo(startButton)
+
+
+    // Events:
+
+    this.reactions += {
+      case keyEvent: KeyPressed =>
+        if keyEvent.source == this.input && keyEvent.key == Key.Enter && !this.game.isOver then
+          val command = this.input.text.trim
+          if command.nonEmpty then
+            this.input.text = ""
+            this.playTurn(command)
+      case ButtonClicked(`startButton`) =>
+        // Vaihtaa alkunäytöstä pelin ui:hin
+        this.contents = gamePanel
+        this.pack()
+        this.input.requestFocusInWindow()
+
+    }
     // Menu:
     this.menuBar = new MenuBar:
       contents += new Menu("Program"):
@@ -107,7 +130,9 @@ object OtameemiGUI extends SimpleSwingApplication:
     // Set up the GUI’s initial state:
     this.title = game.title
     this.updateInfo(this.game.welcomeMessage)
+    this.contents = startPanel
     this.updateStatusLabel()
+    this.preferredSize = new Dimension(300, 400)
     this.location = Point(50, 50)
     this.minimumSize = Dimension(200, 200)
     this.pack()
@@ -158,6 +183,13 @@ object OtameemiGUI extends SimpleSwingApplication:
       this.turnCounter.text = "Turns played: " + this.game.turnCount
 
   end top
+
+  // apuluokka taustakuvaa varten
+  class BackgroundBoxPanel(orientation: Orientation.Value, bg: Image) extends BoxPanel(orientation):
+    override def paintComponent(g: Graphics2D): Unit =
+      super.paintComponent(g)
+      g.drawImage(bg, 0, 0, size.width, size.height, peer)
+
 
   // Enable this code to work even under the -language:strictEquality compiler option:
   private given CanEqual[Component, Component] = CanEqual.derived
