@@ -19,7 +19,8 @@ class GameWorld:
   val ok20      = new Area("Ok20", Vector("Saavut Otakaari 20:n pihaan, se on tyhjä","Saavut Otakaari 20:n pihaan, yläovesta kuuluu musiikkia","Menet sisälle, käynnissä on stigulaatio. Tunnet itsesi ulkopuoliseksi koska et ole dokattu","Olet dokattu, valmistaudu hauskaan iltaan"), Vector(), false)
   val dipoli    = new Area("Dipoli", Vector(
                       "Saavut dipolille, frakkien määrän perusteella sisällä on meneillään jotain tärkeää",
-                      "Kävelet sisään. Kävelet suoraan ulos hämmästyneenä pöhinän määrästä"
+                      "Kävelet sisään. Pöhinän seassa pystysi ehkä jopa verkostoitua",
+                      "Pakenet paikalta ennenkuin tilanne pääsee eskaloitumaan"
                     ), Vector(), false)
   val dipoliravintola = new Area("Dipoli", Vector("Kiipeät yläkertaan syömään","Syöt ruokaa tavalliselta linjastolta"),Vector(), false)
   val knmcdonalds = new Area("Keilaniemi Mcdonalds", Vector(
@@ -117,6 +118,62 @@ class GameWorld:
       else
         s"Ojdå, ihmismassan seassa sinulta varastettiin ${itemToLose}"
 
+  object dipolinPohina extends Event("Dipolinpöhinä"):
+    override def checkActive(player: Player): Boolean =
+      player.location == dipoli && !dipolinPohina.activated && player.location.getCurrentDepth > 0
 
+    override def activateEvent(player: Player): String =
+      dipolinPohina.activated = true
+      object kayntikortti extends Item("Käyntikortti", "Jonkun pöhinä startupin cvo:n käyntikortti", 0, 1):
+        override def eat(player: Player): String = "Et nyt kuitenkaa viitti alkaa paperii syömään"
+
+        override def use(player: Player): String = "Ei tällä tee muuta ku heitä vesilintua"
+
+        override def combine(player: Player, combineWith: Item): String =
+          if combineWith.toString.toLowerCase == "puhelin" then
+            "Äh, ei mulle vastata"
+          else if combineWith.toString.toLowerCase == "työhakemus" then
+            player.removeItem("käyntikortti")
+            player.removeItem("työhakemus")
+
+            object tyotarjous extends Item("Työtarjous", "Oho ehkä pääsenkin oikeasti töihin", 1000000, 1):
+              override def eat(player: Player): String = "Ei tätä kannata syödä"
+
+              override def use(player: Player): String = "Onglemana on ettet tiedä yrityksestä mitään, edes sitä missä se sijaitsee"
+
+              override def combine(player: Player, combineWith: Item): String = "Et pysty ydistämään tätä mihinkiään, vaikkakin spagu työhakemuksella kuulostaa houkuttelevalta"
+
+            player.addItem(tyotarjous)
+
+            "Oho, hakemus olikin saman tyypin. Oisoitit kiinnostusta työpaikkaa kohtaan ja sait työtarjouksen"
+          else
+            "Ei pysty"
+      player.addItem(kayntikortti)
+      "Oho, joku pöhisijä antoi sulle käyntikorttinsa"
+
+  dipoli.addEvent(dipolinPohina)
   taafa.addEvent(spagumayhem)
 
+   object tyohakemus extends Item("Työhakemus", "Joku työhakemus startuppiin mistä et oo kuullukaan", 1, 1):
+     override def eat(player: Player): String = "Ei sitä nyt herranjumala kuitenkaan kannata syödä"
+
+     override def use(player: Player): String = "Et kyllä tiedä mitä tällä tehdä"
+
+     override def combine(player: Player, combineWith: Item): String =
+       if combineWith.toString.toLowerCase == "käyntikortti" then
+         player.removeItem("käyntikortti")
+         player.removeItem("työhakemus")
+
+         object tyotarjous extends Item("Työtarjous", "Oho ehkä pääsenkin oikeasti töihin", 1000000, 1):
+           override def eat(player: Player): String = "Ei tätä kannata syödä"
+
+           override def use(player: Player): String = "Onglemana on ettet tiedä yrityksestä mitään, edes sitä missä se sijaitsee"
+
+           override def combine(player: Player, combineWith: Item): String = "Et pysty ydistämään tätä mihinkiään, vaikkakin spagu työhakemuksella kuulostaa houkuttelevalta"
+
+         player.addItem(tyotarjous)
+         "Oho, hakemus olikin saman tyypin. Oisoitit kiinnostusta työpaikkaa kohtaan ja sait työtarjouksen"
+       else
+         "Ei kyllä tuu onnistumaan"
+
+  rantasauna.addItem(tyohakemus)

@@ -109,16 +109,26 @@ class Player(gw: GameWorld):
     else
       "Et voi syödä sitä, mitä sinulla ei vielä ole. Go make that bread"
 
-  def combineItems(args: String) =
+  def combineItems(args: String): String =
     val itemsToCombine = args.split(" ")
     println(itemsToCombine.mkString(", "))
     if itemsToCombine.length == 2 then
       if hasItem(itemsToCombine(0)) && hasItem(itemsToCombine(1)) then
-        items(itemsToCombine(0)).combine(this, items(itemsToCombine(1)))
+        val combString = items(itemsToCombine(0)).combine(this, items(itemsToCombine(1)))
+
+        combString
       else
         "Sinulla ei ole noita itemejä"
     else
       "Voit yhdistää vain kahta itemiä kerrallaan"
+
+  def takeItem(itemToTake: String): String =
+    if location.getItems.map(_.toString.toLowerCase).contains(itemToTake) then
+      addItem(location.getItems(location.getItems.map(_.toString.toLowerCase).indexOf(itemToTake)))
+      location.removeItem(itemToTake)
+      s"Löysit ${itemToTake}"
+    else
+      "Ei täällä näytä olevan tollasta"
 
   def trade(itemToTrade: String) =
     if location.isTradingAllowed then

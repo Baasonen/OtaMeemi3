@@ -3,6 +3,7 @@ package OtaMeemi
 class Area(name: String, desc: Vector[String],var connections: Vector[(Area, Int)], tradingAllowed: Boolean):
   private var events = Vector[Event]()
   private var currentDepth = 0
+  private var items = Vector[Item]()
 
   override def toString: String = this.name
 
@@ -25,6 +26,19 @@ class Area(name: String, desc: Vector[String],var connections: Vector[(Area, Int
       "You escaped"
     else
       "Escape?, to where"
+
+  def addItem(itemToAdd: Item) =
+    items = items.appended(itemToAdd)
+
+  def removeItem(itemToRemove: String): Boolean =
+    if items.map(_.toString.toLowerCase).contains(itemToRemove) then
+      val indexToRemove = items.map(_.toString.toLowerCase).indexOf(itemToRemove)
+      items = items.patch(indexToRemove, Nil, 1)
+      true
+    else
+      false
+
+  def getItems = items
 
   def getCurrentDepth: Int = currentDepth
 
