@@ -103,11 +103,15 @@ class Player(gw: GameWorld):
   def eatItem(itemName: String): String =
     if hasItem(itemName) then
       if itemName == "subi" || itemName == "spagu" then
+        val item = items(itemName)
+        val itemname = itemName
         items(itemName).eat(this)
+        this.removeItem(itemName)
+        s"Söit ${itemname}n. Namnam."
       else
         "Tätä ei pysty syömään"
     else
-      "Et voi syödä sitä, mitä sinulla ei vielä ole. Go make that bread"
+      "Life is like a sandwich no matter which way you flip it, the bread comes first. Pistää miettii"
 
   def combineItems(args: String): String =
     val itemsToCombine = args.split(" ")

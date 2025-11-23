@@ -164,6 +164,7 @@ object OtameemiGUI extends SimpleSwingApplication:
         case `ttalolunch`          => subiIcon
         case `dipoliravintola`     => dipolilunchIcon
         case `ablocmetro`         => ablocmetroIcon
+        case `taafalunch`         => taafalunchIcon
         case _               => otaniemiIcon
       vaihtuvalabel.icon = newIcon
 

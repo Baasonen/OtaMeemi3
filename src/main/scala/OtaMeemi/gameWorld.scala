@@ -95,11 +95,11 @@ class GameWorld:
 
   object spagumayhem extends Event("Spagumayhem"):
     override def checkActive(player: Player): Boolean =
-      player.location == taafa && currentTime > (60 * 8) && player.inventory.length > 1 && !spagumayhem.activated && player.location.getCurrentDepth >= 1
+      player.location == taafalunch && currentTime > (60 * 8) && player.inventory.length > 1 && !spagumayhem.activated && player.location.getCurrentDepth >= 1
 
     override def activateEvent(player: Player): String =
       object spagu extends Item("spagu","Tuttu klassikko taafalta",2.95,1):
-        override def eat(player: Player): String = "Söit spagun, se oli yhtä hyvää kuin ensimmäisellä kerralla"
+        override def eat(player: Player): String = "Söit spagun, sinun ei nyt tarvitse syödä seuraavaan tuntiin."
 
         override def use(player: Player): String = "Laitoit spagun taskuun, en tiedä mitä ajattelit saavuttavasi tällä. Taskusi ovat nyt täynnä jauhelihakastiketta."
 
@@ -153,7 +153,7 @@ class GameWorld:
       "Oho, joku pöhisijä antoi sulle käyntikorttinsa"
 
   dipoli.addEvent(dipolinPohina)
-  taafa.addEvent(spagumayhem)
+  taafalunch.addEvent(spagumayhem)
 
    object tyohakemus extends Item("Työhakemus", "Joku työhakemus startuppiin mistä et oo kuullukaan", 1, 1):
      override def eat(player: Player): String = "Ei sitä nyt herranjumala kuitenkaan kannata syödä"
@@ -177,4 +177,17 @@ class GameWorld:
        else
          "Ei kyllä tuu onnistumaan"
 
+  object spagu extends Item("spagu","Tuttu klassikko taafalta",2.95,1):
+        override def eat(player: Player): String = "Söit spagun, sinun ei nyt tarvitse syödä seuraavaan tuntiin."
+
+        override def use(player: Player): String = "Laitoit spagun taskuun, en tiedä mitä ajattelit saavuttavasi tällä. Taskusi ovat nyt täynnä jauhelihakastiketta."
+
+        override def combine(player: Player, combineWith: Item): String =
+          if combineWith == spagu then
+            "what is bro doing💀 (olet nyt puolivälissä pelin voittamista)"
+          else
+            "Tässä ei ole mitään nähtävää, ÄLÄ yritä yhdistää tätä spicy italianin kanssa"
+
   rantasauna.addItem(tyohakemus)
+  taafalunch.addItem(spagu)
+  
