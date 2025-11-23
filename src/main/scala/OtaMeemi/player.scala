@@ -194,5 +194,5 @@ class Player(gw: GameWorld):
   addItem(puhelin)
   addItem(kuulokkeet)
   addItem(spicyitalian)
-  
+
 end Player

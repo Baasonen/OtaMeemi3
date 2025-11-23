@@ -3,7 +3,7 @@ package OtaMeemi
 import scala.swing.*
 import scala.swing.event.*
 import javax.swing.UIManager
-import java.awt.{Point, Insets, Dimension, Font as AwtFont, Image, Graphics2D}
+import java.awt.{Point, Insets, Dimension, Font as AwtFont, Image, Graphics2D, Color}
 import scala.language.adhocExtensions // enable extension of Swing classes
 import javax.swing.ImageIcon
 
@@ -76,7 +76,6 @@ object OtameemiGUI extends SimpleSwingApplication:
       minimumSize = preferredSize
     this.listenTo(input.keys)
     val turnCounter = Label()
-
     // Layout:
 
     val gamePanel = new GridBagPanel:
@@ -95,14 +94,22 @@ object OtameemiGUI extends SimpleSwingApplication:
     val titleLabel = new Label("OTAMEEMI 3: Työhakemuksen paluu"):
       font = new Font(font.getName, java.awt.Font.BOLD, 40)
       horizontalAlignment =Alignment.Center
+      foreground = Color.WHITE
+
+    val titlePanel = new FlowPanel(FlowPanel.Alignment.Center)(titleLabel):
+      opaque =false
+
 
     val startButton = new Button("Aloita peli")
 
-    val startPanel = new BackgroundBoxPanel(Orientation.Vertical, majorminor):
+    val buttonPanel = new FlowPanel(FlowPanel.Alignment.Center)(startButton):
+        opaque = false
+
+    val startPanel = new BackgroundBoxPanel(Orientation.Vertical, tripleTIcon):
       contents += Swing.VStrut(200)
-      contents +=  new FlowPanel(FlowPanel.Alignment.Center)(titleLabel)
+      contents +=  titlePanel
       contents += Swing.VStrut(200)
-      contents += new FlowPanel(FlowPanel.Alignment.Center)(startButton)
+      contents += buttonPanel
       border = Swing.EmptyBorder(40, 40, 40, 40)
 
     this.listenTo(startButton)
@@ -183,7 +190,7 @@ object OtameemiGUI extends SimpleSwingApplication:
         this.turnOutput.text = info
       else
         this.turnOutput.text = info + "\n\n" + this.game.goodbyeMessage
-      this.locationInfo.text = s"Tämänhetkinen sijainti: ${player.location.toString}, kello on: ${game.otaniemi.getTime}\nVoit tutkia aluetta tarkemmin tai liikkua: ${player.location.connections.map(_._1).mkString(", ")}\n\nReppusi sisältää ${player.inventory.mkString(", ")}\n\nTilillä rahaa ${player.getMoneyStatus} euroa"
+      this.locationInfo.text = s"Tämänhetkinen sijainti: ${player.location.toString}, kello on: ${game.otaniemi.getTime}\nVoit tutkia aluetta tarkemmin tai liikkua: ${player.location.connections.map(_._1).mkString(", ")}\n\nReppusi sisältää ${player.inventory.mkString(", ")}\n\nTilillä rahaa ${player.getMoneyStatus} euroa\n\nMaassa näyttää olevan ${player.location.getToString}"
       this.turnCounter.text = "Turns played: " + this.game.turnCount
 
   end top

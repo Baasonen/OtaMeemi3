@@ -152,10 +152,7 @@ class GameWorld:
       player.addItem(kayntikortti)
       "Oho, joku pöhisijä antoi sulle käyntikorttinsa"
 
-  dipoli.addEvent(dipolinPohina)
-  taafalunch.addEvent(spagumayhem)
-
-   object tyohakemus extends Item("Työhakemus", "Joku työhakemus startuppiin mistä et oo kuullukaan", 1, 1):
+  object tyohakemus extends Item("Työhakemus", "Joku työhakemus startuppiin mistä et oo kuullukaan", 1, 1):
      override def eat(player: Player): String = "Ei sitä nyt herranjumala kuitenkaan kannata syödä"
 
      override def use(player: Player): String = "Et kyllä tiedä mitä tällä tehdä"
@@ -188,6 +185,20 @@ class GameWorld:
           else
             "Tässä ei ole mitään nähtävää, ÄLÄ yritä yhdistää tätä spicy italianin kanssa"
 
+  object note1 extends Item("muistilappu","Suosittelen lukemaan, ihan hyödyllinen sisältö.",1,1):
+        override def eat(player: Player): String = "Ei tätä kannata syödä"
+
+        override def use(player: Player): String = "Tervetuloa peliin. Tavoitteesi on yksinkertainen, sinun pitää vain tehdä prokrastinoimasi sähköpajaprojekti valmiiksi tänään. Vinkki vitonen, TUAS voisi olla hyvä alkusuunta."
+
+        override def combine(player: Player, combineWith: Item): String =
+          if combineWith == spagu then 
+            "Kätevää, sinulla on nyt spagu paperilapulla ja yksi vihje vähemmän."
+          else 
+            "Sinuna en hankkiutuisi tästä eroon esimerkiksi yhdistämällä sitä spaguun"
+            
   rantasauna.addItem(tyohakemus)
   taafalunch.addItem(spagu)
+  abloc.addItem(note1)
+  dipoli.addEvent(dipolinPohina)
+  taafalunch.addEvent(spagumayhem)
   
