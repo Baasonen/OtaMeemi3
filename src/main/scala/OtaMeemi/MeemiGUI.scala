@@ -89,16 +89,16 @@ object OtameemiGUI extends SimpleSwingApplication:
       layout += turnOutput         -> Constraints(1, 2, 1, 1, 1, 1, SouthWest.id, Fill.Both.id, Insets(5, 5, 5, 5), 0, 0)
 
     // alkunäyttöpaneeli
-    val titleLabel = new Label("OTAMEEMI"):
+    val titleLabel = new Label("OTAMEEMI 3: Työhakemuksen paluu"):
       font = new Font(font.getName, java.awt.Font.BOLD, 40)
       horizontalAlignment =Alignment.Center
 
     val startButton = new Button("Aloita peli")
 
     val startPanel = new BackgroundBoxPanel(Orientation.Vertical, tripleTIcon):
-      contents += Swing.VStrut(100)
+      contents += Swing.VStrut(200)
       contents +=  new FlowPanel(FlowPanel.Alignment.Center)(titleLabel)
-      contents += Swing.VStrut(100)
+      contents += Swing.VStrut(200)
       contents += new FlowPanel(FlowPanel.Alignment.Center)(startButton)
       border = Swing.EmptyBorder(40, 40, 40, 40)
 
@@ -132,7 +132,7 @@ object OtameemiGUI extends SimpleSwingApplication:
     this.updateInfo(this.game.welcomeMessage)
     this.contents = startPanel
     this.updateStatusLabel()
-    this.preferredSize = new Dimension(300, 400)
+    this.preferredSize = new Dimension(1200, 600)
     this.location = Point(50, 50)
     this.minimumSize = Dimension(200, 200)
     this.pack()
