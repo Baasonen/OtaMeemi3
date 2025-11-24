@@ -6,6 +6,8 @@ import javax.swing.UIManager
 import java.awt.{Point, Insets, Dimension, Font as AwtFont, Image, Graphics2D, Color}
 import scala.language.adhocExtensions // enable extension of Swing classes
 import javax.swing.ImageIcon
+import javax.sound.sampled.{AudioSystem, Clip}
+import java.io.BufferedInputStream
 
 ////////////////// NOTE TO STUDENTS //////////////////////////
 // For the purposes of our course, it’s not necessary
@@ -24,6 +26,13 @@ import javax.swing.ImageIcon
   * @see [[AdventureTextUI]] */
 object OtameemiGUI extends SimpleSwingApplication:
   UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName)
+
+
+    val backgroundClip: Clip =
+    val audioStream = AudioSystem.getAudioInputStream(new BufferedInputStream(getClass.getResourceAsStream("/musaa2.wav")))
+    val clip = AudioSystem.getClip
+    clip.open(audioStream)
+    clip
 
   def top = new MainFrame:
 
@@ -59,6 +68,7 @@ object OtameemiGUI extends SimpleSwingApplication:
     private val ablocmetroIcon = new ImageIcon(getClass.getResource("/ablocmetro.png"))
     private val tripleTIcon = new ImageIcon(getClass.getResource("/triplet.jpg")).getImage
     private val majorminor = new ImageIcon(getClass.getResource("/bromitanyttaas.jpeg")).getImage
+    private val alepaIcon = new ImageIcon(getClass.getResource("/alepa.png"))
     // Components:
     val vaihtuvalabel = new Label:
       icon = otaniemiIcon
@@ -172,7 +182,9 @@ object OtameemiGUI extends SimpleSwingApplication:
         case `dipoliravintola`     => dipolilunchIcon
         case `ablocmetro`         => ablocmetroIcon
         case `taafalunch`         => taafalunchIcon
+        case `alepa`         => alepaIcon
         case _               => otaniemiIcon
+
       vaihtuvalabel.icon = newIcon
 
     def playTurn(command: String) =
@@ -193,6 +205,9 @@ object OtameemiGUI extends SimpleSwingApplication:
       this.locationInfo.text = s"Tämänhetkinen sijainti: ${player.location.toString}, kello on: ${game.otaniemi.getTime}\nVoit tutkia aluetta tarkemmin tai liikkua: ${player.location.connections.map(_._1).mkString(", ")}\n\nReppusi sisältää ${player.inventory.mkString(", ")}\n\nTilillä rahaa ${player.getMoneyStatus} euroa\n\nMaassa näyttää olevan ${player.location.getToString}"
       this.turnCounter.text = "Turns played: " + this.game.turnCount
 
+    backgroundClip.loop(Clip.LOOP_CONTINUOUSLY)
+    backgroundClip.start()
+    
   end top
 
   // apuluokka taustakuvaa varten
