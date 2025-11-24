@@ -8,14 +8,14 @@ class OtaMeemiGame:
 
   val title = "OtaMeemi3 (1, 2 ja 2.1 kuluivat toimivan projektin luontiin intelliJ:ssa"
 
-  val welcomeMessage = s"Aamusi alkaa A blocilta, kello on ${otaniemi.getTime}, nyt on kiire luennolle. Tänään pitää ehtiä myös pajalla saattamaan projekti loppuun."
+  val welcomeMessage = s"Aamusi alkaa A blocilta, kello on ${otaniemi.getTime}, nyt on kiire luennolle. Tänään pitää ehtiä myös pajalla saattamaan projekti loppuun. Elämänohjeista voisi olla apua."
   val goodbyeMessage = "Goodbye"
 
   var turnCount = 0
 
   val turnLimit = 15
 
-  def isComplete = player.location.toString == "sähköpaja"
+  def isComplete = player.location == otaniemi.sahkopaja
 
   def isOver = false
 

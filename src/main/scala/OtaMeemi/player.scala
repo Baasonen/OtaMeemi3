@@ -5,7 +5,7 @@ import scala.util.Random
 class Player(gw: GameWorld):
 
   private val rng = Random()
-  private var currentLocation = gw.getAreas(10)
+  private var currentLocation = gw.getAreas(1)
 
   private var money = 5
   private var quitCommandGiven = false
