@@ -207,6 +207,12 @@ class Player(gw: GameWorld):
         "Ei alepa myy tollasta"
     else
       "Ei täältä voi ostaa mitään"
+      
+  def read(input: String)=
+    if input == "elämänohjeita" then 
+      useItem(input)
+    else
+      "ei tätä voi lukee"
 
   def quit() =
     this.quitCommandGiven = true

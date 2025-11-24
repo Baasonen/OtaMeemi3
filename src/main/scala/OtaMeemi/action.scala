@@ -24,4 +24,5 @@ class Action(input: String):
       case "ota"      => Some(actor.takeItem(this.modifiers))
       case "kalasta" => Some(actor.fish())
       case "osta" => Some(actor.buy(this.modifiers))
+      case "lue" => Some(actor.read(this.modifiers))
       case other       => None
