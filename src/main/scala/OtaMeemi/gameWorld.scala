@@ -159,6 +159,8 @@ class GameWorld:
 
      override def use(player: Player): String =
        if player.location.getActiveEvents(player).map(_.toString.toLowerCase).contains("ttalobossi") then
+         player.setNewLocation(narnia)
+         passTime(100*60)
          "Annoit työtarjouksen hirviölle, hän suuttui enemmän ja heitti sinut narniaan"
        else
          "Et kyllä tiedä mitä tällä tehdä"

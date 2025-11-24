@@ -148,6 +148,38 @@ class Player(gw: GameWorld):
     else
       "Et sä pysyty tääl myymään"
 
+  def buy(itemToBuy: String): String =
+    if location.toString.toLowerCase == "alepa" then
+      object bait extends Item("Matopurkki", "Matoja. Eiköhän otarannasta nappaa jotain näillä", 1, 1):
+        override def eat(player: Player): String = "Hyi"
+        override def combine(player: Player, combineWith: Item): String = "Spagu madoilla? Hell nah."
+        override def use(player: Player): String = "No can do"
+
+      object gtx760 extends Item("GTX760", "Aika tykki vekotin (älä syö)", 399, 10):
+        override def eat(player: Player): String =
+          player.removeItem("gtx760")
+          "Rousk rousk"
+        override def combine(player: Player, combineWith: Item): String = "Et ole elektroniikkainsinööri"
+        override def use(player: Player): String = "Ei tarvii, omassa koneessa 5090 #köyhät ulisee"
+
+      if itemToBuy == "Matopurkki" then
+        if money >= 1 then
+          addItem(bait)
+          removeMoney(1)
+          "Ostit matopurkin"
+        else
+          "Ei ole varaa :("
+      else if itemToBuy.toLowerCase == "gtx760" then
+        if money >= 420 then
+          addItem(gtx760)
+          removeMoney(399)
+          "Ostis GTX760"
+        else
+          "Ei ole varaa :("
+      else
+        "Ei alepa myy tollasta"
+    else
+      "Ei täältä voi ostaa mitään"
 
   def quit() =
     this.quitCommandGiven = true
