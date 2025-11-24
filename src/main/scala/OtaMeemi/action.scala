@@ -22,4 +22,5 @@ class Action(input: String):
       case "syö"    => Some(actor.eatItem(this.modifiers))
       case "myy"      => Some(actor.trade(this.modifiers))
       case "ota"      => Some(actor.takeItem(this.modifiers))
+      case "kalasta" => Some(actor.take
       case other       => None
