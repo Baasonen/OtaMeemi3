@@ -45,13 +45,14 @@ class GameWorld:
   val ttalolunch = new Area ("Subway",Vector("Menet subwayn jonoon, mieti tilauksesi huolella tai käy hassusti","Tilaat hunajaoreganosubin #canihaveapleaseburgercheese","Sait tummaan leipään tehdyn spicy italianin"),Vector(), false)
   val ablocmetro = new Area ("Metro",Vector("Menit metrolle. Minne matka?"),Vector(),false)
   val alepa = new Area ("Alepa", Vector("Menit alepaan, 2e redbull tarjous on voimassa"),Vector(),true)
+  val sahkopaja = new Area ("Sähköpaja",Vector("Saavuit pajalle. GG."),Vector(),false)
 
   // ALUEIDEN YHTEYDET
   taafa.connections = Vector((kandi,5),(dipoli,2),(smokki,5),(taafalunch,1))
   smokki.connections = Vector((ok20,2))
   ok20.connections = Vector((kandi,10),(rantasauna,10))
   dipoli.connections = Vector((taafa,5),(kandi,10))
-  sornainen.connections = Vector((piritori,2))
+  sornainen.connections = Vector((piritori,2),(ablocmetro,20))
   rantasauna.connections = Vector((narnia,10),(ok20,10),(otaranta,10))
   narnia.connections = Vector((rantasauna,10))
   abloc.connections = Vector((kandi,2),(ttalo,10),(ablocmetro,1),(alepa,1))
@@ -65,8 +66,9 @@ class GameWorld:
   ablocmetro.connections = Vector((abloc,1))
   sus.connections = Vector((ttalo,1))
   alepa.connections = Vector((abloc,1))
+  klahtimetro.connections = Vector((ablocmetro,40))
   private val areas =
-    Vector[Area](sus,taafa,smokki,ok20,dipoli,sornainen,rantasauna,klahtimetro,narnia,abloc,kandi,tuas,ttalo,otaranta,piritori,taafalunch,ttalolunch,ablocmetro,alepa)
+    Vector[Area](sus,abloc,taafa,smokki,ok20,dipoli,sornainen,rantasauna,klahtimetro,narnia,kandi,tuas,ttalo,otaranta,piritori,taafalunch,ttalolunch,ablocmetro,alepa)
 
 
   def getAreas : Vector[Area] = areas
@@ -224,16 +226,8 @@ class GameWorld:
   rantasauna.addItem(tyohakemus)
   taafalunch.addItem(spagu)
   abloc.addItem(note1)
-  alepa.addItem(redbull)
   dipoli.addEvent(dipolinPohina)
   taafalunch.addEvent(spagumayhem)
-  
-  object redbull extends Item("Redbull", "Tarpeellinen energia aamuun",2,1):
-    override def eat(player: Player): String = "Joit redbullin, nyt pärisee"
 
-    override def combine(player: Player, combineWith: Item): String = "Äläs nyt"
-
-    override def use(player: Player): String = "Laitoit redbullin taskuun"
-    
 
   

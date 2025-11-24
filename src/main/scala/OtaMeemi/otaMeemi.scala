@@ -15,7 +15,7 @@ class OtaMeemiGame:
 
   val turnLimit = 15
 
-  def isComplete = player.location.toString == "sähköpaja"
+  def isComplete = player.location == otaniemi.sahkopaja
 
   def isOver = false
 
