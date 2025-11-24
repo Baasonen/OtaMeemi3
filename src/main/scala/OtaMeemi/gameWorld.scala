@@ -16,7 +16,7 @@ class GameWorld:
                       "Lahjot portsarin, hän päästää sinut sisälle. Saat outoja katseita koska olet haalarit päällä frakkitapahtumassa"
                     ), Vector(), false)
 
-  val ok20      = new Area("Ok20", Vector("Saavut Otakaari 20:n pihaan, se on tyhjä","Saavut Otakaari 20:n pihaan, yläovesta kuuluu musiikkia","Menet sisälle, käynnissä on stigulaatio. Tunnet itsesi ulkopuoliseksi koska et ole dokattu","Olet dokattu, valmistaudu hauskaan iltaan"), Vector(), false)
+  val ok20      = new Area("Ok20", Vector("Saavut Otakaari 20:n pihaan, yläovesta kuuluu musiikkia","Menet sisälle, käynnissä on stigulaatio. Tunnet itsesi ulkopuoliseksi koska et ole dokattu","Olet dokattu, valmistaudu hauskaan iltaan", "Varam kamnattaisi jatkam matka rmatasugewmaunaaa"), Vector(), false)
   val dipoli    = new Area("Dipoli", Vector(
                       "Saavut dipolille, frakkien määrän perusteella sisällä on meneillään jotain tärkeää",
                       "Kävelet sisään. Pöhinän seassa pystysi ehkä jopa verkostoitua",
@@ -43,7 +43,7 @@ class GameWorld:
   val otaranta    = new Area("Otaranta", Vector("Saavut otarantaan. Kylmä tuuli puhaltaa mereltä","Menet uimaan, vesi on kylmää (yllättyneet parijonoon)"), Vector(), false)
   val taafalunch = new Area("Taafan lounasravintola",Vector("Menet spagujonoon","Edelleen spagujonossa","Tässä voi kestää hetken","Saat 1kpl spagua"),Vector(), false)
   val ttalolunch = new Area ("Subway",Vector("Menet subwayn jonoon, mieti tilauksesi huolella tai käy hassusti","Tilaat hunajaoreganosubin #canihaveapleaseburgercheese","Sait tummaan leipään tehdyn spicy italianin"),Vector(), false)
-  val ablocmetro = new Area ("Metro",Vector("Menit metrolle. Minne matka?"),Vector(),false)
+  val ablocmetro = new Area ("Abloc metro",Vector("Menit metrolle. Minne matka?"),Vector(),false)
   val alepa = new Area ("Alepa", Vector("Menit alepaan, 2e redbull tarjous on voimassa"),Vector(),true)
   val sahkopaja = new Area ("Sähköpaja",Vector("Saavuit pajalle. GG."),Vector(),false)
 
@@ -211,7 +211,7 @@ class GameWorld:
 
   object stigulaatio extends Event("Stigulaatio"):
     override def checkActive(player: Player): Boolean =
-      (player.location == ok20) && (currentTime > (8 * 60))
+      (player.location == ok20) && (currentTime > (8 * 60)) && (player.location.getCurrentDepth > 2)
 
     override def activateEvent(player: Player): String =
       object dokattu extends DokattuDebuff(900 + currentTime, currentTime)
