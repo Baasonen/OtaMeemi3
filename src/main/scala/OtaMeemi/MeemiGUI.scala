@@ -120,7 +120,7 @@ object OtameemiGUI extends SimpleSwingApplication:
     val buttonPanel = new FlowPanel(FlowPanel.Alignment.Center)(startButton):
         opaque = false
 
-    val startPanel = new BackgroundBoxPanel(Orientation.Vertical, tripleTIcon):
+    val startPanel = new BackgroundBoxPanel(Orientation.Vertical, majorminor):
       contents += Swing.VStrut(200)
       contents +=  titlePanel
       contents += Swing.VStrut(200)
