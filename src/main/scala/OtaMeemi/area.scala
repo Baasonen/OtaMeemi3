@@ -40,7 +40,11 @@ class Area(name: String, desc: Vector[String],var connections: Vector[(Area, Int
 
   def getItems = items
 
-  def getToString = items.mkString("\n")
+  def getToString =
+    if items.nonEmpty then
+      s"Maassa on ${items.mkString(",")}"
+    else 
+      ""
   def getCurrentDepth: Int = currentDepth
 
   def isTradingAllowed = tradingAllowed

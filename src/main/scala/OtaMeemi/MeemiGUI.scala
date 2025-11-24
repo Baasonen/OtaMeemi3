@@ -68,7 +68,7 @@ object OtameemiGUI extends SimpleSwingApplication:
     private val dipolilunchIcon = new ImageIcon(getClass.getResource("/dipoliravintola.png"))
     private val ablocmetroIcon = new ImageIcon(getClass.getResource("/ablocmetro.png"))
     private val tripleTIcon = new ImageIcon(getClass.getResource("/triplet.jpg")).getImage
-    private val majorminor = new ImageIcon(getClass.getResource("/bromitanyttaas.jpeg")).getImage
+    private val majorminor = new ImageIcon(getClass.getResource("/tyo.png")).getImage
     private val alepaIcon = new ImageIcon(getClass.getResource("/alepa.png"))
     // Components:
     val vaihtuvalabel = new Label:
@@ -109,7 +109,7 @@ object OtameemiGUI extends SimpleSwingApplication:
     val titleLabel = new Label("OTAMEEMI 3: Työhakemuksen paluu"):
       font = new Font(font.getName, java.awt.Font.BOLD, 40)
       horizontalAlignment =Alignment.Center
-      foreground = Color.WHITE
+      foreground = Color.BLACK
 
     val titlePanel = new FlowPanel(FlowPanel.Alignment.Center)(titleLabel):
       opaque =false
@@ -223,7 +223,7 @@ object OtameemiGUI extends SimpleSwingApplication:
         this.turnOutput.text = info
       else
         this.turnOutput.text = info + "\n\n" + this.game.goodbyeMessage
-      this.locationInfo.text = s"Tämänhetkinen sijainti: ${player.location.toString}, kello on: ${game.otaniemi.getTime}\nVoit tutkia aluetta tarkemmin tai liikkua: ${player.location.connections.map(_._1).mkString(", ")}\n\nReppusi sisältää ${player.inventory.mkString(", ")}\n\nTilillä rahaa ${player.getMoneyStatus} euroa\n\nMaassa näyttää olevan ${player.location.getToString}"
+      this.locationInfo.text = s"Tämänhetkinen sijainti: ${player.location.toString}, kello on: ${game.otaniemi.getTime}\nVoit tutkia aluetta tarkemmin tai liikkua: ${player.location.connections.map(_._1).mkString(", ")}\n\nReppusi sisältää ${player.inventory.mkString(", ")}\n\nTilillä rahaa ${player.getMoneyStatus} euroa\n\n${player.location.getToString}"
       this.turnCounter.text = "Turns played: " + this.game.turnCount
 
     backgroundClip.loop(Clip.LOOP_CONTINUOUSLY)
