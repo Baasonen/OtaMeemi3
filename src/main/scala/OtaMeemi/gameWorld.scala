@@ -51,12 +51,12 @@ class GameWorld:
   val alepa = new Area ("Alepa", Vector("Menit alepaan, 2e redbull tarjous on voimassa"),Vector(),true)
   
   taafa.connections = Vector((kandi,5),(dipoli,2),(smokki,5),(taafalunch,1))
-  smokki.connections = Vector((otaranta,5),(ok20,2))
+  smokki.connections = Vector((ok20,2))
   ok20.connections = Vector((kandi,10),(rantasauna,10))
   dipoli.connections = Vector((taafa,5),(kandi,10),(knmcdonalds,15))
   knmcdonalds.connections = Vector((dipoli,15),(sornainen,10),(klahtimetro,10),(knmcdravintola,0))
   sornainen.connections = Vector((knmcdonalds,30),(klahtimetro,60),(piritori,2))
-  rantasauna.connections = Vector((narnia,10),(ok20,10))
+  rantasauna.connections = Vector((narnia,10),(ok20,10),(otaranta,10))
   klahtimetro.connections = Vector((knmcdonalds,30),(sornainen,60))
   narnia.connections = Vector((rantasauna,10))
   abloc.connections = Vector((kandi,2),(ttalo,10),(ablocmetro,1),(alepa,1))
@@ -64,7 +64,7 @@ class GameWorld:
   tuas.connections = Vector((ttalo,5))
   ttalo.connections = Vector((abloc,10),(designfactory,10),(ttalolunch,1))
   designfactory.connections = Vector((kandi,15),(ttalo,10))
-  otaranta.connections = Vector((smokki,15),(rantasauna,10))
+  otaranta.connections = Vector((rantasauna,10))
   piritori.connections = Vector((sornainen,2))
   taafalunch.connections = Vector((taafa,1))
   knmcdravintola.connections = Vector((knmcdonalds,0))
@@ -209,7 +209,7 @@ class GameWorld:
       player.location.toString.toLowerCase == "tietotalo" && !activated
 
     override def activateEvent(player: Player): String =
-      "Eteesi ilmestyy hirveän vihainen hirviö, joka ei tahdo päästää sinua kulkemaan läpi. Pystytköhän jotenkin harhauttamaan häntä?"
+      "Eteesi ilmestyy hirveän vihainen hirviö, joka ei tahdo päästää sinua kulkemaan läpi. Pystytköhän jotenkin harhauttamaan häntä?. Vinkki vitonen, hommaa työhakemus ja työtarjous. Dipoli voi olla hyvä suunta."
 
   ttalo.addEvent(ttalobossi)
   rantasauna.addItem(tyohakemus)
