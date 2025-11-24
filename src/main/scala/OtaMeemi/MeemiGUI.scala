@@ -28,7 +28,7 @@ object OtameemiGUI extends SimpleSwingApplication:
 
 
     val backgroundClip: Clip =
-    val audioStream = AudioSystem.getAudioInputStream(new BufferedInputStream(getClass.getResourceAsStream("/musaa4.wav")))
+    val audioStream = AudioSystem.getAudioInputStream(new BufferedInputStream(getClass.getResourceAsStream("/musaa6.wav")))
     val clip = AudioSystem.getClip
     clip.open(audioStream)
     clip
