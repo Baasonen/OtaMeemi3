@@ -85,6 +85,7 @@ class Player(gw: GameWorld):
     if (debuffs.forall(_.isActive(gw.getRawTime)) && debuffs.nonEmpty) then
       setNewLocation(gw.klahtimetro)
       gw.passTime(120)
+      removeDebuffs()
       "Mitemn.,,, tämne pädyin,. eo ole tekariklä"
 
     else if connections.map(_._1.toString.toLowerCase).contains(destination) then
