@@ -2,8 +2,8 @@ package OtaMeemi
 import scala.util.Random
 
 class GameWorld:
-  private var currentTime = (8*60)+15
 
+  // ALUEIDEN KUVAUKSET (IHA HEMO SPAGETTI)
   val taafa     = new Area("Taafa", Vector(
                       "Saavut täffälle, betonibrutalismin kukkanen pistää silmään","Yrität mennä sisälle alaovesta, se on kiinni",
                       "Du försöker att komma in genom övre dörren men det är stängt. Tyvärr har du ingen nyckel för du är inte medlem av Teknologföreningen..."
@@ -49,7 +49,8 @@ class GameWorld:
   val ttalolunch = new Area ("Subway",Vector("Menet subwayn jonoon, mieti tilauksesi huolella tai käy hassusti","Tilaat hunajaoreganosubin #canihaveapleaseburgercheese","Sait tummaan leipään tehdyn spicy italianin"),Vector(), false)
   val ablocmetro = new Area ("Metro",Vector("Menit metrolle. Minne matka?"),Vector(),false)
   val alepa = new Area ("Alepa", Vector("Menit alepaan, 2e redbull tarjous on voimassa"),Vector(),true)
-  
+
+  // ALUEIDEN YHTEYDET
   taafa.connections = Vector((kandi,5),(dipoli,2),(smokki,5),(taafalunch,1))
   smokki.connections = Vector((ok20,2))
   ok20.connections = Vector((kandi,10),(rantasauna,10))
@@ -78,6 +79,11 @@ class GameWorld:
 
   def getAreas : Vector[Area] = areas
 
+  // AJANHALLINTA
+  private var currentTime = (8*60)+15
+
+  def getRawTime = currentTime
+
   def getTime =
     if currentTime%60 >9 then
       s"${currentTime/60}.${currentTime%60}"
@@ -94,6 +100,8 @@ class GameWorld:
       true
   def setTime(timeToSet: Int): Unit =
     currentTime = timeToSet
+
+    // EVENTIT
 
   object spagumayhem extends Event("Spagumayhem"):
     override def checkActive(player: Player): Boolean =
@@ -211,6 +219,19 @@ class GameWorld:
     override def activateEvent(player: Player): String =
       "Eteesi ilmestyy hirveän vihainen hirviö, joka ei tahdo päästää sinua kulkemaan läpi. Pystytköhän jotenkin harhauttamaan häntä?. Vinkki vitonen, hommaa työhakemus ja työtarjous. Dipoli voi olla hyvä suunta."
 
+  object stigulaatio extends Event("Stigulaatio"):
+    override def checkActive(player: Player): Boolean =
+      (player.location == ok20) && (currentTime > (15 * 60))
+
+    override def activateEvent(player: Player): String =
+      object dokattu extends DokattuDebuff(900 + currentTime, currentTime)
+      player.addDebuff(dokattu)
+      "Olemn slae:_ vähmnäm, dokatu,,,(mut ei sle plajon))"
+
+
+
+
+  // LISÄÄ EVENTIT OIKEISIIN ALUESIIN
   ttalo.addEvent(ttalobossi)
   rantasauna.addItem(tyohakemus)
   taafalunch.addItem(spagu)

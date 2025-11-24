@@ -13,9 +13,9 @@ class OtaMeemiGame:
 
   var turnCount = 0
 
-  val turnLimit = 10
+  val turnLimit = 15
 
-  def isComplete = player.inventory.contains("67")
+  def isComplete = player.location.toString == "sähköpaja"
 
   def isOver = false
 

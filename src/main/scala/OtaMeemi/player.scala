@@ -76,12 +76,17 @@ class Player(gw: GameWorld):
   def movementOptions: Vector[String] =
     currentLocation.getConnections.map(_._1.toString)
 
-  def go(destination: String) =
+  def go(destination: String): String =
     val connections = currentLocation.getConnections
     print(connections)
-    if connections.map(_._1.toString.toLowerCase).contains(destination) then
-      if destination == "narnia" then 
-        gw.setTime((23*60)+59) 
+    if debuffs.forall(_.isActive(gw.getRawTime)) then
+      setNewLocation(gw.klahtimetro)
+      gw.passTime(120)
+      "Mitemn.,,, tämne pädyin,. eo ole tekariklä"
+
+    else if connections.map(_._1.toString.toLowerCase).contains(destination) then
+      if destination == "narnia" then
+        gw.setTime((23*60)+59)
         currentLocation = gw.narnia
         "Menit narniaan. Päiväsi päättyy tähän"
       else
