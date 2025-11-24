@@ -119,6 +119,8 @@ class GameWorld:
       else
         s"Ojdå, ihmismassan seassa sinulta varastettiin ${itemToLose}"
 
+
+
   object dipolinPohina extends Event("Dipolinpöhinä"):
     override def checkActive(player: Player): Boolean =
       player.location == dipoli && !dipolinPohina.activated && player.location.getCurrentDepth > 0
@@ -152,6 +154,8 @@ class GameWorld:
       player.addItem(kayntikortti)
       "Oho, joku pöhisijä antoi sulle käyntikorttinsa"
 
+
+
   object tyohakemus extends Item("Työhakemus", "Joku työhakemus startuppiin mistä et oo kuullukaan", 1, 1):
      override def eat(player: Player): String = "Ei sitä nyt herranjumala kuitenkaan kannata syödä"
 
@@ -173,11 +177,14 @@ class GameWorld:
 
            override def use(player: Player): String =
              println(player.location.getActiveEvents(player).map(_.toString.toLowerCase))
-             if player.location.getActiveEvents(player).map(_.toString.toLowerCase).contains("ttalobossi") then
-               player.location.getActiveEvents(player).filter(_.toString == "ttalobossi").head.setActivated(true)
-               player.removeItem("työtarjous")
-               player.setNewLocation(tuas)
-               "Oho, hänhän innostui työpaikasta ja juoksi pois. Voit nyt jatkaa matkaa pajalle"
+             if player.location.getActiveEvents(player).map(_.toString.toLowerCase).contains("ttalobossi") && player.inventory.map(_.toString.toLowerCase).contains("gtx760") then
+               if player.inventory.map(_.toString.toLowerCase).contains("gtx760") then
+                player.location.getActiveEvents(player).filter(_.toString == "ttalobossi").head.setActivated(true)
+                player.removeItem("työtarjous")
+                player.setNewLocation(tuas)
+                "Oho, hänhän innostui työpaikasta ja juoksi pois. Voit nyt jatkaa matkaa pajalle"
+               else
+                 "Hmm, pystyisinköhän lahjoa häntä sillä hienolla GTX760 näytönohjaimella jonka näin aamulla alepassa myynnissä?"
              else
               "Onglemana on ettet tiedä yrityksestä mitään, edes sitä missä se sijaitsee"
 
@@ -188,6 +195,8 @@ class GameWorld:
        else
          "Ei kyllä tuu onnistumaan"
 
+
+
   object spagu extends Item("spagu","Tuttu klassikko taafalta",2.95,1):
         override def eat(player: Player): String = "Söit spagun, sinun ei nyt tarvitse syödä seuraavaan tuntiin."
 
@@ -195,12 +204,16 @@ class GameWorld:
 
         override def combine(player: Player, combineWith: Item): String = "Bruh"
 
+
+
   object note1 extends Item("elämänohjeita","Suosittelen lukemaan, ihan hyödyllinen sisältö.",1,1):
         override def eat(player: Player): String = "Ei tätä kannata syödä"
 
         override def use(player: Player): String = "Otarannalt saa muuten huhujen mukaan kalaa. Pistää miettii. (Tämä voisi olla hyvä vaihtoehto töissä käymiselle)"
 
         override def combine(player: Player, combineWith: Item): String = "Bruh"
+
+
 
   object ttalobossi extends Event("ttalobossi"):
     override def checkActive(player: Player): Boolean =
