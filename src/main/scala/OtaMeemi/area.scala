@@ -18,14 +18,14 @@ class Area(name: String, desc: Vector[String],var connections: Vector[(Area, Int
       currentDepth += 1
       desc(currentDepth)
     else
-      "There doesn't seem to be much more to see here"
+      "Täällä ei ole mitään nähtävää"
 
   def escape =
     if currentDepth != 0 then
       currentDepth = 0
-      "You escaped"
+      "Pakenit"
     else
-      "Escape?, to where"
+      "Pakeneminen ei ole vaihtoehto"
 
   def addItem(itemToAdd: Item) =
     items = items.appended(itemToAdd)
