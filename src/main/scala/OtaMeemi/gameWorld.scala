@@ -209,7 +209,7 @@ class GameWorld:
 
   object stigulaatio extends Event("Stigulaatio"):
     override def checkActive(player: Player): Boolean =
-      (player.location == ok20) && (currentTime > (15 * 60))
+      (player.location == ok20) && (currentTime > (8 * 60))
 
     override def activateEvent(player: Player): String =
       object dokattu extends DokattuDebuff(900 + currentTime, currentTime)

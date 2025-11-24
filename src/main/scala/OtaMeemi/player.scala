@@ -78,8 +78,8 @@ class Player(gw: GameWorld):
 
   def go(destination: String): String =
     val connections = currentLocation.getConnections
-    print(connections)
-    if debuffs.forall(_.isActive(gw.getRawTime)) then
+    print(debuffs)
+    if (debuffs.forall(_.isActive(gw.getRawTime)) && debuffs.nonEmpty) then
       setNewLocation(gw.klahtimetro)
       gw.passTime(120)
       "Mitemn.,,, tämne pädyin,. eo ole tekariklä"
