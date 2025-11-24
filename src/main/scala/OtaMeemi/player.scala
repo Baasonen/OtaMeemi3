@@ -122,7 +122,7 @@ class Player(gw: GameWorld):
       else 
         "Hommaa matopurkki bro, näit saa alepast"
     else
-      "Täällä ei voi kalastaa"
+      "Täällä ei voi kalastaa (otaranta bro)"
         
         
 
@@ -173,7 +173,7 @@ class Player(gw: GameWorld):
       else
         s"Sul ei oo ${itemToTrade}..."
     else
-      "Et sä pysyty tääl myymään"
+      "Et sä pysyty tääl myymään (harkitse alepaan menemistä)"
 
   def buy(itemToBuy: String): String =
     if this.location == gw.alepa then

@@ -170,7 +170,6 @@ object OtameemiGUI extends SimpleSwingApplication:
         case `sus`            => amogus
         case `ok20`          => ok20Icon
         case `dipoli`        => dipoliIcon
-        case `knmcdonalds`   => knmcdonaldsIcon
         case `sornainen`     => sornainenIcon
         case `rantasauna`    => rantasaunaIcon
         case `klahtimetro`   => klahtimetroIcon

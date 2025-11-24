@@ -23,9 +23,6 @@ class GameWorld:
                       "Pakenet paikalta ennenkuin tilanne pääsee eskaloitumaan"
                     ), Vector(), false)
   val dipoliravintola = new Area("Dipoli", Vector("Kiipeät yläkertaan syömään","Syöt ruokaa tavalliselta linjastolta"),Vector(), false)
-  val knmcdonalds = new Area("Keilaniemi Mcdonalds", Vector(
-                      "Saavut miljardin dollarin konserniin Keilaniemessä. Vakiotyöpaikka tutalaisille","Hei ootko säkin muuten tutalla?"), Vector(), false)
-  val knmcdravintola = new Area ("Keilaniemi Mcdonalds / Olet jonossa",Vector("Menet jonoon","Tilaat cledos mealin (5,95 mäkkärist)","Syöt ruokasi, tilaat lisää pöytään juoksuttaaksesi tarjoilijaa"),Vector(), false)
   val sornainen   = new Area("Sörnäisten metroasema", Vector(
                       "Ilmeisesti sammuit metroon Stigulaation jälkeen ja päädyit Sörnäisiin."
                     ), Vector(), false)
@@ -52,8 +49,7 @@ class GameWorld:
   taafa.connections = Vector((kandi,5),(dipoli,2),(smokki,5),(taafalunch,1))
   smokki.connections = Vector((ok20,2))
   ok20.connections = Vector((kandi,10),(rantasauna,10))
-  dipoli.connections = Vector((taafa,5),(kandi,10),(knmcdonalds,15))
-  knmcdonalds.connections = Vector((dipoli,15),(sornainen,10),(klahtimetro,10),(knmcdravintola,0))
+  dipoli.connections = Vector((taafa,5),(kandi,10))
   sornainen.connections = Vector((piritori,2))
   rantasauna.connections = Vector((narnia,10),(ok20,10),(otaranta,10))
   narnia.connections = Vector((rantasauna,10))
@@ -64,13 +60,12 @@ class GameWorld:
   otaranta.connections = Vector((rantasauna,10))
   piritori.connections = Vector((sornainen,2))
   taafalunch.connections = Vector((taafa,1))
-  knmcdravintola.connections = Vector((knmcdonalds,0))
   ttalolunch.connections = Vector((ttalo,1))
-  ablocmetro.connections = Vector((abloc,1),(knmcdonalds,10))
+  ablocmetro.connections = Vector((abloc,1))
   sus.connections = Vector((ttalo,1))
   alepa.connections = Vector((abloc,1))
   private val areas =
-    Vector[Area](sus,taafa,smokki,ok20,dipoli,knmcdonalds,sornainen,rantasauna,klahtimetro,narnia,abloc,kandi,tuas,ttalo,otaranta,piritori,knmcdravintola,taafalunch,ttalolunch,ablocmetro,alepa)
+    Vector[Area](sus,taafa,smokki,ok20,dipoli,sornainen,rantasauna,klahtimetro,narnia,abloc,kandi,tuas,ttalo,otaranta,piritori,taafalunch,ttalolunch,ablocmetro,alepa)
 
 
   def getAreas : Vector[Area] = areas
@@ -120,7 +115,7 @@ class GameWorld:
 
     override def activateEvent(player: Player): String =
       dipolinPohina.activated = true
-      object kayntikortti extends Item("Käyntikortti", "Jonkun pöhinä startupin cvo:n käyntikortti", 0, 1):
+      object kayntikortti extends Item("Käyntikortti", "Jonkun pöhinä startupin cvo:n käyntikortti. Vois olla visio ettii työtarjous tän kanssa", 0, 1):
         override def eat(player: Player): String = "Et nyt kuitenkaa viitti alkaa paperii syömään"
 
         override def use(player: Player): String = "Ei tällä tee muuta ku heitä vesilintua"
@@ -190,7 +185,7 @@ class GameWorld:
 
         override def combine(player: Player, combineWith: Item): String = "Bruh"
 
-  object note1 extends Item("elämänohjeita","Suosittelen lukemaan (käytä), ihan hyödyllinen sisältö.",1,1):
+  object note1 extends Item("elämänohjeita","Suosittelen lukemaan, ihan hyödyllinen sisältö.",1,1):
         override def eat(player: Player): String = "Ei tätä kannata syödä"
 
         override def use(player: Player): String = "Otarannalt saa muuten huhujen mukaan kalaa. Pistää miettii. (Tämä voisi olla hyvä vaihtoehto töissä käymiselle)"
