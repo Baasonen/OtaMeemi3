@@ -195,29 +195,21 @@ class GameWorld:
 
         override def use(player: Player): String = "Laitoit spagun taskuun, en tiedä mitä ajattelit saavuttavasi tällä. Taskusi ovat nyt täynnä jauhelihakastiketta."
 
-        override def combine(player: Player, combineWith: Item): String =
-          if combineWith == spagu then
-            "what is bro doing💀 (olet nyt puolivälissä pelin voittamista)"
-          else
-            "Tässä ei ole mitään nähtävää, ÄLÄ yritä yhdistää tätä spicy italianin kanssa"
+        override def combine(player: Player, combineWith: Item): String = "Bruh"
 
   object note1 extends Item("muistilappu","Suosittelen lukemaan, ihan hyödyllinen sisältö.",1,1):
         override def eat(player: Player): String = "Ei tätä kannata syödä"
 
         override def use(player: Player): String = "Tervetuloa peliin. Tavoitteesi on yksinkertainen, sinun pitää vain tehdä prokrastinoimasi sähköpajaprojekti valmiiksi tänään. Vinkki vitonen, TUAS voisi olla hyvä alkusuunta."
 
-        override def combine(player: Player, combineWith: Item): String =
-          if combineWith == spagu then 
-            "Kätevää, sinulla on nyt spagu paperilapulla ja yksi vihje vähemmän."
-          else 
-            "Sinuna en hankkiutuisi tästä eroon esimerkiksi yhdistämällä sitä spaguun"
+        override def combine(player: Player, combineWith: Item): String = "Bruh"
 
   object ttalobossi extends Event("ttalobossi"):
     override def checkActive(player: Player): Boolean =
       player.location.toString.toLowerCase == "tietotalo" && !activated
 
     override def activateEvent(player: Player): String =
-      "Eteesi ilmestyy hirveän vhainen hirviö, joka ei tahdo päästää sinua kulkemaan läpi. Pystytköhän jotenkin harhauttamaan häntä?"
+      "Eteesi ilmestyy hirveän vihainen hirviö, joka ei tahdo päästää sinua kulkemaan läpi. Pystytköhän jotenkin harhauttamaan häntä?"
 
   ttalo.addEvent(ttalobossi)
   rantasauna.addItem(tyohakemus)

@@ -10,7 +10,7 @@ class Action(input: String):
       case "mene"        => Some(actor.go(this.modifiers))
       case "lepää"      => Some(actor.rest())
       case "lopeta"      => Some(actor.quit())
-      case "tutki"   => 
+      case "tutki"   =>
         if this.modifiers.isEmpty then Some(actor.location.examine(actor))
         else Some(actor.examineItem(this.modifiers))
       case "pakene"    => Some(actor.location.escape)
@@ -22,5 +22,6 @@ class Action(input: String):
       case "syö"    => Some(actor.eatItem(this.modifiers))
       case "myy"      => Some(actor.trade(this.modifiers))
       case "ota"      => Some(actor.takeItem(this.modifiers))
-      //case "kalasta" => Some(actor.fish())
+      case "kalasta" => Some(actor.fish())
+      case "osta" => Some(actor.buy(this.modifiers))
       case other       => None

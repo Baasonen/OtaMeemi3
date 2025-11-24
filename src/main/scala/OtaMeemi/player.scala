@@ -1,9 +1,10 @@
 package OtaMeemi
 import scala.collection.mutable.Map
+import scala.util.Random
 
 class Player(gw: GameWorld):
 
-
+  private val rng = Random()
   private var currentLocation = gw.getAreas(10)
 
   private var money = 5
@@ -99,6 +100,32 @@ class Player(gw: GameWorld):
     gw.passTime(120)
     "You rest for a while. Better get a move on, though."
 
+  def fish() =
+    object lohi extends Item("Lohi", "Kallis kala",100,1):
+      override def eat(player: Player): String = "Tämä olisi kannattanut myydä"
+      override def combine(player: Player, combineWith: Item): String = "Äläs nyt"
+      override def use(player: Player): String = "Laitoit kalan taskuun"
+    object silakka extends Item("Silakka", "Vähän halvempi kala kuin lohi",10,1):
+      override def eat(player: Player): String = "Tämä olisi kannattanut myydä"
+      override def combine(player: Player, combineWith: Item): String = "Äläs nyt"
+      override def use(player: Player): String = "Laitoit kalan taskuun"
+    object kalapuikko extends Item("Kalapuikko", "Kouluruokalan klassikko",3,1):
+      override def eat(player: Player): String = "Tämä olisi kannattanut myydä"
+      override def combine(player: Player, combineWith: Item): String = "Äläs nyt"
+      override def use(player: Player): String = "Laitoit kalapuikon taskuun"
+    val kalat = Vector[Item](lohi,silakka,kalapuikko)
+    if this.location == gw.otaranta then
+      if this.inventory.contains("matopurkki") then
+        val instanssi = rng.between(0,3)
+        this.addItem(kalat(instanssi))
+        s"Kalastit ${kalat(instanssi).getName}n"
+      else 
+        "Hommaa matopurkki bro, näit saa alepast"
+    else
+      "Täällä ei voi kalastaa"
+        
+        
+
   def sus() =
     currentLocation = gw.getAreas(0)
     "STOP POSTING ABOUT AMONG US! I'M TIRED OF SEEING IT! My friends on TikTok send me memes, on Discord its fucking memes. I was in a server, right, and ALL the channels are just Among Us stuff. I showed my Champion underwear to my girlfriend, and the logo I flipped it and I said Hey babe, when the underwear sus! HAHA! Ding Ding Ding Ding Ding Ding Ding DiDiDing! I fucking looked at a trash can and I said Thats a bit sussy! I looked at my penis, I thought of the astronauts helmet and I go PENIS? MORE LIKE PEN-SUS! AAAAAAAAAAAAAA"
@@ -149,8 +176,8 @@ class Player(gw: GameWorld):
       "Et sä pysyty tääl myymään"
 
   def buy(itemToBuy: String): String =
-    if location.toString.toLowerCase == "alepa" then
-      object bait extends Item("Matopurkki", "Matoja. Eiköhän otarannasta nappaa jotain näillä", 1, 1):
+    if this.location == gw.alepa then
+      object bait extends Item("matopurkki", "Matoja. Eiköhän otarannasta nappaa jotain näillä", 1, 1):
         override def eat(player: Player): String = "Hyi"
         override def combine(player: Player, combineWith: Item): String = "Spagu madoilla? Hell nah."
         override def use(player: Player): String = "No can do"
@@ -162,7 +189,7 @@ class Player(gw: GameWorld):
         override def combine(player: Player, combineWith: Item): String = "Et ole elektroniikkainsinööri"
         override def use(player: Player): String = "Ei tarvii, omassa koneessa 5090 #köyhät ulisee"
 
-      if itemToBuy == "Matopurkki" then
+      if itemToBuy == "matopurkki" then
         if money >= 1 then
           addItem(bait)
           removeMoney(1)
