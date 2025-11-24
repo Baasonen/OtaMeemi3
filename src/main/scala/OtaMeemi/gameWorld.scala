@@ -23,9 +23,6 @@ class GameWorld:
                       "Pakenet paikalta ennenkuin tilanne pääsee eskaloitumaan"
                     ), Vector(), false)
   val dipoliravintola = new Area("Dipoli", Vector("Kiipeät yläkertaan syömään","Syöt ruokaa tavalliselta linjastolta"),Vector(), false)
-  val knmcdonalds = new Area("Keilaniemi Mcdonalds", Vector(
-                      "Saavut miljardin dollarin konserniin Keilaniemessä. Vakiotyöpaikka tutalaisille","Hei ootko säkin muuten tutalla?"), Vector(), false)
-  val knmcdravintola = new Area ("Keilaniemi Mcdonalds / Olet jonossa",Vector("Menet jonoon","Tilaat cledos mealin (5,95 mäkkärist)","Syöt ruokasi, tilaat lisää pöytään juoksuttaaksesi tarjoilijaa"),Vector(), false)
   val sornainen   = new Area("Sörnäisten metroasema", Vector(
                       "Ilmeisesti sammuit metroon Stigulaation jälkeen ja päädyit Sörnäisiin."
                     ), Vector(), false)
@@ -43,7 +40,6 @@ class GameWorld:
   val kandi       = new Area("Kandikeskus", Vector("Saavut kandikeskukselle (tuttavallisemmin kandilafka)","Menet A-saliin fysiikan luennolle ja huomaat, että se on lähes tyhjä. Vastuullista sakkia nämä opiskelijat.","Pyörit ympyrää Y-siivessä koska et tiedä missä Y208b on. (vinkki vitonen, se ei ole toisessa kerroksessa)"), Vector(), false)
   val tuas        = new Area("TUAS", Vector("Menet sähköpajalle, bambu on varattu seuraavat 5h55min. Projektisi runko on edelleen tulostamatta.","Väsäät projektia tunnin","ja toisen","ja kolmannen","Menet syömään, on keskiviikko eli tarjolla on lohta tartarkastikkeessa a 5.50€"), Vector(), false)
   val ttalo       = new Area("Tietotalo", Vector("Täällä asuvat eivät tunne suihkun käsitettä","Menet opiskelemaan kasvihuoneeseen"), Vector(), false)
-  val designfactory = new Area("Aalto Design Factory", Vector("Saavut Design factoryn pihaan, sisältä kuuluu pöhinää","Menet sisälle pöhisemään","Hemo pöhinä bro kryptoi bro"), Vector(), false)
   val otaranta    = new Area("Otaranta", Vector("Saavut otarantaan. Kylmä tuuli puhaltaa mereltä","Menet uimaan, vesi on kylmää (yllättyneet parijonoon)"), Vector(), false)
   val taafalunch = new Area("Taafan lounasravintola",Vector("Menet spagujonoon","Edelleen spagujonossa","Tässä voi kestää hetken","Saat 1kpl spagua"),Vector(), false)
   val ttalolunch = new Area ("Subway",Vector("Menet subwayn jonoon, mieti tilauksesi huolella tai käy hassusti","Tilaat hunajaoreganosubin #canihaveapleaseburgercheese","Sait tummaan leipään tehdyn spicy italianin"),Vector(), false)
@@ -54,27 +50,23 @@ class GameWorld:
   taafa.connections = Vector((kandi,5),(dipoli,2),(smokki,5),(taafalunch,1))
   smokki.connections = Vector((ok20,2))
   ok20.connections = Vector((kandi,10),(rantasauna,10))
-  dipoli.connections = Vector((taafa,5),(kandi,10),(knmcdonalds,15))
-  knmcdonalds.connections = Vector((dipoli,15),(sornainen,10),(klahtimetro,10),(knmcdravintola,0))
-  sornainen.connections = Vector((knmcdonalds,30),(klahtimetro,60),(piritori,2))
+  dipoli.connections = Vector((taafa,5),(kandi,10))
+  sornainen.connections = Vector((piritori,2))
   rantasauna.connections = Vector((narnia,10),(ok20,10),(otaranta,10))
-  klahtimetro.connections = Vector((knmcdonalds,30),(sornainen,60))
   narnia.connections = Vector((rantasauna,10))
   abloc.connections = Vector((kandi,2),(ttalo,10),(ablocmetro,1),(alepa,1))
-  kandi.connections = Vector((abloc,20),(designfactory,20),(ok20,30),(taafa,30),(dipoli,20))
+  kandi.connections = Vector((abloc,20),(ok20,30),(taafa,30),(dipoli,20))
   tuas.connections = Vector((ttalo,5))
-  ttalo.connections = Vector((abloc,10),(designfactory,10),(ttalolunch,1))
-  designfactory.connections = Vector((kandi,15),(ttalo,10))
+  ttalo.connections = Vector((abloc,10),(ttalolunch,1))
   otaranta.connections = Vector((rantasauna,10))
   piritori.connections = Vector((sornainen,2))
   taafalunch.connections = Vector((taafa,1))
-  knmcdravintola.connections = Vector((knmcdonalds,0))
   ttalolunch.connections = Vector((ttalo,1))
-  ablocmetro.connections = Vector((abloc,1),(klahtimetro,30),(knmcdonalds,10),(sornainen,20))
+  ablocmetro.connections = Vector((abloc,1))
   sus.connections = Vector((ttalo,1))
   alepa.connections = Vector((abloc,1))
   private val areas =
-    Vector[Area](sus,taafa,smokki,ok20,dipoli,knmcdonalds,sornainen,rantasauna,klahtimetro,narnia,abloc,kandi,tuas,ttalo,designfactory,otaranta,piritori,knmcdravintola,taafalunch,ttalolunch,ablocmetro,alepa)
+    Vector[Area](sus,taafa,smokki,ok20,dipoli,sornainen,rantasauna,klahtimetro,narnia,abloc,kandi,tuas,ttalo,otaranta,piritori,taafalunch,ttalolunch,ablocmetro,alepa)
 
 
   def getAreas : Vector[Area] = areas
@@ -113,11 +105,7 @@ class GameWorld:
 
         override def use(player: Player): String = "Laitoit spagun taskuun, en tiedä mitä ajattelit saavuttavasi tällä. Taskusi ovat nyt täynnä jauhelihakastiketta."
 
-        override def combine(player: Player, combineWith: Item): String =
-          if combineWith == spagu then
-            "what is bro doing💀 (olet nyt puolivälissä pelin voittamista)"
-          else
-            "Tässä ei ole mitään nähtävää, ÄLÄ yritä yhdistää tätä spicy italianin kanssa"
+        override def combine(player: Player, combineWith: Item): String = "Bruh"
 
       val itemToLose = player.inventory(Random.between(0, player.inventory.length -1))
       player.removeItem(itemToLose)
@@ -135,7 +123,7 @@ class GameWorld:
 
     override def activateEvent(player: Player): String =
       dipolinPohina.activated = true
-      object kayntikortti extends Item("Käyntikortti", "Jonkun pöhinä startupin cvo:n käyntikortti", 0, 1):
+      object kayntikortti extends Item("Käyntikortti", "Jonkun pöhinä startupin cvo:n käyntikortti. Vois olla visio ettii työtarjous tän kanssa", 0, 1):
         override def eat(player: Player): String = "Et nyt kuitenkaa viitti alkaa paperii syömään"
 
         override def use(player: Player): String = "Ei tällä tee muuta ku heitä vesilintua"
@@ -205,10 +193,10 @@ class GameWorld:
 
         override def combine(player: Player, combineWith: Item): String = "Bruh"
 
-  object note1 extends Item("muistilappu","Suosittelen lukemaan, ihan hyödyllinen sisältö.",1,1):
+  object note1 extends Item("elämänohjeita","Suosittelen lukemaan, ihan hyödyllinen sisältö.",1,1):
         override def eat(player: Player): String = "Ei tätä kannata syödä"
 
-        override def use(player: Player): String = "Tervetuloa peliin. Tavoitteesi on yksinkertainen, sinun pitää vain tehdä prokrastinoimasi sähköpajaprojekti valmiiksi tänään. Vinkki vitonen, TUAS voisi olla hyvä alkusuunta."
+        override def use(player: Player): String = "Otarannalt saa muuten huhujen mukaan kalaa. Pistää miettii. (Tämä voisi olla hyvä vaihtoehto töissä käymiselle)"
 
         override def combine(player: Player, combineWith: Item): String = "Bruh"
 

@@ -127,7 +127,7 @@ class Player(gw: GameWorld):
       else 
         "Hommaa matopurkki bro, näit saa alepast"
     else
-      "Täällä ei voi kalastaa"
+      "Täällä ei voi kalastaa (otaranta bro)"
         
         
 
@@ -178,7 +178,7 @@ class Player(gw: GameWorld):
       else
         s"Sul ei oo ${itemToTrade}..."
     else
-      "Et sä pysyty tääl myymään"
+      "Et sä pysyty tääl myymään (harkitse alepaan menemistä)"
 
   def buy(itemToBuy: String): String =
     if this.location == gw.alepa then
@@ -212,6 +212,12 @@ class Player(gw: GameWorld):
         "Ei alepa myy tollasta"
     else
       "Ei täältä voi ostaa mitään"
+      
+  def read(input: String)=
+    if input == "elämänohjeita" then 
+      useItem(input)
+    else
+      "ei tätä voi lukee"
 
   def quit() =
     this.quitCommandGiven = true
