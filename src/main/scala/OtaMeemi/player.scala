@@ -134,11 +134,15 @@ class Player(gw: GameWorld):
         val instanssi = rng.between(0,3)
         this.addItem(kalat(instanssi))
         if kalat(instanssi) == lohi && !this.inventory.contains("Lohi") then "Kalastit lohen"
+        else if kalat(instanssi) == lohi && this.inventory.contains("Lohi") then "Yritä uudestaan, näitä ei voi kantaa kuin yhden"
         else if kalat(instanssi) == silakka && !this.inventory.contains("Silakka") then "Kalastit silakan"
+        else if kalat(instanssi) == lohi && this.inventory.contains("Silakka") then "Yritä uudestaan, näitä ei voi kantaa kuin yhden"
         else if kalat(instanssi) == kalapuikko && !this.inventory.contains("Kalapuikko") then "Sait kalapuikon"
-        else
+        else if kalat(instanssi) == lohi && this.inventory.contains("Kalapuikko") then "Yritä uudestaan, näitä ei voi kantaa kuin yhden"
+        else if this.inventory.contains("Lohi") && this.inventory.contains("Silakka") && this.inventory.contains("Kalapuikko") then
           this.removeItem("matopurkki")
           "Madot loppu kesken, oisko mitään kävästä nopee alepas"
+        else ""
       else 
         "Hommaa matopurkki bro, näit saa alepast"
     else
@@ -194,7 +198,7 @@ class Player(gw: GameWorld):
         override def combine(player: Player, combineWith: Item): String = "Spagu madoilla? Hell nah."
         override def use(player: Player): String = "No can do"
 
-      object gtx760 extends Item("GTX760", "Aika tykki vekotin (älä syö)", 399, 10):
+      object gtx760 extends Item("GTX760", "Aika tykki vekotin (älä syö)", 200, 10):
         override def eat(player: Player): String =
           player.removeItem("gtx760")
           "Rousk rousk"

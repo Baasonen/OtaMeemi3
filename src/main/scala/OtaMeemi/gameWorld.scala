@@ -55,7 +55,7 @@ class GameWorld:
   narnia.connections = Vector((rantasauna,10))
   abloc.connections = Vector((kandi,2),(ttalo,10),(ablocmetro,1),(alepa,1))
   kandi.connections = Vector((abloc,20),(ok20,30),(taafa,30),(dipoli,20))
-  tuas.connections = Vector((ttalo,5))
+  tuas.connections = Vector((sahkopaja,1))
   ttalo.connections = Vector((abloc,10))
   otaranta.connections = Vector((rantasauna,10))
   piritori.connections = Vector((sornainen,2))
@@ -65,7 +65,7 @@ class GameWorld:
   alepa.connections = Vector((abloc,1))
   klahtimetro.connections = Vector((ablocmetro,40))
   private val areas =
-    Vector[Area](sus,abloc,taafa,smokki,ok20,dipoli,sornainen,rantasauna,klahtimetro,narnia,kandi,tuas,ttalo,otaranta,piritori,taafalunch,ablocmetro,alepa)
+    Vector[Area](sus,abloc,taafa,smokki,ok20,dipoli,sornainen,rantasauna,klahtimetro,narnia,kandi,tuas,ttalo,otaranta,piritori,taafalunch,ablocmetro,alepa,sahkopaja)
 
 
   def getAreas : Vector[Area] = areas
