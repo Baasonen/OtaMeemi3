@@ -44,7 +44,7 @@ class GameWorld:
   val taafalunch = new Area("Taafan lounasravintola",Vector("Menet spagujonoon","Edelleen spagujonossa","Tässä voi kestää hetken","Saat 1kpl spagua"),Vector(), false)
   val ttalolunch = new Area ("Subway",Vector("Menet subwayn jonoon, mieti tilauksesi huolella tai käy hassusti","Tilaat hunajaoreganosubin #canihaveapleaseburgercheese","Sait tummaan leipään tehdyn spicy italianin"),Vector(), false)
   val ablocmetro = new Area ("Metro",Vector("Menit metrolle. Minne matka?"),Vector(),false)
-  val alepa = new Area ("Alepa", Vector("Menit alepaan, 2e redbull tarjous on voimassa"),Vector(),true)
+  val alepa = new Area ("Alepa", Vector("Menit alepaan, täältä voit ostaa seuraavaa: \n\n matopurkki 1€\n\n gtx760 399€"),Vector(),true)
   val sahkopaja = new Area ("Sähköpaja",Vector("Saavuit pajalle. GG."),Vector(),false)
 
   // ALUEIDEN YHTEYDET

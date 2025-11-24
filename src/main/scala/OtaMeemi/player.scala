@@ -139,17 +139,9 @@ class Player(gw: GameWorld):
     "STOP POSTING ABOUT AMONG US! I'M TIRED OF SEEING IT! My friends on TikTok send me memes, on Discord its fucking memes. I was in a server, right, and ALL the channels are just Among Us stuff. I showed my Champion underwear to my girlfriend, and the logo I flipped it and I said Hey babe, when the underwear sus! HAHA! Ding Ding Ding Ding Ding Ding Ding DiDiDing! I fucking looked at a trash can and I said Thats a bit sussy! I looked at my penis, I thought of the astronauts helmet and I go PENIS? MORE LIKE PEN-SUS! AAAAAAAAAAAAAA"
 
   def eatItem(itemName: String): String =
-    if hasItem(itemName) then
-      if itemName == "subi" || itemName == "spagu" then
-        val item = items(itemName)
-        val itemname = itemName
-        items(itemName).eat(this)
-        this.removeItem(itemName)
-        s"Söit ${itemname}n. Namnam."
-      else
-        "Tätä ei pysty syömään"
-    else
-      "Life is like a sandwich no matter which way you flip it, the bread comes first. Pistää miettii"
+    val temp = this.items(itemName)
+    if hasItem(itemName) then temp.eat(this)
+    else "Söit lautasellisen tyhjää. Ei tällä oikein nälkä lähde."
 
   def combineItems(args: String): String =
     val itemsToCombine = args.split(" ")
@@ -253,7 +245,9 @@ class Player(gw: GameWorld):
     override def eat(player: Player): String = "hava nagila intensifies"
 
   object spicyitalian extends Item("subi","Spicy italian 30cm tummassa leivässä",5.50,1):
-    override def eat(player: Player): String = "Söit subin"
+    override def eat(player: Player): String = 
+      player.removeItem("subi")
+      "Söit subin"
 
     override def combine(player: Player, combineWith: Item): String =
       if combineWith.toString == "spagu" then
