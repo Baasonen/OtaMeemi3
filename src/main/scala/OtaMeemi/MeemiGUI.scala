@@ -1,13 +1,12 @@
 package OtaMeemi
 
+import java.awt.{Color, Dimension, Graphics2D, Image, Insets, Point, Font as AwtFont}
+import java.io.BufferedInputStream
+import javax.sound.sampled.{AudioSystem, Clip}
+import javax.swing.{ImageIcon, UIManager}
+import scala.language.adhocExtensions
 import scala.swing.*
 import scala.swing.event.*
-import javax.swing.UIManager
-import java.awt.{Point, Insets, Dimension, Font as AwtFont, Image, Graphics2D, Color}
-import scala.language.adhocExtensions // enable extension of Swing classes
-import javax.swing.ImageIcon
-import javax.sound.sampled.{AudioSystem, Clip}
-import java.io.BufferedInputStream
 
 ////////////////// NOTE TO STUDENTS //////////////////////////
 // For the purposes of our course, it’s not necessary
@@ -29,11 +28,13 @@ object OtameemiGUI extends SimpleSwingApplication:
 
 
     val backgroundClip: Clip =
-    val audioStream = AudioSystem.getAudioInputStream(new BufferedInputStream(getClass.getResourceAsStream("/musaa2.wav")))
+    val audioStream = AudioSystem.getAudioInputStream(new BufferedInputStream(getClass.getResourceAsStream("/musaa4.wav")))
     val clip = AudioSystem.getClip
     clip.open(audioStream)
     clip
+    
 
+    
   def top = new MainFrame:
 
     // Access to the application’s internal logic:
@@ -46,7 +47,7 @@ object OtameemiGUI extends SimpleSwingApplication:
 
     private val otaniemiIcon = new ImageIcon(getClass.getResource("/pot.png"))
     private val dipoliIcon = new ImageIcon(getClass.getResource("/dipoli.png"))
-    private val amogus = new ImageIcon(getClass.getResource("/sus.png"))
+    private val amogus = new ImageIcon(getClass.getResource("/amogus.gif"))
     private val taafaIcon         = new ImageIcon(getClass.getResource("/taafa.png"))
     private val smokkiIcon        = new ImageIcon(getClass.getResource("/smokki.png"))
     private val ok20Icon          = new ImageIcon(getClass.getResource("/ok20.png"))
@@ -187,6 +188,7 @@ object OtameemiGUI extends SimpleSwingApplication:
 
       vaihtuvalabel.icon = newIcon
 
+    
     def playTurn(command: String) =
       val turnReport = this.game.playTurn(command)
       if this.player.hasQuit then
