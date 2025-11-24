@@ -213,7 +213,7 @@ object OtameemiGUI extends SimpleSwingApplication:
       timer.start()
 
     def maybeJumpscare(): Unit =
-      if rng.nextDouble() < 0.05 then showJumpscare()
+      if rng.nextDouble() < 0.001 then showJumpscare()
 
     def updateInfo(info: String) =
       if !this.game.isOver then
