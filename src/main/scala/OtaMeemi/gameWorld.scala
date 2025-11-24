@@ -48,6 +48,7 @@ class GameWorld:
   val taafalunch = new Area("Taafan lounasravintola",Vector("Menet spagujonoon","Edelleen spagujonossa","Tässä voi kestää hetken","Saat 1kpl spagua"),Vector(), false)
   val ttalolunch = new Area ("Subway",Vector("Menet subwayn jonoon, mieti tilauksesi huolella tai käy hassusti","Tilaat hunajaoreganosubin #canihaveapleaseburgercheese","Sait tummaan leipään tehdyn spicy italianin"),Vector(), false)
   val ablocmetro = new Area ("Metro",Vector("Menit metrolle. Minne matka?"),Vector(),false)
+  val alepa = new Area ("Alepa", Vector("Menit alepaan, 2e redbull tarjous on voimassa"),Vector(),true)
   
   taafa.connections = Vector((kandi,5),(dipoli,2),(smokki,5),(taafalunch,1))
   smokki.connections = Vector((otaranta,5),(ok20,2))
@@ -58,7 +59,7 @@ class GameWorld:
   rantasauna.connections = Vector((narnia,10),(ok20,10))
   klahtimetro.connections = Vector((knmcdonalds,30),(sornainen,60))
   narnia.connections = Vector((rantasauna,10))
-  abloc.connections = Vector((kandi,2),(ttalo,10),(ablocmetro,1))
+  abloc.connections = Vector((kandi,2),(ttalo,10),(ablocmetro,1),(alepa,1))
   kandi.connections = Vector((abloc,20),(designfactory,20),(ok20,30),(taafa,30),(dipoli,20))
   tuas.connections = Vector((ttalo,5))
   ttalo.connections = Vector((abloc,10),(designfactory,10),(ttalolunch,1))
@@ -70,8 +71,9 @@ class GameWorld:
   ttalolunch.connections = Vector((ttalo,1))
   ablocmetro.connections = Vector((abloc,1),(klahtimetro,30),(knmcdonalds,10),(sornainen,20))
   sus.connections = Vector((ttalo,1))
+  alepa.connections = Vector((abloc,1))
   private val areas =
-    Vector[Area](sus,taafa,smokki,ok20,dipoli,knmcdonalds,sornainen,rantasauna,klahtimetro,narnia,abloc,kandi,tuas,ttalo,designfactory,otaranta,piritori,knmcdravintola,taafalunch,ttalolunch,ablocmetro)
+    Vector[Area](sus,taafa,smokki,ok20,dipoli,knmcdonalds,sornainen,rantasauna,klahtimetro,narnia,abloc,kandi,tuas,ttalo,designfactory,otaranta,piritori,knmcdravintola,taafalunch,ttalolunch,ablocmetro,alepa)
 
 
   def getAreas : Vector[Area] = areas
@@ -199,6 +201,16 @@ class GameWorld:
   rantasauna.addItem(tyohakemus)
   taafalunch.addItem(spagu)
   abloc.addItem(note1)
+  alepa.addItem(redbull)
   dipoli.addEvent(dipolinPohina)
   taafalunch.addEvent(spagumayhem)
+  
+  object redbull extends Item("Redbull", "Tarpeellinen energia aamuun",2,1):
+    override def eat(player: Player): String = "Joit redbullin, nyt pärisee"
+
+    override def combine(player: Player, combineWith: Item): String = "Äläs nyt"
+
+    override def use(player: Player): String = "Laitoit redbullin taskuun"
+    
+
   
