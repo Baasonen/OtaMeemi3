@@ -180,7 +180,7 @@ class GameWorld:
                 player.location.getActiveEvents(player).filter(_.toString == "ttalobossi").head.setActivated(true)
                 player.removeItem("työtarjous")
                 player.setNewLocation(tuas)
-                "Oho, hänhän innostui työpaikasta ja juoksi pois. Voit nyt jatkaa matkaa pajalle"
+                "Oho, hänhän innostui työpaikasta sekä näytönohjaimesta ja juoksi pois. Voit nyt jatkaa matkaa pajalle"
                else
                  "Hmm, pystyisinköhän lahjoa häntä sillä hienolla GTX760 näytönohjaimella jonka näin aamulla alepassa myynnissä?"
              else

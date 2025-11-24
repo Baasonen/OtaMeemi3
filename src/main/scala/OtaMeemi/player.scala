@@ -188,7 +188,17 @@ class Player(gw: GameWorld):
           player.removeItem("gtx760")
           "Rousk rousk"
         override def combine(player: Player, combineWith: Item): String = "Et ole elektroniikkainsinööri"
-        override def use(player: Player): String = "Ei tarvii, omassa koneessa 5090 #köyhät ulisee"
+        override def use(player: Player): String =
+          if location.getActiveEvents(player).map(_.toString.toLowerCase).contains("ttalobossi") then
+            if items.contains("työtarjous") then
+                player.location.getActiveEvents(player).filter(_.toString == "ttalobossi").head.setActivated(true)
+                player.removeItem("työtarjous")
+                player.setNewLocation(gw.tuas)
+                "Oho, hänhän innostui työpaikasta sekä näytönohjaimesta ja juoksi pois. Voit nyt jatkaa matkaa pajalle"
+            else
+              "Ehkä vielä työpaikka kaupan päälle auttaisi"
+          else
+            "Ei tarvii, omassa koneessa 5090 #köyhät ulisee"
 
       if itemToBuy == "matopurkki" then
         if money >= 1 then
