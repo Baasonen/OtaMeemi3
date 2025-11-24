@@ -111,15 +111,21 @@ class Player(gw: GameWorld):
 
   def fish() =
     object lohi extends Item("Lohi", "Kallis kala",100,1):
-      override def eat(player: Player): String = "Tämä olisi kannattanut myydä"
+      override def eat(player: Player): String = 
+        player.removeItem("Lohi")
+        "Tämä olisi kannattanut myydä"
       override def combine(player: Player, combineWith: Item): String = "Äläs nyt"
       override def use(player: Player): String = "Laitoit kalan taskuun"
     object silakka extends Item("Silakka", "Vähän halvempi kala kuin lohi",10,1):
-      override def eat(player: Player): String = "Tämä olisi kannattanut myydä"
+      override def eat(player: Player): String = 
+        player.removeItem("Silakka")
+        "Tämä olisi kannattanut myydä"
       override def combine(player: Player, combineWith: Item): String = "Äläs nyt"
       override def use(player: Player): String = "Laitoit kalan taskuun"
     object kalapuikko extends Item("Kalapuikko", "Kouluruokalan klassikko",3,1):
-      override def eat(player: Player): String = "Tämä olisi kannattanut myydä"
+      override def eat(player: Player): String = 
+        player.removeItem("Kalapuikko")
+        "Tämä olisi kannattanut myydä"
       override def combine(player: Player, combineWith: Item): String = "Äläs nyt"
       override def use(player: Player): String = "Laitoit kalapuikon taskuun"
     val kalat = Vector[Item](lohi,silakka,kalapuikko)
@@ -127,7 +133,12 @@ class Player(gw: GameWorld):
       if this.inventory.contains("matopurkki") then
         val instanssi = rng.between(0,3)
         this.addItem(kalat(instanssi))
-        s"Kalastit ${kalat(instanssi).getName}n"
+        if kalat(instanssi) == lohi && !this.inventory.contains("Lohi") then "Kalastit lohen"
+        else if kalat(instanssi) == silakka && !this.inventory.contains("Silakka") then "Kalastit silakan"
+        else if kalat(instanssi) == kalapuikko && !this.inventory.contains("Kalapuikko") then "Sait kalapuikon"
+        else
+          this.removeItem("matopurkki")
+          "Madot loppu kesken, oisko mitään kävästä nopee alepas"
       else 
         "Hommaa matopurkki bro, näit saa alepast"
     else
@@ -253,20 +264,8 @@ class Player(gw: GameWorld):
 
     override def combine(player: Player, combineWith: Item): String = "Nuh uh"
 
-    override def eat(player: Player): String = "hava nagila intensifies"
+    override def eat(player: Player): String = "ei näit voi syödä"
 
-  object spicyitalian extends Item("subi","Spicy italian 30cm tummassa leivässä",5.50,1):
-    override def eat(player: Player): String = 
-      player.removeItem("subi")
-      "Söit subin"
-
-    override def combine(player: Player, combineWith: Item): String =
-      if combineWith.toString == "spagu" then
-        "what is bro doing💀(olet nyt puolivälissä pelin voittamista)"
-      else
-        "Tässä ei ole mitään nähtävää, ÄLÄ yritä yhdistää tätä spagun kanssa"
-
-    override def use(player: Player): String = "Laitoit subin taskuun"
 
 
         
@@ -274,6 +273,5 @@ class Player(gw: GameWorld):
   addItem(kolikoita)
   addItem(puhelin)
   addItem(kuulokkeet)
-  addItem(spicyitalian)
 
 end Player

@@ -18,7 +18,7 @@ class Action(input: String):
       case "käytä"       => Some(actor.useItem(this.modifiers))
       case "amogus"    => Some(actor.sus())
       case "yhdistä"   => Some(actor.combineItems(this.modifiers))
-      case "apua"   => Some("Voit koittaa näitä komentoja: mene *sijainti*, lepää, lopeta, tutki *sijainti tai esine*, pakene, inventory")
+      case "apua"   => Some("Voit koittaa näitä komentoja: mene *sijainti*, lepää, lopeta, tutki *sijainti tai esine*, pakene, inventory, osta, kalasta, myy")
       case "syö"    => Some(actor.eatItem(this.modifiers))
       case "myy"      => Some(actor.trade(this.modifiers))
       case "ota"      => Some(actor.takeItem(this.modifiers))
