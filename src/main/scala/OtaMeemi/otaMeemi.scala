@@ -1,9 +1,7 @@
 package OtaMeemi
 
 class OtaMeemiGame:
-  println("GameInit")
   val otaniemi = new GameWorld()
-  println("GameWorldInit")
   lazy val player = new Player(otaniemi)
 
   val title = "OtaMeemi3 (1, 2 ja 2.1 kuluivat toimivan projektin luontiin intelliJ:ssa"

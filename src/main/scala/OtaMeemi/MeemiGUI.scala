@@ -64,10 +64,8 @@ object OtameemiGUI extends SimpleSwingApplication:
     private val otarantaIcon      = new ImageIcon(getClass.getResource("/otaranta.png"))
     private val piritoriIcon      = new ImageIcon(getClass.getResource("/piritori.png"))
     private val taafalunchIcon      = new ImageIcon(getClass.getResource("/taafalunch.png"))
-    private val subiIcon      = new ImageIcon(getClass.getResource("/subi.png"))
     private val dipolilunchIcon = new ImageIcon(getClass.getResource("/dipoliravintola.png"))
     private val ablocmetroIcon = new ImageIcon(getClass.getResource("/ablocmetro.png"))
-    private val tripleTIcon = new ImageIcon(getClass.getResource("/triplet.jpg")).getImage
     private val majorminor = new ImageIcon(getClass.getResource("/tyo.png")).getImage
     private val alepaIcon = new ImageIcon(getClass.getResource("/alepa.png"))
     // Components:
@@ -180,7 +178,6 @@ object OtameemiGUI extends SimpleSwingApplication:
         case `ttalo`         => ttaloIcon
         case `otaranta`      => otarantaIcon
         case `piritori`      => piritoriIcon
-        case `ttalolunch`          => subiIcon
         case `dipoliravintola`     => dipolilunchIcon
         case `ablocmetro`         => ablocmetroIcon
         case `taafalunch`         => taafalunchIcon

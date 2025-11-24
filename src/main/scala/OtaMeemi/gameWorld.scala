@@ -42,7 +42,6 @@ class GameWorld:
   val ttalo       = new Area("Tietotalo", Vector("Täällä asuvat eivät tunne suihkun käsitettä","Menet opiskelemaan kasvihuoneeseen"), Vector(), false)
   val otaranta    = new Area("Otaranta", Vector("Saavut otarantaan. Kylmä tuuli puhaltaa mereltä","Menet uimaan, vesi on kylmää (yllättyneet parijonoon)"), Vector(), false)
   val taafalunch = new Area("Taafan lounasravintola",Vector("Menet spagujonoon","Edelleen spagujonossa","Tässä voi kestää hetken","Saat 1kpl spagua"),Vector(), false)
-  val ttalolunch = new Area ("Subway",Vector("Menet subwayn jonoon, mieti tilauksesi huolella tai käy hassusti","Tilaat hunajaoreganosubin #canihaveapleaseburgercheese","Sait tummaan leipään tehdyn spicy italianin"),Vector(), false)
   val ablocmetro = new Area ("Abloc metro",Vector("Menit metrolle. Minne matka?"),Vector(),false)
   val alepa = new Area ("Alepa", Vector("Menit alepaan, 2e redbull tarjous on voimassa"),Vector(),true)
   val sahkopaja = new Area ("Sähköpaja",Vector("Saavuit pajalle. GG."),Vector(),false)
@@ -58,17 +57,16 @@ class GameWorld:
   abloc.connections = Vector((kandi,2),(ttalo,10),(ablocmetro,1),(alepa,1))
   kandi.connections = Vector((abloc,20),(ok20,30),(taafa,30),(dipoli,20))
   tuas.connections = Vector((ttalo,5))
-  ttalo.connections = Vector((abloc,10),(ttalolunch,1))
+  ttalo.connections = Vector((abloc,10))
   otaranta.connections = Vector((rantasauna,10))
   piritori.connections = Vector((sornainen,2))
   taafalunch.connections = Vector((taafa,1))
-  ttalolunch.connections = Vector((ttalo,1))
   ablocmetro.connections = Vector((abloc,1))
   sus.connections = Vector((ttalo,1))
   alepa.connections = Vector((abloc,1))
   klahtimetro.connections = Vector((ablocmetro,40))
   private val areas =
-    Vector[Area](sus,abloc,taafa,smokki,ok20,dipoli,sornainen,rantasauna,klahtimetro,narnia,kandi,tuas,ttalo,otaranta,piritori,taafalunch,ttalolunch,ablocmetro,alepa)
+    Vector[Area](sus,abloc,taafa,smokki,ok20,dipoli,sornainen,rantasauna,klahtimetro,narnia,kandi,tuas,ttalo,otaranta,piritori,taafalunch,ablocmetro,alepa)
 
 
   def getAreas : Vector[Area] = areas
