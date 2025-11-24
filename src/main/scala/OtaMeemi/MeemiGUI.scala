@@ -3,10 +3,12 @@ package OtaMeemi
 import java.awt.{Color, Dimension, Graphics2D, Image, Insets, Point, Font as AwtFont}
 import java.io.BufferedInputStream
 import javax.sound.sampled.{AudioSystem, Clip}
-import javax.swing.{ImageIcon, UIManager}
+import javax.swing.{ImageIcon, UIManager, Timer}
 import scala.language.adhocExtensions
 import scala.swing.*
 import scala.swing.event.*
+import java.awt.event.ActionEvent
+import scala.util.Random
 
 ////////////////// NOTE TO STUDENTS //////////////////////////
 // For the purposes of our course, it’s not necessary
@@ -32,19 +34,18 @@ object OtameemiGUI extends SimpleSwingApplication:
     val clip = AudioSystem.getClip
     clip.open(audioStream)
     clip
-    
 
-    
+
+
   def top = new MainFrame:
-
     // Access to the application’s internal logic:
-
+    val rng = new Random()
     val game = OtaMeemiGame()
     val player = game.player
-
+    // mahdollistaa sijaintipohjaiset interaktiot
     private val world = game.otaniemi
     import world.*
-
+    
     private val otaniemiIcon = new ImageIcon(getClass.getResource("/pot.png"))
     private val dipoliIcon = new ImageIcon(getClass.getResource("/dipoli.png"))
     private val amogus = new ImageIcon(getClass.getResource("/amogus.gif"))
@@ -78,6 +79,10 @@ object OtameemiGUI extends SimpleSwingApplication:
       wordWrap = true
       lineWrap = true
       font = new Font(font.getName, java.awt.Font.ITALIC, 15)
+    //lmao
+    val jumpscareLabel = new Label:
+       icon = new ImageIcon(getClass.getResource("/fnaf.gif"))
+       visible = false
     val turnOutput = new TextArea(7, 40):
       editable = false
       wordWrap = true
@@ -109,7 +114,6 @@ object OtameemiGUI extends SimpleSwingApplication:
 
     val titlePanel = new FlowPanel(FlowPanel.Alignment.Center)(titleLabel):
       opaque =false
-
 
     val startButton = new Button("Aloita peli")
 
@@ -188,7 +192,7 @@ object OtameemiGUI extends SimpleSwingApplication:
 
       vaihtuvalabel.icon = newIcon
 
-    
+
     def playTurn(command: String) =
       val turnReport = this.game.playTurn(command)
       if this.player.hasQuit then
@@ -196,8 +200,26 @@ object OtameemiGUI extends SimpleSwingApplication:
       else
         this.updateInfo(turnReport)
         this.updateStatusLabel()
+        this.maybeJumpscare()
         this.input.enabled = !this.game.isOver
 
+    // joo sori jo etukäteen
+    def showJumpscare(): Unit =
+      val dialog = new Dialog(this):
+        contents = new Label:
+          icon = new ImageIcon(getClass.getResource("/fnaf.gif"))
+      dialog.pack()
+      dialog.visible = true
+
+      val timer = new Timer(1000, (_: ActionEvent) =>
+        dialog.visible = false
+        dialog.dispose()
+      )
+      timer.setRepeats(false)
+      timer.start()
+
+    def maybeJumpscare(): Unit =
+      if rng.nextDouble() < 0.05 then showJumpscare()
 
     def updateInfo(info: String) =
       if !this.game.isOver then
@@ -209,7 +231,7 @@ object OtameemiGUI extends SimpleSwingApplication:
 
     backgroundClip.loop(Clip.LOOP_CONTINUOUSLY)
     backgroundClip.start()
-    
+
   end top
 
   // apuluokka taustakuvaa varten
