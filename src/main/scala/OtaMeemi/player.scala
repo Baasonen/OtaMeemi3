@@ -76,6 +76,9 @@ class Player(gw: GameWorld):
   def movementOptions: Vector[String] =
     currentLocation.getConnections.map(_._1.toString)
 
+  def removeDebuffs() =
+    debuffs = Vector[Debuff]()
+
   def go(destination: String): String =
     val connections = currentLocation.getConnections
     print(debuffs)

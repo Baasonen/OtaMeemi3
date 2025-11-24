@@ -222,6 +222,7 @@ class GameWorld:
 
 
   // LISÄÄ EVENTIT OIKEISIIN ALUESIIN
+  ok20.addEvent(stigulaatio)
   ttalo.addEvent(ttalobossi)
   rantasauna.addItem(tyohakemus)
   taafalunch.addItem(spagu)
