@@ -13,6 +13,9 @@ class Player(gw: GameWorld):
 
   def activeDebuffs = debuffs
 
+  def setNewLocation(newLoc: Area) =
+    currentLocation = newLoc
+
   def getMoneyStatus = money
 
   def removeMoney(ammount: Int) = money -= ammount

@@ -157,7 +157,11 @@ class GameWorld:
   object tyohakemus extends Item("Työhakemus", "Joku työhakemus startuppiin mistä et oo kuullukaan", 1, 1):
      override def eat(player: Player): String = "Ei sitä nyt herranjumala kuitenkaan kannata syödä"
 
-     override def use(player: Player): String = "Et kyllä tiedä mitä tällä tehdä"
+     override def use(player: Player): String =
+       if player.location.getActiveEvents(player).map(_.toString.toLowerCase).contains("ttalobossi") then
+         "Annoit työtarjouksen hirviölle, hän suuttui enemmän ja heitti sinut narniaan"
+       else
+         "Et kyllä tiedä mitä tällä tehdä"
 
      override def combine(player: Player, combineWith: Item): String =
        if combineWith.toString.toLowerCase == "käyntikortti" then
@@ -167,7 +171,15 @@ class GameWorld:
          object tyotarjous extends Item("Työtarjous", "Oho ehkä pääsenkin oikeasti töihin", 1000000, 1):
            override def eat(player: Player): String = "Ei tätä kannata syödä"
 
-           override def use(player: Player): String = "Onglemana on ettet tiedä yrityksestä mitään, edes sitä missä se sijaitsee"
+           override def use(player: Player): String =
+             println(player.location.getActiveEvents(player).map(_.toString.toLowerCase))
+             if player.location.getActiveEvents(player).map(_.toString.toLowerCase).contains("ttalobossi") then
+               player.location.getActiveEvents(player).filter(_.toString == "ttalobossi").head.setActivated(true)
+               player.removeItem("työtarjous")
+               player.setNewLocation(tuas)
+               "Oho, hänhän innostui työpaikasta ja juoksi pois. Voit nyt jatkaa matkaa pajalle"
+             else
+              "Onglemana on ettet tiedä yrityksestä mitään, edes sitä missä se sijaitsee"
 
            override def combine(player: Player, combineWith: Item): String = "Et pysty ydistämään tätä mihinkiään, vaikkakin spagu työhakemuksella kuulostaa houkuttelevalta"
 
@@ -197,7 +209,15 @@ class GameWorld:
             "Kätevää, sinulla on nyt spagu paperilapulla ja yksi vihje vähemmän."
           else 
             "Sinuna en hankkiutuisi tästä eroon esimerkiksi yhdistämällä sitä spaguun"
-            
+
+  object ttalobossi extends Event("ttalobossi"):
+    override def checkActive(player: Player): Boolean =
+      player.location.toString.toLowerCase == "tietotalo" && !activated
+
+    override def activateEvent(player: Player): String =
+      "Eteesi ilmestyy hirveän vhainen hirviö, joka ei tahdo päästää sinua kulkemaan läpi. Pystytköhän jotenkin harhauttamaan häntä?"
+
+  ttalo.addEvent(ttalobossi)
   rantasauna.addItem(tyohakemus)
   taafalunch.addItem(spagu)
   abloc.addItem(note1)
