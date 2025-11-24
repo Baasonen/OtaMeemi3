@@ -150,7 +150,7 @@ class Player(gw: GameWorld):
     if itemsToCombine.length == 2 then
       if hasItem(itemsToCombine(0)) && hasItem(itemsToCombine(1)) then
         val combString = items(itemsToCombine(0)).combine(this, items(itemsToCombine(1)))
-
+        
         combString
       else
         "Sinulla ei ole noita itemejä"
