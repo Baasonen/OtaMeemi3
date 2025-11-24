@@ -13,7 +13,6 @@ class GameWorld:
                       "Saavuit smökin pihaan, sisältä kuuluu musiikkia.",
                       "Käynnissä on ilmeisesti sikajuhlat, et pääse sisälle koska sinulla ei ole lippua",
                       "Yrität lahjoa portsarin, hän ei päästä sinua sisälle koska et ole tutalla",
-                      "Lahjot portsarin, hän päästää sinut sisälle. Saat outoja katseita koska olet haalarit päällä frakkitapahtumassa"
                     ), Vector(), false)
 
   val ok20      = new Area("Ok20", Vector("Saavut Otakaari 20:n pihaan, yläovesta kuuluu musiikkia","Menet sisälle, käynnissä on stigulaatio. Tunnet itsesi ulkopuoliseksi koska et ole dokattu","Olet dokattu, valmistaudu hauskaan iltaan", "Varam kamnattaisi jatkam matka rmatasugewmaunaaa"), Vector(), false)
