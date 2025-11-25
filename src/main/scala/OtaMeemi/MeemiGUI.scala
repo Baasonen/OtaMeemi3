@@ -30,11 +30,16 @@ object OtameemiGUI extends SimpleSwingApplication:
 
 
     val backgroundClip: Clip =
-    val audioStream = AudioSystem.getAudioInputStream(new BufferedInputStream(getClass.getResourceAsStream("/musaa6.wav")))
-    val clip = AudioSystem.getClip
-    clip.open(audioStream)
-    clip
+      val audioStream = AudioSystem.getAudioInputStream(new BufferedInputStream(getClass.getResourceAsStream("/musaa2.wav")))
+      val clip = AudioSystem.getClip
+      clip.open(audioStream)
+      clip
 
+    val jumpscareClip: Clip =
+      val audioStream = AudioSystem.getAudioInputStream(new BufferedInputStream(getClass.getResourceAsStream("/fnaf.wav")))
+      val clip2 = AudioSystem.getClip
+      clip2.open(audioStream)
+      clip2
 
 
   def top = new MainFrame:
@@ -203,6 +208,7 @@ object OtameemiGUI extends SimpleSwingApplication:
         contents = new Label:
           icon = new ImageIcon(getClass.getResource("/fnaf.gif"))
       dialog.pack()
+      jumpscareClip.start()
       dialog.visible = true
 
       val timer = new Timer(1000, (_: ActionEvent) =>
@@ -213,7 +219,7 @@ object OtameemiGUI extends SimpleSwingApplication:
       timer.start()
 
     def maybeJumpscare(): Unit =
-      if rng.nextDouble() < 0.02 then showJumpscare()
+      if rng.nextDouble() < 0.1 then showJumpscare()
 
     def updateInfo(info: String) =
       if !this.game.isOver then
