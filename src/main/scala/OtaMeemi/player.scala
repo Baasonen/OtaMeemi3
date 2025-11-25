@@ -141,6 +141,8 @@ class Player(gw: GameWorld):
     else
       val instanssi = rng.between(0,3)
       val saalis = kalat(instanssi)
+      this.addItem(saalis)
+      "Sait kalaa"
 
         
         
