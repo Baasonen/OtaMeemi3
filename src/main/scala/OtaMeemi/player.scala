@@ -31,7 +31,8 @@ class Player(gw: GameWorld):
   def isatAbloc = this.currentLocation == gw.abloc
 
   def hasItem(itemName: String): Boolean =
-    items.keys.toVector.contains(itemName)
+    val invVec = items.keys.toVector
+    invVec.map(_.toLowerCase).contains(itemName.toLowerCase)
 
   def drop(itemName: String): String =
     if hasItem(itemName) then
@@ -116,33 +117,35 @@ class Player(gw: GameWorld):
         "Tämä olisi kannattanut myydä"
       override def combine(player: Player, combineWith: Item): String = "Äläs nyt"
       override def use(player: Player): String = "Laitoit kalan taskuun"
+
     object silakka extends Item("Silakka", "Vähän halvempi kala kuin lohi",10,1):
       override def eat(player: Player): String = 
         player.removeItem("Silakka")
         "Tämä olisi kannattanut myydä"
       override def combine(player: Player, combineWith: Item): String = "Äläs nyt"
       override def use(player: Player): String = "Laitoit kalan taskuun"
+
     object kalapuikko extends Item("Kalapuikko", "Kouluruokalan klassikko",3,1):
       override def eat(player: Player): String = 
         player.removeItem("Kalapuikko")
         "Tämä olisi kannattanut myydä"
       override def combine(player: Player, combineWith: Item): String = "Äläs nyt"
       override def use(player: Player): String = "Laitoit kalapuikon taskuun"
+
     val kalat = Vector[Item](lohi,silakka,kalapuikko)
     if this.location != gw.otaranta then
       "täällä ei voi kalastaa(otaranta bro)"
     else if !this.inventory.contains("matopurkki") then
       "Hommaa matopurkki bro, näit saa alepast"
     else
-
-    if this.hasItem("Lohi") && this.hasItem("Silakka") && this.hasItem("Kalapuikko") then
+      if this.hasItem("Lohi") && this.hasItem("Silakka") && this.hasItem("Kalapuikko") then
         this.removeItem("matopurkki")
         "Madot loppu kesken, oisko mitään kävästä nopee alepas"
-    else
-      val instanssi = rng.between(0,3)
-      val saalis = kalat(instanssi)
-      this.addItem(saalis)
-      "Sait kalaa"
+      else
+        val instanssi = rng.between(0,3)
+        val saalis = kalat(instanssi)
+        this.addItem(saalis)
+        "Sait kalaa"
 
         
         
