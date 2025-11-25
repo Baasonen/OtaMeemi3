@@ -37,7 +37,7 @@ class GameWorld:
   val sus      = new Area("Amogus", Vector("Placeholder"), Vector(), false)
   val abloc       = new Area("A Bloc", Vector("O Block mutta aallossa","Menet syömään. Valitse ruokapaikka: Konnichiwa, Kotkot, Poke bowl"), Vector(), true)
   val kandi       = new Area("Kandikeskus", Vector("Saavut kandikeskukselle (tuttavallisemmin kandilafka)","Menet A-saliin fysiikan luennolle ja huomaat, että se on lähes tyhjä. Vastuullista sakkia nämä opiskelijat.","Pyörit ympyrää Y-siivessä koska et tiedä missä Y208b on. (vinkki vitonen, se ei ole toisessa kerroksessa)"), Vector(), false)
-  val tuas        = new Area("TUAS", Vector("Menet sähköpajalle, bambu on varattu seuraavat 5h55min. Projektisi runko on edelleen tulostamatta.","Väsäät projektia tunnin","ja toisen","ja kolmannen","Menet syömään, on keskiviikko eli tarjolla on lohta tartarkastikkeessa a 5.50€"), Vector(), false)
+  val tuas        = new Area("TUAS", Vector("Täältä voisi varmaan mennä pajalle","Väsäät projektia tunnin","ja toisen","ja kolmannen","Menet syömään, on keskiviikko eli tarjolla on lohta tartarkastikkeessa a 5.50€"), Vector(), false)
   val ttalo       = new Area("Tietotalo", Vector("Täällä asuvat eivät tunne suihkun käsitettä","Menet opiskelemaan kasvihuoneeseen"), Vector(), false)
   val otaranta    = new Area("Otaranta", Vector("Saavut otarantaan. Kylmä tuuli puhaltaa mereltä","Menet uimaan, vesi on kylmää (yllättyneet parijonoon)"), Vector(), false)
   val taafalunch = new Area("Taafan lounasravintola",Vector("Menet spagujonoon","Edelleen spagujonossa","Tässä voi kestää hetken","Saat 1kpl spagua"),Vector(), false)

@@ -1,13 +1,12 @@
 package OtaMeemi
 
-import java.awt.{Color, Dimension, Graphics2D, Image, Insets, Point, Font as AwtFont}
+import java.awt.{Color, Dimension, Graphics2D, Image, Insets, Point}
 import java.io.BufferedInputStream
 import javax.sound.sampled.{AudioSystem, Clip}
-import javax.swing.{ImageIcon, UIManager, Timer}
+import javax.swing.{ImageIcon, UIManager}
 import scala.language.adhocExtensions
 import scala.swing.*
 import scala.swing.event.*
-import java.awt.event.ActionEvent
 import scala.util.Random
 
 ////////////////// NOTE TO STUDENTS //////////////////////////
@@ -44,6 +43,7 @@ object OtameemiGUI extends SimpleSwingApplication:
     // mahdollistaa sijaintipohjaiset interaktiot
     private val world = game.otaniemi
     import world.*
+    private var winShown = false
     
     private val otaniemiIcon = new ImageIcon(getClass.getResource("/pot.png"))
     private val dipoliIcon = new ImageIcon(getClass.getResource("/dipoli.png"))
@@ -67,6 +67,7 @@ object OtameemiGUI extends SimpleSwingApplication:
     private val ablocmetroIcon = new ImageIcon(getClass.getResource("/ablocmetro.png"))
     private val majorminor = new ImageIcon(getClass.getResource("/tyo.png")).getImage
     private val alepaIcon = new ImageIcon(getClass.getResource("/alepa.png"))
+    private val winIcon = new ImageIcon(getClass.getResource("/win.jpeg")).getImage
     // Components:
     val vaihtuvalabel = new Label:
       icon = otaniemiIcon
@@ -123,6 +124,20 @@ object OtameemiGUI extends SimpleSwingApplication:
     this.listenTo(startButton)
 
 
+    //loppupaneeli
+
+    val winButton = new Button("Loppu bro")
+
+    val winButtonPanel = new FlowPanel(FlowPanel.Alignment.Center)(winButton):
+      opaque = false
+
+    val winPanel = new BackgroundBoxPanel(Orientation.Vertical, winIcon):
+      contents += Swing.VStrut(200)
+      contents += Swing.VStrut(200)
+      contents += winButtonPanel
+      border = Swing.EmptyBorder(40, 40, 40, 40)
+
+    this.listenTo(winButton)
     // Events:
 
     this.reactions += {
@@ -133,10 +148,11 @@ object OtameemiGUI extends SimpleSwingApplication:
             this.input.text = ""
             this.playTurn(command)
       case ButtonClicked(`startButton`) =>
-        // Vaihtaa alkunäytöstä pelin ui:hin
         this.contents = gamePanel
         this.pack()
         this.input.requestFocusInWindow()
+      case ButtonClicked(`winButton`) =>
+        this.dispose()
 
     }
     // Menu:
@@ -182,7 +198,6 @@ object OtameemiGUI extends SimpleSwingApplication:
 
       vaihtuvalabel.icon = newIcon
 
-
     def playTurn(command: String) =
       val turnReport = this.game.playTurn(command)
       if this.player.hasQuit then
@@ -192,6 +207,13 @@ object OtameemiGUI extends SimpleSwingApplication:
         this.updateStatusLabel()
         this.input.enabled = !this.game.isOver
 
+    private def showWinScreen(): Unit =
+      winShown = true
+      this.input.enabled = false
+      backgroundClip.stop()
+      this.contents = winPanel
+      this.pack()
+
     def updateInfo(info: String) =
       if !this.game.isOver then
         this.turnOutput.text = info
@@ -199,7 +221,9 @@ object OtameemiGUI extends SimpleSwingApplication:
         this.turnOutput.text = info + "\n\n" + this.game.goodbyeMessage
       this.locationInfo.text = s"Tämänhetkinen sijainti: ${player.location.toString}, kello on: ${game.otaniemi.getTime}\nVoit tutkia aluetta tarkemmin tai liikkua: ${player.location.connections.map(_._1).mkString(", ")}\n\nReppusi sisältää ${player.inventory.mkString(", ")}\n\nTilillä rahaa ${player.getMoneyStatus} euroa\n\n${player.location.getToString}"
       this.turnCounter.text = "Turns played: " + this.game.turnCount
-
+      player.location match
+        case `sahkopaja` => showWinScreen()
+        case _ => ()
     backgroundClip.loop(Clip.LOOP_CONTINUOUSLY)
     backgroundClip.start()
 
