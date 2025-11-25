@@ -129,24 +129,19 @@ class Player(gw: GameWorld):
       override def combine(player: Player, combineWith: Item): String = "Äläs nyt"
       override def use(player: Player): String = "Laitoit kalapuikon taskuun"
     val kalat = Vector[Item](lohi,silakka,kalapuikko)
-    if this.location == gw.otaranta then
-      if this.inventory.contains("matopurkki") then
-        val instanssi = rng.between(0,3)
-        this.addItem(kalat(instanssi))
-        if kalat(instanssi) == lohi && !this.inventory.contains("Lohi") then "Kalastit lohen"
-        else if kalat(instanssi) == lohi && this.inventory.contains("Lohi") then "Yritä uudestaan, näitä ei voi kantaa kuin yhden"
-        else if kalat(instanssi) == silakka && !this.inventory.contains("Silakka") then "Kalastit silakan"
-        else if kalat(instanssi) == lohi && this.inventory.contains("Silakka") then "Yritä uudestaan, näitä ei voi kantaa kuin yhden"
-        else if kalat(instanssi) == kalapuikko && !this.inventory.contains("Kalapuikko") then "Sait kalapuikon"
-        else if kalat(instanssi) == lohi && this.inventory.contains("Kalapuikko") then "Yritä uudestaan, näitä ei voi kantaa kuin yhden"
-        else if this.inventory.contains("Lohi") && this.inventory.contains("Silakka") && this.inventory.contains("Kalapuikko") then
-          this.removeItem("matopurkki")
-          "Madot loppu kesken, oisko mitään kävästä nopee alepas"
-        else ""
-      else 
-        "Hommaa matopurkki bro, näit saa alepast"
+    if this.location != gw.otaranta then
+      "täällä ei voi kalastaa(otaranta bro)"
+    else if !this.inventory.contains("matopurkki") then
+      "Hommaa matopurkki bro, näit saa alepast"
     else
-      "Täällä ei voi kalastaa (otaranta bro)"
+
+    if this.hasItem("Lohi") && this.hasItem("Silakka") && this.hasItem("Kalapuikko") then
+        this.removeItem("matopurkki")
+        "Madot loppu kesken, oisko mitään kävästä nopee alepas"
+    else
+      val instanssi = rng.between(0,3)
+      val saalis = kalat(instanssi)
+
         
         
 
@@ -277,5 +272,4 @@ class Player(gw: GameWorld):
   addItem(kolikoita)
   addItem(puhelin)
   addItem(kuulokkeet)
-
 end Player
