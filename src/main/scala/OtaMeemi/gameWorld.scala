@@ -65,7 +65,7 @@ class GameWorld:
   alepa.connections = Vector((abloc,1))
   klahtimetro.connections = Vector((ablocmetro,40))
   private val areas =
-    Vector[Area](sus,abloc,taafa,smokki,ok20,dipoli,sornainen,rantasauna,klahtimetro,narnia,kandi,tuas,ttalo,otaranta,piritori,taafalunch,ablocmetro,alepa,sahkopaja)
+    Vector[Area](sus, ablocmetro,abloc,taafa,smokki,ok20,dipoli,sornainen,rantasauna,klahtimetro,narnia,kandi,tuas,ttalo,otaranta,piritori,taafalunch,alepa,sahkopaja)
 
 
   def getAreas : Vector[Area] = areas
@@ -236,7 +236,7 @@ class GameWorld:
   ttalo.addEvent(ttalobossi)
   rantasauna.addItem(tyohakemus)
   taafalunch.addItem(spagu)
-  abloc.addItem(note1)
+  ablocmetro.addItem(note1)
   dipoli.addEvent(dipolinPohina)
   taafalunch.addEvent(spagumayhem)
 
