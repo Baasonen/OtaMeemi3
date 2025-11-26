@@ -35,15 +35,15 @@ class GameWorld:
   val klahtimetro = new Area("Kivenlahden metroasema", Vector("Sammuit stigulaatiossa, kiitä onneasi että päädyit tänne etkä katuojaan.","Päätepysäkki, täällä on hyvin vähän näkemisen arvoista"), Vector(), false)
   val narnia      = new Area("Narnia", Vector("Miten tässä näin kävi?","Löydät itsesi vaatekaapin toiselta puolelta taikamaailmasta","Suureksi harmiksesi huomaat oven sulkeutuneen takanasi. Eihän tämä näin mene siinä kirjassa."), Vector(), false)
   val sus      = new Area("Amogus", Vector("Placeholder"), Vector(), false)
-  val abloc       = new Area("A Bloc", Vector("O Block mutta aallossa","Menet syömään. Valitse ruokapaikka: Konnichiwa, Kotkot, Poke bowl"), Vector(), true)
+  val abloc       = new Area("A Bloc", Vector("Tuttu kauppakeskus, täällä on muun muassa Alepa","Ovi artsille on taas lukossa"), Vector(), true)
   val kandi       = new Area("Kandikeskus", Vector("Saavut kandikeskukselle (tuttavallisemmin kandilafka)","Menet A-saliin fysiikan luennolle ja huomaat, että se on lähes tyhjä. Vastuullista sakkia nämä opiskelijat.","Pyörit ympyrää Y-siivessä koska et tiedä missä Y208b on. (vinkki vitonen, se ei ole toisessa kerroksessa)"), Vector(), false)
   val tuas        = new Area("TUAS", Vector("Täältä voisi varmaan mennä pajalle","Väsäät projektia tunnin","ja toisen","ja kolmannen","Menet syömään, on keskiviikko eli tarjolla on lohta tartarkastikkeessa a 5.50€"), Vector(), false)
-  val ttalo       = new Area("Tietotalo", Vector("Täällä asuvat eivät tunne suihkun käsitettä","Menet opiskelemaan kasvihuoneeseen"), Vector(), false)
+  val ttalo       = new Area("Tietotalo", Vector("Täältä löytyy olennaisesti vain Subway (alue valitettavasti kärsii olemassaolohäiriöstä) ja reitti Tuasille."), Vector(), false)
   val otaranta    = new Area("Otaranta", Vector("Saavut otarantaan. Kylmä tuuli puhaltaa mereltä","Menet uimaan, vesi on kylmää (yllättyneet parijonoon)"), Vector(), false)
   val taafalunch = new Area("Taafan lounasravintola",Vector("Menet spagujonoon","Edelleen spagujonossa","Tässä voi kestää hetken","Saat 1kpl spagua"),Vector(), false)
-  val ablocmetro = new Area ("Abloc metro",Vector("Menit metrolle. Minne matka?"),Vector(),false)
-  val alepa = new Area ("Alepa", Vector("Menit alepaan, 2e redbull tarjous on voimassa"),Vector(),true)
-  val sahkopaja = new Area ("Sähköpaja",Vector("Saavuit pajalle. GG."),Vector(),false)
+  val ablocmetro = new Area ("Abloc metro",Vector("Menit metrolle. Minne matka? (Retorinen kysymys, et pääse täältä kuin 'blocille)"),Vector(),false)
+  val alepa = new Area ("Alepa", Vector("Menit alepaan, täällä myydään seuraavanlaisia asioita: \n\n Matopurkki ------ 1 € \n\n Gtx760 ------ 200 €"),Vector(),true)
+  val sahkopaja = new Area ("Sähköpaja",Vector("placeholder"),Vector(),false)
 
   // ALUEIDEN YHTEYDET
   taafa.connections = Vector((kandi,5),(dipoli,2),(smokki,5),(taafalunch,1))
@@ -160,7 +160,7 @@ class GameWorld:
        if player.location.getActiveEvents(player).map(_.toString.toLowerCase).contains("ttalobossi") then
          player.setNewLocation(narnia)
          passTime(100*60)
-         "Annoit työtarjouksen hirviölle, hän suuttui enemmän ja heitti sinut narniaan"
+         "Annoit työhakemuksen hirviölle, hän suuttui enemmän ja heitti sinut narniaan"
        else
          "Et kyllä tiedä mitä tällä tehdä"
 
@@ -174,8 +174,8 @@ class GameWorld:
 
            override def use(player: Player): String =
              println(player.location.getActiveEvents(player).map(_.toString.toLowerCase))
-             if player.location.getActiveEvents(player).map(_.toString.toLowerCase).contains("ttalobossi") && player.inventory.map(_.toString.toLowerCase).contains("gtx760") then
-               if player.inventory.map(_.toString.toLowerCase).contains("gtx760") then
+             if player.location.getActiveEvents(player).map(_.toString.toLowerCase).contains("ttalobossi") && player.inventory.map(_.toLowerCase).contains("gtx760") then
+               if player.inventory.map(_.toLowerCase).contains("gtx760") then
                 player.location.getActiveEvents(player).filter(_.toString == "ttalobossi").head.setActivated(true)
                 player.removeItem("työtarjous")
                 player.setNewLocation(tuas)
