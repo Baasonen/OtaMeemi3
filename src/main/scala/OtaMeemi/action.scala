@@ -8,7 +8,6 @@ class Action(input: String):
   def execute(actor: Player): Option[String] =
     this.verb match
       case "mene"        => Some(actor.go(this.modifiers))
-      case "lepää"      => Some(actor.rest())
       case "lopeta"      => Some(actor.quit())
       case "tutki"   =>
         if this.modifiers.isEmpty then Some(actor.location.examine(actor))
@@ -18,10 +17,11 @@ class Action(input: String):
       case "käytä"       => Some(actor.useItem(this.modifiers))
       case "amogus"    => Some(actor.sus())
       case "yhdistä"   => Some(actor.combineItems(this.modifiers))
-      case "apua"   => Some("Voit koittaa näitä komentoja: mene *sijainti*, lepää, lopeta, tutki *sijainti tai esine*, pakene, inventory, osta, kalasta, myy")
+      case "apua"   => Some("Voit koittaa näitä komentoja: mene, lopeta, tutki, pakene, inventory, käytä, amogus, yhdistä, apua, syö, myy, ota, odota, kalasta, osta, lue")
       case "syö"    => Some(actor.eatItem(this.modifiers))
       case "myy"      => Some(actor.trade(this.modifiers))
       case "ota"      => Some(actor.takeItem(this.modifiers))
+      case "odota"    => Some(actor.waitSome())
       case "kalasta" => Some(actor.fish())
       case "osta" => Some(actor.buy(this.modifiers))
       case "lue" => Some(actor.read(this.modifiers))

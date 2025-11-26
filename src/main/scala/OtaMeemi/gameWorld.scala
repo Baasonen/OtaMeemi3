@@ -46,22 +46,22 @@ class GameWorld:
   val sahkopaja = new Area ("Sähköpaja",Vector("placeholder"),Vector(),false)
 
   // ALUEIDEN YHTEYDET
-  taafa.connections = Vector((kandi,5),(dipoli,2),(smokki,5),(taafalunch,1))
-  smokki.connections = Vector((ok20,2))
-  ok20.connections = Vector((kandi,10),(rantasauna,10))
-  dipoli.connections = Vector((taafa,5),(kandi,10))
-  sornainen.connections = Vector((piritori,2),(ablocmetro,20))
-  rantasauna.connections = Vector((narnia,10),(ok20,10),(otaranta,10))
+  taafa.connections = Vector((kandi,10),(dipoli,15),(smokki,20),(taafalunch,60))
+  smokki.connections = Vector((ok20,20))
+  ok20.connections = Vector((kandi,25),(rantasauna,30))
+  dipoli.connections = Vector((taafa,20),(kandi,15))
+  sornainen.connections = Vector((piritori,0),(ablocmetro,120))
+  rantasauna.connections = Vector((narnia,25),(ok20,100),(otaranta,30))
   narnia.connections = Vector((rantasauna,10))
-  abloc.connections = Vector((kandi,2),(ttalo,10),(ablocmetro,1),(alepa,1))
+  abloc.connections = Vector((kandi,10),(ttalo,20),(ablocmetro,10),(alepa,1))
   kandi.connections = Vector((abloc,20),(ok20,30),(taafa,30),(dipoli,20))
   tuas.connections = Vector((sahkopaja,1))
-  ttalo.connections = Vector((abloc,10))
-  otaranta.connections = Vector((rantasauna,10))
-  piritori.connections = Vector((sornainen,2))
-  taafalunch.connections = Vector((taafa,1))
-  ablocmetro.connections = Vector((abloc,1))
-  sus.connections = Vector((ttalo,1))
+  ttalo.connections = Vector((abloc,25))
+  otaranta.connections = Vector((rantasauna,30))
+  piritori.connections = Vector((sornainen,0))
+  taafalunch.connections = Vector((taafa,10))
+  ablocmetro.connections = Vector((abloc,5))
+  sus.connections = Vector((ttalo,10))
   alepa.connections = Vector((abloc,1))
   klahtimetro.connections = Vector((ablocmetro,40))
   private val areas =
@@ -85,6 +85,7 @@ class GameWorld:
     currentTime += timeToPass
 
     if currentTime > (24*60) then
+      areas.foreach(_.resetState())
       currentTime = ((8*60)+15)
       false
     else
@@ -218,11 +219,11 @@ class GameWorld:
       player.location.toString.toLowerCase == "tietotalo" && !activated
 
     override def activateEvent(player: Player): String =
-      "Eteesi ilmestyy hirveän vihainen hirviö, joka ei tahdo päästää sinua kulkemaan läpi. Pystytköhän jotenkin harhauttamaan häntä?. Vinkki vitonen, hommaa työhakemus ja työtarjous. Dipoli voi olla hyvä suunta."
+      "Eteesi ilmestyy hirveän vihainen hirviö, joka ei tahdo päästää sinua kulkemaan läpi. Pystytköhän jotenkin harhauttamaan häntä?. Vinkki vitonen, hommaa työhakemus ja työtarjous. Dipoli voi olla hyvä suunta. Tarvitset myös näytönohjaimen."
 
   object stigulaatio extends Event("Stigulaatio"):
     override def checkActive(player: Player): Boolean =
-      (player.location == ok20) && (currentTime > (8 * 60)) && (player.location.getCurrentDepth > 2)
+      (player.location == ok20) && (currentTime > (15 * 60)) && (player.location.getCurrentDepth > 2)
 
     override def activateEvent(player: Player): String =
       object dokattu extends DokattuDebuff(900 + currentTime, currentTime)
@@ -241,5 +242,6 @@ class GameWorld:
   dipoli.addEvent(dipolinPohina)
   taafalunch.addEvent(spagumayhem)
 
-
+  // alusta default itemit
+  areas.foreach(_.snapshot())
   

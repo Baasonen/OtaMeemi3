@@ -65,7 +65,7 @@ object OtameemiGUI extends SimpleSwingApplication:
     private val taafalunchIcon      = new ImageIcon(getClass.getResource("/taafalunch.png"))
     private val dipolilunchIcon = new ImageIcon(getClass.getResource("/dipoliravintola.png"))
     private val ablocmetroIcon = new ImageIcon(getClass.getResource("/ablocmetro.png"))
-    private val majorminor = new ImageIcon(getClass.getResource("/tyo.png")).getImage
+    private val majorminor = new ImageIcon(getClass.getResource("/otameemi.png")).getImage
     private val alepaIcon = new ImageIcon(getClass.getResource("/alepa.png"))
     private val winIcon = new ImageIcon(getClass.getResource("/win.jpeg")).getImage
     // Components:
@@ -101,13 +101,6 @@ object OtameemiGUI extends SimpleSwingApplication:
       layout += turnOutput         -> Constraints(1, 2, 1, 1, 1, 1, SouthWest.id, Fill.Both.id, Insets(5, 5, 5, 5), 0, 0)
 
     // alkunäyttöpaneeli
-    val titleLabel = new Label("OTAMEEMI 3: Työhakemuksen paluu"):
-      font = new Font(font.getName, java.awt.Font.BOLD, 40)
-      horizontalAlignment =Alignment.Center
-      foreground = Color.BLACK
-
-    val titlePanel = new FlowPanel(FlowPanel.Alignment.Center)(titleLabel):
-      opaque =false
 
     val startButton = new Button("Aloita peli")
 
@@ -116,7 +109,6 @@ object OtameemiGUI extends SimpleSwingApplication:
 
     val startPanel = new BackgroundBoxPanel(Orientation.Vertical, majorminor):
       contents += Swing.VStrut(200)
-      contents +=  titlePanel
       contents += Swing.VStrut(200)
       contents += buttonPanel
       border = Swing.EmptyBorder(40, 40, 40, 40)

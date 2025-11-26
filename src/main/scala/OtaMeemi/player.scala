@@ -9,9 +9,9 @@ class Player(gw: GameWorld):
 
   private var money = 5
   private var quitCommandGiven = false
-  private val items = Map[String,Item]()
+  private var items = Map[String,Item]()
   private var debuffs = Vector[Debuff]()
-
+  private val itemsDef = Map[String,Item](("puhelin" -> puhelin),("kuulokkeet" -> kuulokkeet),("muutama kolikko"->kolikoita))
   def activeDebuffs = debuffs
 
   def setNewLocation(newLoc: Area) =
@@ -81,6 +81,7 @@ class Player(gw: GameWorld):
     debuffs = Vector[Debuff]()
 
   def go(destination: String): String =
+    this.currentLocation.resetState()
     val rng = Random()
     val vect = Vector(gw.klahtimetro,gw.sornainen)
     val connections = currentLocation.getConnections
@@ -104,13 +105,11 @@ class Player(gw: GameWorld):
           s"You travel to ${currentLocation.toString}, the time is ${gw.getTime}\n \n ${currentLocation.initialDescription}"
         else
           currentLocation = gw.getAreas(1)
-          "Aamusi alkaa A blocilta, kello on 8.15, nyt on kiire luennolle. Tänään pitää ehtiä myös pajalla saattamaan projekti loppuun. Elämänohjeet kannattaa ottaa maasta ja lukea. (kyllä, peli alkaa alusta)"
+          items = itemsDef
+           "Aamusi alkaa Metrolta, kello on 8.15, nyt on kiire luennolle. Tänään pitää ehtiä myös pajalla saattamaan projekti loppuun. Elämänohjeet kannattaa ottaa maasta ja lukea. (kyllä, peli alkaa alusta)"
       else
         s"Uh Oh, you don't know how to travel to ${destination} from here"
 
-  def rest() =
-    gw.passTime(120)
-    "You rest for a while. Better get a move on, though."
 
   def fish() =
     object lohi extends Item("Lohi", "Kallis kala",100,1):
@@ -248,6 +247,17 @@ class Player(gw: GameWorld):
     ""
   override def toString = "Now at: " + this.location.toString
 
+  def waitSome()=
+    if gw.getRawTime+(5*60) >24*60 then
+      gw.passTime(5*60)
+      this.items=itemsDef
+      this.currentLocation = gw.getAreas(1)
+      "Aamusi alkaa Metrolta, kello on 8.15, nyt on kiire luennolle. Tänään pitää ehtiä myös pajalla saattamaan projekti loppuun. Elämänohjeet kannattaa ottaa maasta ja lukea. (kyllä, peli alkaa alusta)"
+    else
+      gw.passTime(2*60)
+      "Scrollasit juuri kaksi tuntia reelejä, olisikohan aika miettiä mitä teet elämälläsi?"
+
+
   object puhelin extends Item("Puhelin", "Kyl sä tiiät (ip 17 pro max btw)", 2000, 1):
     override def use(player: Player): String =
       player.currentLocation match
@@ -301,4 +311,5 @@ class Player(gw: GameWorld):
   addItem(kolikoita)
   addItem(puhelin)
   addItem(kuulokkeet)
+
 end Player

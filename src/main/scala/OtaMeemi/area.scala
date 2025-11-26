@@ -4,6 +4,7 @@ class Area(name: String, desc: Vector[String],var connections: Vector[(Area, Int
   private var events = Vector[Event]()
   private var currentDepth = 0
   private var items = Vector[Item]()
+  private var initialItems = Vector[Item]()
 
   override def toString: String = this.name
 
@@ -20,6 +21,10 @@ class Area(name: String, desc: Vector[String],var connections: Vector[(Area, Int
     else
       "Täällä ei ole mitään nähtävää"
 
+  def resetState(): Unit =
+    currentDepth = 0
+    events.foreach(_.setActivated(false))
+    items = initialItems
   def escape =
     if currentDepth != 0 then
       currentDepth = 0
@@ -50,3 +55,6 @@ class Area(name: String, desc: Vector[String],var connections: Vector[(Area, Int
   def isTradingAllowed = tradingAllowed
 
   def addEvent(eventToAdd: Event) = events = events.appended(eventToAdd)
+
+  def snapshot(): Unit =
+    initialItems = items
