@@ -178,6 +178,7 @@ class GameWorld:
                if player.inventory.map(_.toLowerCase).contains("gtx760") then
                 player.location.getActiveEvents(player).filter(_.toString == "ttalobossi").head.setActivated(true)
                 player.removeItem("työtarjous")
+                player.removeItem("gtx760")
                 player.setNewLocation(tuas)
                 "Oho, hänhän innostui työpaikasta sekä näytönohjaimesta ja juoksi pois. Voit nyt jatkaa matkaa pajalle"
                else
