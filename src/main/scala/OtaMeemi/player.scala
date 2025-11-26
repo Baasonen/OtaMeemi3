@@ -260,28 +260,7 @@ class Player(gw: GameWorld):
 
 
   object puhelin extends Item("Puhelin", "Kyl sä tiiät (ip 17 pro max btw)", 2000, 1):
-    override def use(player: Player): String =
-      player.currentLocation match
-        case taafa         => "Kantsii syödä mut silleen ei tästä paikast saa muuta kun loree, Dipoli tai Rantasauna vois olla hyviä paikkoja mennä"
-        case smokki        => "Et pääse tänne kuitenkaan sisälle, mene uuniin eiku Rantsulle"
-        case sus            => "Googlaaminen ei auta, jos päädyit tänne olet muutenkin liikaa puhelimella bro"
-        case ok20          => "Kannattaa tutkia x 5"
-        case dipoli        => "Täältä saa muutakin kuin skumppaa ja kontakteja. Kantsii pitää linkedIn auki"
-        case sornainen     => "Mene ylös piritorille"
-        case rantasauna    => "Kalasta otarannas bro, idk what to tell you man"
-        case klahtimetro   => "Mee vaan pois"
-        case narnia        => ")&/=)=)(?=)(??(=)==/=(/"
-        case abloc         => "brr brr patapim six seven"
-        case kandi         => "Mene luennolle, siellä on hyödyllistä tekemistä"
-        case tuas          => "Voitit periaatteessa pelin, mene pajalle, siellä riittää hommaa."
-        case ttalo         => "Tää bossi ei päästä sua ohi"
-        case otaranta      => "Kalasta bro"
-        case piritori      => "Ei ehitty lisään tähän mitään"
-        case dipoliravintola     => "Onko nälkä, lataa tuudo."
-        case ablocmetro         => "Mene himaan, eiku venaa et pysty"
-        case taafalunch         => "Spagu bro"
-        case alepa         => "matoi spagun kaa bro"
-        case _               => ""
+    override def use(player: Player): String = "Kelasta päivää..."
 
     override def combine(player: Player, combineWith: Item): String = "Et osaa yhdistää tätä muuhun kuin wifiin"
 
