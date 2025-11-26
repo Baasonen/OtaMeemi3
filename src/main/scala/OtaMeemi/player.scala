@@ -201,13 +201,14 @@ class Player(gw: GameWorld):
       object gtx760 extends Item("GTX760", "Aika tykki vekotin (älä syö)", 200, 10):
         override def eat(player: Player): String =
           player.removeItem("gtx760")
-          "Rousk rousk"
+          "Rousk rousk (nam)"
         override def combine(player: Player, combineWith: Item): String = "Et ole elektroniikkainsinööri"
         override def use(player: Player): String =
           if location.getActiveEvents(player).map(_.toString.toLowerCase).contains("ttalobossi") then
             if items.contains("työtarjous") then
                 player.location.getActiveEvents(player).filter(_.toString == "ttalobossi").head.setActivated(true)
                 player.removeItem("työtarjous")
+                player.removeItem("gtx760")
                 player.setNewLocation(gw.tuas)
                 "Oho, hänhän innostui työpaikasta sekä näytönohjaimesta ja juoksi pois. Voit nyt jatkaa matkaa pajalle"
             else
