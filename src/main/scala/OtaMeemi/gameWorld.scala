@@ -15,7 +15,7 @@ class GameWorld:
                       "Yrität lahjoa portsarin, hän ei päästä sinua sisälle koska et ole tutalla",
                     ), Vector(), false)
 
-  val ok20      = new Area("Ok20", Vector("Saavut Otakaari 20:n pihaan, yläovesta kuuluu musiikkia","Menet sisälle, käynnissä on stigulaatio. Tunnet itsesi ulkopuoliseksi koska et ole dokattu","Olet dokattu, valmistaudu hauskaan iltaan", "Varam kamnattaisi jatkam matka rmatasugewmaunaaa"), Vector(), false)
+  val ok20      = new Area("Ok20", Vector("Saavut Otakaari 20:n pihaan, yläovesta kuuluu musiikkia","Menet sisälle, käynnissä on stigulaatio.","Olet dokattu, valmistaudu hauskaan iltaan", "Varam kamnattaisi jatkam matka rmatasugewmaunaaa"), Vector(), false)
   val dipoli    = new Area("Dipoli", Vector(
                       "Saavut dipolille, frakkien määrän perusteella sisällä on meneillään jotain tärkeää",
                       "Kävelet sisään. Pöhinän seassa pystysi ehkä jopa verkostoitua",
@@ -223,7 +223,7 @@ class GameWorld:
 
   object stigulaatio extends Event("Stigulaatio"):
     override def checkActive(player: Player): Boolean =
-      (player.location == ok20) && (currentTime > (15 * 60)) && (player.location.getCurrentDepth > 2)
+      (player.location == ok20) && (currentTime > (8 * 60)) && (player.location.getCurrentDepth > 1)
 
     override def activateEvent(player: Player): String =
       object dokattu extends DokattuDebuff(900 + currentTime, currentTime)

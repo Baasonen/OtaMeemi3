@@ -90,7 +90,8 @@ class Player(gw: GameWorld):
       setNewLocation(vect(rng.between(0,2)))
       gw.setTime((23*60)+59)
       removeDebuffs()
-      "Mitemn.,,, tämne pädyin,. eo ole tekariklä"
+      s"Mitemn.,,, tämne pädyin,. eo ole tekariklä \n\n\n (jos tämä ei ole jo muuten selvää, sammuit stigulaatiossa ja päädyit tänne. Hyvää loppupäivää.)"
+
 
     else if connections.map(_._1.toString.toLowerCase).contains(destination) then
       if destination == "narnia" then
